@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>BlockMatrix Chain</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+        <!-- CSS only -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    </head>
+    <body>
+
+    <!-- Alerts -->
+    <div class="container alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Private Key</strong> <p th:text="'UUID: ' + ${priv_address}"> </p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <!-- My Wallet UI -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg">
+                <p th:text="'UUID: ' + ${uuid}"> </p>
+                <br/>
+                <p th:text="'Wallet Address: ' + ${pub_address}"> </p>
+            </div>
+            <div class="col-lg">
+                <p th:text="'Wallet Balance: ' + ${balance}"> </p>
+            </div>
+        </div>
+    </div>
+
+    <!--  User Actions with Wallet  -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg">
+                <!-- Generate a new User Wallet (For Private + Public Keys) -->
+                <button type="button" class="btn btn-primary" th:onclick="|window.location.href='/generate_new_wallet'|"> Generate New Wallet </button>
+            </div>
+            <div class="col-lg">
+                <!-- Send Transaction to a another wallet -->
+                <label for="basic-url"><h5>Send Funds</h5></label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon3">Recipients User Name</span>
+                    </div>
+                    <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-primary" th:onclick="|window.location.href='/send_transaction'|"> Send Transaction </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--  My Transactions List  -->
+    <div class="container">
+        <h3>My Transactions History</h3>
+        <tr th:each="mapEntry : ${transactions}">
+            <td th:text="${mapEntry.key}"> keyvalue </td>
+            <td th:text="${mapEntry.value}"> keyvalue </td>
+        </tr>
+    </div>
+
+    <!-- JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+    </body>
+</html>
