@@ -30,7 +30,7 @@ public class BlockChain_Controller {
     private String blockChainNodeId;
 
     // __________________
-    // Blockchain Data (Info)
+    // Blockchain Data (Explorer)
 
     @RequestMapping("/block_count")
     public int block_count() {
