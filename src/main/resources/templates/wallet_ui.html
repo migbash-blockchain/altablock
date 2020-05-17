@@ -6,6 +6,9 @@
 
         <!-- CSS only -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+        <!-- Font Awesome CDN -->
+        <script src="https://kit.fontawesome.com/62abfc2872.js" crossorigin="anonymous"></script>
     </head>
     <body>
 
@@ -17,21 +20,30 @@
         </button>
     </div>
 
-    <!-- My Wallet UI -->
-    <div class="container">
+    <div class="container p-3">
         <div class="row">
-            <div class="col-lg">
-                <p th:text="'UUID: ' + ${uuid}"> </p>
-                <br/>
-                <p th:text="'Wallet Address: ' + ${pub_address}"> </p>
-            </div>
-            <div class="col-lg">
-                <p th:text="'Wallet Balance: ' + ${balance}"> </p>
+            <div class="col-lg my-auto">
+                <i class="fas fa-wallet fa-2x"></i>
+                <h5> Wallet Dashboard </h5>
             </div>
         </div>
     </div>
 
-    <!--  User Actions with Wallet  -->
+    <!-- My Wallet UI -->
+    <div class="container p-3">
+        <div class="row">
+            <div class="col-lg">
+                <p> <strong> UUID: </strong> <span th:text="${uuid}"> </span> </p>
+                <br/>
+                <p> <strong> Wallet Address: </strong> <span th:text="${pub_address}"> </span> </p>
+            </div>
+            <div class="col-lg">
+                <p> <strong> Wallet Balance: </strong> <span th:text="${balance}"> </span> </p>
+            </div>
+        </div>
+    </div>
+
+    <!--  Send Transaction across Blockchain -->
     <div class="container">
         <div class="row">
             <div class="col-lg">
@@ -41,25 +53,41 @@
             <div class="col-lg">
                 <!-- Send Transaction to a another wallet -->
                 <label for="basic-url"><h5>Send Funds</h5></label>
+
+                <!-- Input Transaction Recipient -->
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon3">Recipients User Name</span>
+                        <span class="input-group-text" id="basic-addon3">Recipients Username (or Address)</span>
                     </div>
                     <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-                    <div class="input-group-append">
-                        <button type="button" class="btn btn-primary" th:onclick="|window.location.href='/send_transaction'|"> Send Transaction </button>
-                    </div>
                 </div>
+
+                <!-- Input Transaction Values -->
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Amount ($)</span>
+                    </div>
+                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                </div>
+
+                <!-- Send Transaction Btn. -->
+                <button type="button" class="btn btn-primary" th:onclick="|window.location.href='/send_transaction'|"> Send Transaction <i class="fas fa-paper-plane"></i> </button>
             </div>
         </div>
     </div>
 
     <!--  My Transactions List  -->
     <div class="container">
+        <i class="fas fa-history fa-2x"></i>
         <h3>My Transactions History</h3>
         <tr th:each="mapEntry : ${transactions}">
             <td th:text="${mapEntry.key}"> keyvalue </td>
             <td th:text="${mapEntry.value}"> keyvalue </td>
+            <td>
+                <button class="btn btn-danger">
+                    Modify Transaction Info
+                </button>
+            </td>
         </tr>
     </div>
 
