@@ -7,10 +7,10 @@ public class Transaction_Output {
     // __________________
     // Class Variables
 
-    String id;
-    PublicKey recipient;                            // The new owner of these coins
-    float value;                                    // The amount of coins they own
-    private String parentTransactionId;             // The id of the transaction this output was created in
+    String id;                                      // transaction ID
+    PublicKey recipient;                            // new owner of these coins
+    float value;                                    // amount of coins they own
+    private String parentTransactionId;             // id of the transaction this output was created in
 
     // __________________
     // Class Constructor

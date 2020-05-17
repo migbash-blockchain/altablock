@@ -76,7 +76,6 @@ public class StringUtil {
     // Class Getters
 
     public static String getStringFromKey(Key key) {
-        System.out.println(Base64.getEncoder().encodeToString(key.getEncoded()));
         return Base64.getEncoder().encodeToString(key.getEncoded());
     }
 
