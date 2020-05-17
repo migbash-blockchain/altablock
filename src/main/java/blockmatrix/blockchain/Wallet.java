@@ -48,11 +48,15 @@ public class Wallet {
 
         float total = 0;
 
+        // iterate over blockmatrix and obtain all UTXOs
         for (Map.Entry<String, Transaction_Output> item: BlockMatrix.UTXOs.entrySet()){
-            Transaction_Output UTXO = item.getValue();
-            if(UTXO.is_Transaction_Mine(publicKey)) {                // if output belongs to me (if coins belong to me)
-                UTXOs.put(UTXO.id,UTXO);                             // add it to our list of unspent transactions
-                total += UTXO.value ;
+
+            Transaction_Output UTXO = item.getValue();                // get transaction (output UTXO) value
+
+            // if output belongs to me (if coins belong to me)
+            if(UTXO.is_Transaction_Mine(publicKey)) {
+                UTXOs.put(UTXO.id, UTXO);                             // add it to our list of unspent transactions
+                total += UTXO.value;                                  // assign UTXO value to total
             }
         }
 

@@ -7,13 +7,17 @@ import blockmatrix.blockchain.Wallet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
 @RestController
 @EnableAutoConfiguration
+@EnableScheduling
 @RequestMapping("/")
 public class BlockChain_Controller {
 
@@ -24,6 +28,9 @@ public class BlockChain_Controller {
     private Wallet new_wallet;
 
     @Autowired
+    private Wallet wallet_genesis;
+
+    @Autowired
     private Block new_block;
 
     @Value("${blockchain.node.id}")
@@ -31,16 +38,6 @@ public class BlockChain_Controller {
 
     // __________________
     // Blockchain Data (Explorer)
-
-    @RequestMapping("/block_count")
-    public int block_count() {
-        return new_blockMatrix.getInputCount();
-    }
-
-    @RequestMapping("/modified_blocks")
-    public String chain() {
-        return new_blockMatrix.getBlocksWithModifiedData().toString();
-    }
 
     @RequestMapping("/get_block_data")
     public String getBlockData(@RequestParam(value="num", required=true, defaultValue="1") int blockNumber) {
@@ -56,7 +53,6 @@ public class BlockChain_Controller {
     // Blockchain Actions
 
 
-
     // __________________
     // User Actions
 
@@ -69,6 +65,12 @@ public class BlockChain_Controller {
     @ResponseStatus(HttpStatus.CREATED)
     public Boolean send_funds(@RequestParam(value="funds", required = true) float value,
                            @RequestParam(value="msg", required = true) String msg) {
-        return new_block.add_Transaction_To_Block(new_wallet.send_Wallet_Funds(new_wallet.getPublicKey(), value, msg));
+        return new_block.add_Transaction_To_Block(wallet_genesis.send_Wallet_Funds(new_wallet.getPublicKey(), value, msg));
     }
+
+//    @Scheduled(fixedRate = 5000) // ms = (5 sec)
+//    @RequestMapping("/add_block")
+//    public void add_block(){
+//        new_blockMatrix.add_Block(new_block);
+//    }
 }

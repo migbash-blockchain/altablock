@@ -13,13 +13,15 @@
     <body>
 
     <!-- Alerts -->
-    <div class="container alert alert-warning alert-dismissible fade show" role="alert">
-        <strong>Private Key</strong> <p th:text="'UUID: ' + ${priv_address}"> </p>
+    <div class="container alert alert-warning alert-dismissible fade show p-3" role="alert">
+        <strong>Private Key</strong>
+        <p> <span th:text="${priv_address}"> </span> </p>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
 
+    <!-- Wallet Header -->
     <div class="container p-3">
         <div class="row">
             <div class="col-lg my-auto">
@@ -51,27 +53,39 @@
                 <button type="button" class="btn btn-primary" th:onclick="|window.location.href='/generate_new_wallet'|"> Generate New Wallet </button>
             </div>
             <div class="col-lg">
-                <!-- Send Transaction to a another wallet -->
-                <label for="basic-url"><h5>Send Funds</h5></label>
+                <form action="#" th:action="@{/send_funds}" method="post">
+                    <div class="form-group">
+                        <!-- Send Transaction to a another wallet -->
+                        <label for="basic-url"><h5>Send Funds</h5></label>
 
-                <!-- Input Transaction Recipient -->
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon3">Recipients Username (or Address)</span>
+                        <!-- Input Recipient Address / Username -->
+                        <div class="form-group input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon3">Recipients Username (or Address)</span>
+                            </div>
+                            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                        </div>
+
+                        <!-- Input Transaction Values -->
+                        <div class="form-group input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Amount ($)</span>
+                            </div>
+                            <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" th:name="funds">
+                        </div>
+
+                        <!-- Input Transaction Information -->
+                        <div class="form-group input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Message</span>
+                            </div>
+                            <input type="text" class="form-control" aria-label="Message" th:name="msg">
+                        </div>
+
+                        <!-- Send Transaction Btn. -->
+                        <button type="submit" class="btn btn-primary"> Send Transaction <i class="fas fa-paper-plane"></i> </button>
                     </div>
-                    <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-                </div>
-
-                <!-- Input Transaction Values -->
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">Amount ($)</span>
-                    </div>
-                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-                </div>
-
-                <!-- Send Transaction Btn. -->
-                <button type="button" class="btn btn-primary" th:onclick="|window.location.href='/send_funds'|"> Send Transaction <i class="fas fa-paper-plane"></i> </button>
+                </form>
             </div>
         </div>
     </div>
@@ -80,15 +94,28 @@
     <div class="container">
         <i class="fas fa-history fa-2x"></i>
         <h3>My Transactions History</h3>
-        <tr th:each="mapEntry : ${transactions}">
-            <td th:text="${mapEntry.key}"> keyvalue </td>
-            <td th:text="${mapEntry.value}"> keyvalue </td>
-            <td>
-                <button class="btn btn-danger">
-                    Modify Transaction Info
-                </button>
-            </td>
-        </tr>
+
+        <!-- Table of Transactions -->
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Transaction ID</th>
+                <th scope="col">Recipient</th>
+                <th scope="col">Value</th>
+                <th scope="col">Parent ID</th>
+                <th scope="col"> </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="mapEntry : ${transactions}">
+                <td style="font-size:12px" th:text="${mapEntry.key}"> transaction_id </td>
+                <td style="font-size:8px" th:text="${mapEntry.value.getRecipient()}"> recipient_address </td>
+                <td style="font-size:14px" th:text="${mapEntry.value.getValue()}"> transaction_value </td>
+                <td style="font-size:12px" th:text="${mapEntry.value.getParentTransactionId()}"> transaction_parent_id </td>
+                <td> <button style="font-size:14px;" class="btn btn-danger" > Modify Transaction Info </button> </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 
     <!-- JS, Popper.js, and jQuery -->

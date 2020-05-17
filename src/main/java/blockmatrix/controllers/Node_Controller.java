@@ -1,17 +1,13 @@
 package blockmatrix.controllers;
 
 import blockmatrix.blockchain.BlockMatrix;
-import blockmatrix.blockchain.Transaction;
+import blockmatrix.blockchain.StringUtil;
 import blockmatrix.blockchain.Wallet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.ArrayList;
 
 @Controller
 public class Node_Controller {
@@ -21,6 +17,9 @@ public class Node_Controller {
 
     @Autowired
     private BlockMatrix new_blockMatrix;
+
+    @Autowired
+    private Wallet wallet_genesis;
 
     @Autowired
     private Wallet new_wallet;
@@ -35,19 +34,22 @@ public class Node_Controller {
     public String block_explorer(Model model) {
         model.addAttribute("block_num", new_blockMatrix.getInputCount());
         model.addAttribute("mod_blocks", new_blockMatrix.getBlocksWithModifiedData().toString());
+        model.addAttribute("bm_verify", new_blockMatrix.is_Matrix_Valid().toString());
+        model.addAttribute("bm_dimen", new_blockMatrix.getDimension());
+        model.addAttribute("bm_utxo", new_blockMatrix.getUTXOs());
         return "block_explorer";
     }
 
     // __________________
-    // User Dashboard
+    // User Dashboard (UI/UX)
 
     @GetMapping("/wallet")
     public String wallet(Model model) {
         model.addAttribute("uuid", blockChainNodeId);
-        model.addAttribute("balance", new_wallet.get_Wallet_Balance());
-        model.addAttribute("transactions", new_wallet.getUTXOs());
-        model.addAttribute("pub_address", new_wallet.getPublicKey());
-        model.addAttribute("priv_address", new_wallet.getPrivateKey());
+        model.addAttribute("balance", wallet_genesis.get_Wallet_Balance());
+        model.addAttribute("transactions", wallet_genesis.getUTXOs());
+        model.addAttribute("pub_address", StringUtil.getStringFromKey(wallet_genesis.getPublicKey()));
+        model.addAttribute("priv_address", StringUtil.getStringFromKey(wallet_genesis.getPrivateKey()));
         return "wallet_ui";
     }
 }

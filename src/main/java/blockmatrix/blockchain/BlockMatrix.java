@@ -9,6 +9,11 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 
+/**
+ * BlockMatrix is essentially the equivalent of a 'Blockchain' class, however with the addition
+ * of specific methods for handling, updating and verifying the tampering of a "BlockMatrix"
+ */
+
 @Component
 public class BlockMatrix {
 
@@ -384,6 +389,7 @@ public class BlockMatrix {
         Collections.sort(this.blocksWithModifiedData);
         return this.blocksWithModifiedData;
     }
+    public HashMap<String, Transaction_Output> getUTXOs() { return UTXOs; }
 
     public void setMinimumTransaction(float num) { minimumTransaction = num; }
 

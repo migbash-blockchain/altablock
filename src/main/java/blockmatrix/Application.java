@@ -3,14 +3,20 @@ package blockmatrix;
 import blockmatrix.blockchain.Block;
 import blockmatrix.blockchain.BlockMatrix;
 import blockmatrix.blockchain.Wallet;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 
 import java.util.UUID;
 
+@EnableScheduling
 @SpringBootApplication
 public class Application {
+
+    private Wallet wallet_genesis;
 
     public static void main(String[] args) {
 
@@ -22,12 +28,18 @@ public class Application {
     }
 
     @Bean
+    public Wallet wallet_genesis(){
+        return wallet_genesis;
+    }
+
+    @Bean
     public BlockMatrix new_blockMatrix() {
-        BlockMatrix bm = new BlockMatrix(10000);      // instantiate new BlockMatrix
-        bm.setUpSecurity();                                     // apply block security to the BlockMatrix
-        bm.setMinimumTransaction(3.0F);                         // ..
-        Wallet walletA = new Wallet();                          // instantiate a genesis Wallet
-        bm.generate_Genesis_Block(walletA, 200.0F);       // ..
+        BlockMatrix bm = new BlockMatrix(10000);             // instantiate new BlockMatrix
+        bm.setUpSecurity();                                             // apply block security to the BlockMatrix
+        bm.setMinimumTransaction(3.0F);                                 // ..
+        wallet_genesis = new Wallet();                                  // instantiate a genesis Wallet
+        bm.generate_Genesis_Block(wallet_genesis, 200.0F);        // ..
+        System.out.println(wallet_genesis.get_Wallet_Balance());
         return bm;
     }
 

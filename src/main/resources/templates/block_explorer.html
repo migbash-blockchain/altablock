@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>BlockMatrix Chain</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <!-- Font Awesome CDN -->
+    <script src="https://kit.fontawesome.com/62abfc2872.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <!-- Block Explorer Header -->
+    <div class="container p-3">
+        <div class="row">
+            <div class="col-lg my-auto">
+                <i class="fas fa-cubes fa-2x"></i>
+                <h5> Block Explorer </h5>
+            </div>
+        </div>
+    </div>
+
+    <!--  Modified Blocks & Total Blocks in [BlockMatrix]  -->
+    <div class="container p-3">
+        <div class="row">
+
+            <!-- Modified Block Count -->
+            <div class="col-lg">
+                <i class="fas fa-edit fa-2x"></i>
+                <p> <strong> Modified Blocks </strong> <span th:text="${mod_blocks}"> </span> </p>
+            </div>
+
+            <!-- Block Count -->
+            <div class="col-lg">
+                <i class="fas fa-cube fa-2x"></i>
+                <p> <strong> Number of Blocks </strong> <span th:text="${block_num}"> </span> </p>
+            </div>
+
+        </div>
+    </div>
+
+    <!--  All Transactions List  -->
+    <div class="container">
+        <i class="fas fa-history fa-2x"></i>
+        <h3>Transactions History</h3>
+
+        <!-- Table of Transactions -->
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Transaction ID</th>
+                <th scope="col">Recipient</th>
+                <th scope="col">Value</th>
+                <th scope="col">Parent ID</th>
+                <th scope="col"> </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="mapEntry : ${bm_utxo}">
+                <td th:text="${mapEntry.key}"> transaction_id </td>
+                <td th:text="${mapEntry.value.getRecipient()}"> recipient_address </td>
+                <td th:text="${mapEntry.value.getValue()}"> transaction_value </td>
+                <td th:text="${mapEntry.value.getParentTransactionId()}"> transaction_parent_id </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

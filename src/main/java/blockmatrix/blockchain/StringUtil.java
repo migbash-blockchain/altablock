@@ -75,7 +75,10 @@ public class StringUtil {
     // _________________
     // Class Getters
 
-    public static String getStringFromKey(Key key) { return Base64.getEncoder().encodeToString(key.getEncoded()); }
+    public static String getStringFromKey(Key key) {
+        System.out.println(Base64.getEncoder().encodeToString(key.getEncoded()));
+        return Base64.getEncoder().encodeToString(key.getEncoded());
+    }
 
     public static String getMerkleRoot(ArrayList<Transaction> transactions) {
         // Takes an array of transactions and returns a merkle root.

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * Class Model for "Transactions"
+ * Class Model for a "Transaction" that will be stored inside a Block
  */
 
 public class Transaction {
