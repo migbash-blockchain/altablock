@@ -9,6 +9,9 @@
 
     <!-- Font Awesome CDN -->
     <script src="https://kit.fontawesome.com/62abfc2872.js" crossorigin="anonymous"></script>
+
+    <!-- Main JS File -->
+    <script type="text/javascript" th:src="@{main.js}"></script>
 </head>
 <body>
 
@@ -63,6 +66,17 @@
                 <td th:text="${mapEntry.value.getRecipient()}"> recipient_address </td>
                 <td th:text="${mapEntry.value.getValue()}"> transaction_value </td>
                 <td th:text="${mapEntry.value.getParentTransactionId()}"> transaction_parent_id </td>
+            </tr>
+            <tr th:each="mapEntry : ${bm_utxo}">
+                <td colspan=3>
+                    <div>
+                        <table>
+                            <tr>
+                                <td th:text="${mapEntry.key}"> transaction_id </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
             </tr>
             </tbody>
         </table>

@@ -18,7 +18,7 @@ public class Block {
     // Class Variables
 
     private String hash;                                              // 'this' block hash value
-    private String merkleRoot;                                        // 'this' block hash value (when all transaction hashes have been combined)
+    private String merkleRoot;                                        // 'this' block hash value (tree-like combinations of all transaction hashes)
     private ArrayList<Transaction> transactions = new ArrayList<>();  // 'this' block transactions list
     private long timeStamp;                                           // number of milliseconds since 1/1/1970
     private int nonce;                                                // first number a blockchain miner needs to discover before solving for a block in the blockchain
@@ -49,7 +49,6 @@ public class Block {
     public void mine_Block() {
         merkleRoot = StringUtil.getMerkleRoot(transactions);
         hash = calculate_Block_Hash();
-        logger.info("Block Mined: " + hash);
         System.out.println("Block Mined: " + hash);
     }
 

@@ -50,22 +50,26 @@ public class BlockChain_Controller {
     }
 
     // __________________
-    // Blockchain Actions
-
-
-    // __________________
     // User Actions
 
-    @RequestMapping("/generate_new_wallet")
+    @RequestMapping(value = "/generate_new_wallet")
     public String generate_new_wallet() {
         return new Wallet().toString();
     }
 
     @RequestMapping(value = "/send_funds")
     @ResponseStatus(HttpStatus.CREATED)
-    public Boolean send_funds(@RequestParam(value="funds", required = true) float value,
+    public void send_funds(@RequestParam(value="funds", required = true) float value,
                            @RequestParam(value="msg", required = true) String msg) {
-        return new_block.add_Transaction_To_Block(wallet_genesis.send_Wallet_Funds(new_wallet.getPublicKey(), value, msg));
+        Block n_block = new Block();
+        n_block.add_Transaction_To_Block(wallet_genesis.send_Wallet_Funds(new_wallet.getPublicKey(), value, msg));
+        new_blockMatrix.add_Block(n_block);
+    }
+
+    @RequestMapping(value = "/clear_info_block")
+    public void clear_info_block(@RequestParam(value="num", required = true, defaultValue = "1") int blockNumber,
+                                 @RequestParam(value="transaction", required = true, defaultValue = "1") int transactionNumber) {
+        new_blockMatrix.clear_Info_In_Transaction(blockNumber, transactionNumber);
     }
 
 //    @Scheduled(fixedRate = 5000) // ms = (5 sec)
@@ -73,4 +77,5 @@ public class BlockChain_Controller {
 //    public void add_block(){
 //        new_blockMatrix.add_Block(new_block);
 //    }
+
 }
