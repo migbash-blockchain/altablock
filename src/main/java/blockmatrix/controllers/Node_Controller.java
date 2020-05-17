@@ -28,5 +28,4 @@ public class Node_Controller {
         model.addAttribute("priv_address", new_wallet.getPrivateKey());
         return "wallet_ui";
     }
-
 }

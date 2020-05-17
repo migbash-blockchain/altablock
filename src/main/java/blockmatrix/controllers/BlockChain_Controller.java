@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -20,6 +19,9 @@ public class BlockChain_Controller {
 
     @Autowired
     private BlockMatrix new_blockMatrix;
+
+    @Autowired
+    private Wallet new_wallet;
 
     @Autowired
     private Block new_block;
@@ -63,14 +65,10 @@ public class BlockChain_Controller {
         return new Wallet().toString();
     }
 
-//    @RequestMapping(value = "/send_funds", method = RequestMethod.POST)
-//    @ResponseStatus(HttpStatus.CREATED)
-//    public String send_funds() {
-//        new_block.add_Transaction_To_Block();
-//    }
-
-    @RequestMapping("/my_node_id")
-    public String my_node_id() {
-        return blockChainNodeId;
+    @RequestMapping(value = "/send_funds")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Boolean send_funds(@RequestParam(value="funds", required = true) float value,
+                           @RequestParam(value="msg", required = true) String msg) {
+        return new_block.add_Transaction_To_Block(new_wallet.send_Wallet_Funds(new_wallet.getPublicKey(), value, msg));
     }
 }
