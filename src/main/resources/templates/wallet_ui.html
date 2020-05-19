@@ -45,12 +45,15 @@
         </div>
     </div>
 
-    <!--  Send Transaction across Blockchain -->
+    <!--  Send Transaction across Blockchain | Generate New Wallet | Block Explorer -->
     <div class="container">
         <div class="row">
             <div class="col-lg">
                 <!-- Generate a new User Wallet (For Private + Public Keys) -->
-                <button type="button" class="btn btn-primary" th:onclick="|window.location.href='/generate_new_wallet'|"> Generate New Wallet </button>
+                <button type="button" class="btn btn-info" th:onclick="|window.location.href='/generate_new_wallet'|"> <i class="fas fa-folder-plus"></i> Generate New Wallet </button>
+                <br/>
+                <!-- View Block Explore -->
+                <button type="button" class="btn btn-success" th:onclick="|window.location.href='/block_explorer'|"> <i class="fas fa-cubes"></i> View Block Explorer </button>
             </div>
             <div class="col-lg">
                 <form action="#" th:action="@{/send_funds}" method="post">
