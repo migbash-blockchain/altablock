@@ -37,6 +37,7 @@ public class Node_Controller {
         model.addAttribute("bm_verify", new_blockMatrix.is_Matrix_Valid().toString());
         model.addAttribute("bm_dimen", new_blockMatrix.getDimension());
         model.addAttribute("bm_utxo", new_blockMatrix.getUTXOs());
+        model.addAttribute("bm_all_transactions", new_blockMatrix.getAllTransactions());
         return "block_explorer";
     }
 

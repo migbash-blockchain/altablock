@@ -68,7 +68,7 @@ public class BlockChain_Controller {
 
     @RequestMapping(value = "/clear_info_block")
     public void clear_info_block(@RequestParam(value="num", required = true, defaultValue = "1") int blockNumber,
-                                 @RequestParam(value="transaction", required = true, defaultValue = "1") int transactionNumber) {
+                                 @RequestParam(value="transaction", required = true, defaultValue = "0") int transactionNumber) {
         new_blockMatrix.clear_Info_In_Transaction(blockNumber, transactionNumber);
     }
 
@@ -77,5 +77,4 @@ public class BlockChain_Controller {
 //    public void add_block(){
 //        new_blockMatrix.add_Block(new_block);
 //    }
-
 }

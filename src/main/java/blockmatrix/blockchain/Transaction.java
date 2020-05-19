@@ -144,7 +144,7 @@ public class Transaction {
     }
 
     // __________________
-    // Getters & Setters
+    // Class Getters & Setters
 
     public int getBlockNumber() { return this.blockNumber; }
     public String getTransactionId() { return this.transactionId; }
@@ -157,6 +157,9 @@ public class Transaction {
     public ArrayList<Transaction_Output> getOutputs() { return this.outputs; }
 
     void setBlockNumber(int num) { this.blockNumber = num; }
+
+    // __________________
+    // Class Helper Methods
 
     @Override
     public String toString() {

@@ -27,8 +27,8 @@ public class BlockMatrix {
     private String[] rowHashes;
     private String[] columnHashes;
     static float minimumTransaction;
-    private Transaction genesisTransaction;
-    static HashMap<String, Transaction_Output> UTXOs = new HashMap<>();   // list containing all of the transactions
+    private Transaction genesisTransaction;                               // ..
+    static HashMap<String, Transaction_Output> UTXOs = new HashMap<>();   // list containing all of the UTXO's transaction
     private boolean generated;                                            // verify whether the genesis block/wallet has been instantiated
     private ArrayList<Integer> blocksWithModifiedData;                    // ..
 
@@ -367,6 +367,21 @@ public class BlockMatrix {
             int column = (blockNumber < s*s + s) ? s: s + 1;
             return column;
         }
+    }
+
+    public ArrayList<Transaction> getAllTransactions() {
+
+        ArrayList<Transaction> list = new ArrayList<>();
+        int i = 1;
+
+        // Loop through each block in the network
+        while(i-1 < inputCount){
+            list.addAll(getBlock(i).getTransactions());
+            System.out.println(list);
+            i++;
+        }
+
+        return list;
     }
 
     public Block getBlock(int blockNumber) {

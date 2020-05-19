@@ -44,7 +44,7 @@
         </div>
     </div>
 
-    <!--  All Transactions List  -->
+    <!--  All UTXOs List in BlockMatrix  -->
     <div class="container">
         <i class="fas fa-history fa-2x"></i>
         <h3>Transactions History</h3>
@@ -77,6 +77,36 @@
                         </table>
                     </div>
                 </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!--  All Transactions for Block 'N' -->
+    <div class="container">
+        <i class="fas fa-history fa-2x"></i>
+        <h3>Transactions History</h3>
+
+        <!-- Table of Transactions -->
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Transaction ID</th>
+                <th scope="col">Sender</th>
+                <th scope="col">Recipient</th>
+                <th scope="col">Value</th>
+                <th scope="col">Info</th>
+                <th scope="col">Block Number</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="list_value : ${bm_all_transactions}">
+                <td th:text="${list_value.getTransactionId()}"> transaction_id </td>
+                <td th:text="${list_value.getSender()}"> sender_address </td>
+                <td th:text="${list_value.getRecipient()}"> recipient_address </td>
+                <td th:text="${list_value.getValue()}"> transaction_value </td>
+                <td th:text="${list_value.getInfo()}"> transaction_value </td>
+                <td th:text="${list_value.getBlockNumber()}"> transaction_value </td>
             </tr>
             </tbody>
         </table>
