@@ -1,25 +1,31 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>BlockMatrix Chain</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-        <!-- CSS only -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<head>
+    <title>BlockMatrix Chain</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-        <!-- Font Awesome CDN -->
-        <script src="https://kit.fontawesome.com/62abfc2872.js" crossorigin="anonymous"></script>
+    <!-- Bootstrap CDN - CSS only (Installed as Node Package) -->
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"> -->
 
-        <!-- Link main CSS file -->
-        <link th:href="@{/main.css}" rel="stylesheet" />
+    <!-- Font Awesome CDN -->
+    <script src="https://kit.fontawesome.com/62abfc2872.js" crossorigin="anonymous"></script>
 
-    </head>
-    <body>
+    <!-- Link main CSS file -->
+    <link th:href="@{styles/main.css}" rel="stylesheet" />
+
+    <!-- Main JS File -->
+    <script type="text/javascript" th:src="@{/main.js}"></script>
+
+</head>
+
+<body>
 
     <!-- Alerts -->
     <div class="container alert alert-warning alert-dismissible fade show p-3" role="alert">
         <strong>Private Key</strong>
-        <p> <span th:text="${priv_address}"> </span> </p>
+        <p style="width: 200px; overflow: hidden;"> <span th:text="${priv_address}"> </span> </p>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -29,7 +35,7 @@
     <div class="container p-3">
         <div class="row">
             <div class="col-lg mx-auto">
-                <i class="fas fa-wallet fa-2x"></i>
+                <i style="float: left;" class="fas fa-wallet fa-2x"></i>
                 <h3> <strong> Wallet Dashboard </strong> </h3>
             </div>
         </div>
@@ -41,26 +47,33 @@
 
             <!-- My Wallet Actions & Details [Column] -->
             <div class="col-lg">
-                <img style="border-radius: 80%; width: 100px; height: 100px; float: left" th:src="@{/images/cCvnG-937HE.png}" alt="Avatar">
-                <p> <strong> ~mbash </strong></p>
+                <div class="container justify-content-center mx-auto">
+                    <img style="border-radius: 80%; width: 100px; height: 100px;" th:src="@{/images/cCvnG-937HE.png}"
+                        alt="Avatar">
+                    <p> <strong> ~mbash </strong> </p>
 
-                <div class="btn-group-vertical">
-                    <button type="button" class="btn btn-light p-1"> <img th:src="@{/images/Vector.png}"/> Copy Wallet Address </button>
-                    <button type="button" class="btn btn-light p-1"> <i class="fas fa-key"></i> View Private Key </button>
-                    <button type="button" class="btn btn-light p-1" th:onclick="|window.location.href='/generate_new_wallet'|"> <img th:src="@{/images/NewWallet_icon.png}"/> Generate new wallet </button>
+                    <div class="btn-group-vertical">
+                        <button type="button" th:onclick="myFunction()"> <img th:src="@{/images/Vector.png}" /> Copy
+                            Wallet Address </button>
+                        <button type="button"> <i class="fas fa-key"></i> View Private Key
+                        </button>
+                        <button type="button" th:onclick="|window.location.href='/generate_new_wallet'|"> <img
+                                th:src="@{/images/NewWallet_icon.png}" /> Generate New wallet </button>
+                    </div>
+
+                    <!-- DEV/ TEST -->
+                    <!--<p> <strong> UUID </strong> <span th:text="${uuid}"> </span> </p>-->
+                    <p style="width: 200px; overflow: hidden; float: right; visibility: hidden;"> <strong> Wallet
+                            Address </strong> <span id="myInput" th:text="${pub_address}"> </span> </p>
                 </div>
-
-                <!-- DEV/ TEST -->
-                <!--<p> <strong> UUID </strong> <span th:text="${uuid}"> </span> </p>-->
-                <!--<p style="width: 200px; overflow: hidden; float: right"> <strong> Wallet Address </strong> <span th:text="${pub_address}"> </span> </p>-->
-
             </div>
 
             <!-- Wallet balance [Column] -->
             <div class="col-lg">
                 <h3> <strong> Wallet Balance </strong> </h3>
-                <br/>
-                <h4> <span th:text="${balance}"> </span> <span style="color: #00A3FF;"> <strong> Mx's </strong> </span> </h4>
+                <br />
+                <h4> <span th:text="${balance}"> </span> <span style="color: #00A3FF;"> <strong> Mx's </strong> </span>
+                </h4>
             </div>
 
             <!-- Wallet Send Funds Form Action [Column] -->
@@ -72,25 +85,29 @@
                         <h3><strong>Send Funds</strong></h3>
 
                         <!-- Input Recipient Address / Username -->
-                        <div class="form-group mb-3" >
+                        <div class="form-group mb-3">
                             <label for="recipient_address" class="control-label">Recipients Address</label>
-                            <input type="text" class="form-control" id="recipient_address" aria-describedby="basic-addon3">
+                            <input autocomplete="off" type="text" class="form-control" id="recipient_address"
+                                aria-describedby="basic-addon3">
                         </div>
 
                         <!-- Input Transaction Values -->
-                        <div class="form-group mb-3" >
+                        <div class="form-group mb-3">
                             <label for="transaction_amount" class="control-label">Amount</label>
-                            <input type="text" class="form-control" id="transaction_amount" aria-label="Amount (to the nearest dollar)" th:name="funds">
+                            <input autocomplete="off" type="text" class="form-control" id="transaction_amount"
+                                aria-label="Amount (to the nearest dollar)" th:name="funds">
                         </div>
 
                         <!-- Input Transaction Information -->
                         <div class="form-group mb-3">
                             <label for="transaction_msg" class="control-label">Transaction Message</label>
-                            <input type="text" class="form-control" id="transaction_msg" aria-label="Message" th:name="msg">
+                            <input autocomplete="off" type="text" class="form-control" id="transaction_msg"
+                                aria-label="Message" th:name="msg">
                         </div>
 
                         <!-- Send Transaction Btn. -->
-                        <button type="submit" class="btn btn-primary"> Send Transaction <i class="fas fa-paper-plane"></i> </button>
+                        <button type="submit" class="btn btn-primary"> Send Transaction <i
+                                class="fas fa-paper-plane"></i> </button>
                     </div>
                 </form>
             </div>
@@ -98,40 +115,88 @@
         </div>
     </div>
 
-    <button type="button" class="btn btn-success" th:onclick="|window.location.href='/block_explorer'|"> <i class="fas fa-cubes"></i> View Block Explorer </button>
+    <button type="button" class="btn btn-success" th:onclick="|window.location.href='/block_explorer'|"> <i
+            class="fas fa-cubes"></i> View Block Explorer </button>
+
+    <!--  [All] BlockMatrix Transactions -->
+    <div class="container">
+
+        <!--
+        Section Header
+        -->
+
+        <i class="fas fa-history fa-2x"></i>
+        <h3>Transactions History</h3>
+
+        <!--
+        Table of Transactions
+        -->
+
+        <table class="table table-borderless">
+            <thead>
+                <tr>
+                    <th scope="col">Transaction ID</th>
+                    <th scope="col">Sender</th>
+                    <th scope="col">Recipient</th>
+                    <th scope="col">Value</th>
+                    <th scope="col">Info</th>
+                    <th scope="col">Block Number</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="list_value : ${bm_all_transactions}">
+                    <td th:text="${list_value.getTransactionId()}"> transaction_id </td>
+                    <td th:text="${list_value.getSender()}"> sender_address </td>
+                    <td th:text="${list_value.getRecipient()}"> recipient_address </td>
+                    <td th:text="${list_value.getValue()}"> transaction_value </td>
+                    <td th:text="${list_value.getInfo()}"> transaction_info </td>
+                    <td th:text="${list_value.getBlockNumber()}"> transaction_block_num </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
 
     <!--  My Transactions History List  -->
     <div class="container">
-        <i class="fas fa-history fa-2x"></i>
-        <h3>My Transactions History</h3>
+        <i style="float: left;" class="fas fa-history fa-2x"></i>
+        <h3> My Transactions History </h3>
 
         <!-- Table of Transactions -->
-        <table class="table">
+        <table class="table table-borderless">
             <thead>
-            <tr>
-                <th scope="col">Transaction ID</th>
-                <th scope="col">Recipient</th>
-                <th scope="col">Value</th>
-                <th scope="col">Parent ID</th>
-                <th scope="col"> </th>
-            </tr>
+                <tr>
+                    <th scope="col">Transaction ID</th>
+                    <th scope="col">Recipient</th>
+                    <th scope="col">Value</th>
+                    <th scope="col">Parent ID</th>
+                    <th scope="col"> </th>
+                </tr>
             </thead>
             <tbody>
-            <tr th:each="mapEntry : ${transactions}">
-                <td style="font-size:12px" th:text="${mapEntry.key}"> transaction_id </td>
-                <td style="font-size:8px" th:text="${mapEntry.value.getRecipient()}"> recipient_address </td>
-                <td style="font-size:14px" th:text="${mapEntry.value.getValue()}"> transaction_value </td>
-                <td style="font-size:12px" th:text="${mapEntry.value.getParentTransactionId()}"> transaction_parent_id </td>
-                <td> <button style="font-size:14px;" class="btn btn-danger" > Modify Transaction Info </button> </td>
-            </tr>
+                <tr th:each="mapEntry : ${transactions}">
+                    <td style="font-size:12px" th:text="${mapEntry.key}"> transaction_id </td>
+                    <td style="font-size:8px" th:text="${mapEntry.value.getRecipient()}"> recipient_address </td>
+                    <td style="font-size:14px" th:text="${mapEntry.value.getValue()}"> transaction_value </td>
+                    <td style="font-size:12px" th:text="${mapEntry.value.getParentTransactionId()}">
+                        transaction_parent_id </td>
+                    <td> <button style="font-size:14px;" class="btn btn-danger"> Modify Transaction Info </button> </td>
+                </tr>
             </tbody>
         </table>
     </div>
 
     <!-- JS, Popper.js, and jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+    </script>
 
-    </body>
+</body>
+
 </html>

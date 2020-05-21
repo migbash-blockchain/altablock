@@ -1,0 +1,28 @@
+// We import the Bootstrap (SCSS)
+@import "../../../../../node_modules/bootstrap/scss/bootstrap";
+
+input[type="text"], select.form-control
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #E5E5E5;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-radius: 0;
+
+input[type="text"]:focus, select.form-control:focus
+  -webkit-box-shadow: none;
+  box-shadow: none;
+
+button
+  @extend .btn;
+  @extend .btn-outline-primary 
+  @extend .m-1;
+
+.my_alert
+  @extend .container; 
+  @extend .alert;
+  @extend .alert-warning;
+  @extend .alert-dismissible;
+  @extend .fade;
+  @extend .show 
+  @extend .p-3;

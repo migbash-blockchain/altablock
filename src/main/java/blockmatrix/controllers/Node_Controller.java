@@ -51,6 +51,7 @@ public class Node_Controller {
         model.addAttribute("transactions", wallet_genesis.getUTXOs());
         model.addAttribute("pub_address", StringUtil.getStringFromKey(wallet_genesis.getPublicKey()));
         model.addAttribute("priv_address", StringUtil.getStringFromKey(wallet_genesis.getPrivateKey()));
-        return "wallet_ui";
+        model.addAttribute("bm_user_all_transactions", new_blockMatrix.getAllTransactions());
+        return "dist/main";
     }
 }

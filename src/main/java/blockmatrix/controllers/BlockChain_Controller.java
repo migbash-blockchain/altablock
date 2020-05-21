@@ -7,10 +7,8 @@ import blockmatrix.blockchain.Wallet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -69,6 +67,12 @@ public class BlockChain_Controller {
     @RequestMapping(value = "/clear_info_block")
     public void clear_info_block(@RequestParam(value="num", required = true, defaultValue = "1") int blockNumber,
                                  @RequestParam(value="transaction", required = true, defaultValue = "0") int transactionNumber) {
+        new_blockMatrix.clear_Info_In_Transaction(blockNumber, transactionNumber);
+    }
+
+    @RequestMapping(value = "/modify_transaction_info")
+    public void modify_transaction_info(@RequestParam(value="transaction_block_num", required = true, defaultValue = "1") int blockNumber,
+                                        @RequestParam(value="transaction_id", required = true, defaultValue = "0") int transactionNumber) {
         new_blockMatrix.clear_Info_In_Transaction(blockNumber, transactionNumber);
     }
 

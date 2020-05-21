@@ -1,18 +1,21 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>BlockMatrix Chain</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
     <!-- CSS only -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
     <!-- Font Awesome CDN -->
     <script src="https://kit.fontawesome.com/62abfc2872.js" crossorigin="anonymous"></script>
 
     <!-- Main JS File -->
-    <script type="text/javascript" th:src="@{main.js}"></script>
+    <script type="text/javascript" th:src="@{/main.js}"></script>
 </head>
+
 <body>
 
     <!-- Block Explorer Header -->
@@ -43,9 +46,9 @@
 
             <!-- BlockMatrix Dimensions -->
             <div class="col-lg">
-                 <div style="border:2px solid black" class="container">
-                     <p th:text="${bm_dimen}"></p>
-                 </div>
+                <div style="border:2px solid black" class="container">
+                    <p th:text="${bm_dimen}"></p>
+                </div>
             </div>
         </div>
     </div>
@@ -58,65 +61,75 @@
         <!-- Table of Transactions -->
         <table class="table">
             <thead>
-            <tr>
-                <th scope="col">Transaction ID</th>
-                <th scope="col">Recipient</th>
-                <th scope="col">Value</th>
-                <th scope="col">Parent ID</th>
-                <th scope="col"> </th>
-            </tr>
+                <tr>
+                    <th scope="col">Transaction ID</th>
+                    <th scope="col">Recipient</th>
+                    <th scope="col">Value</th>
+                    <th scope="col">Parent ID</th>
+                    <th scope="col"> </th>
+                </tr>
             </thead>
             <tbody>
-            <tr th:each="mapEntry : ${bm_utxo}">
-                <td th:text="${mapEntry.key}"> transaction_id </td>
-                <td th:text="${mapEntry.value.getRecipient()}"> recipient_address </td>
-                <td th:text="${mapEntry.value.getValue()}"> transaction_value </td>
-                <td th:text="${mapEntry.value.getParentTransactionId()}"> transaction_parent_id </td>
-            </tr>
-            <tr th:each="mapEntry : ${bm_utxo}">
-                <td colspan=3>
-                    <div>
-                        <table>
-                            <tr>
-                                <td th:text="${mapEntry.key}"> transaction_id </td>
-                            </tr>
-                        </table>
-                    </div>
-                </td>
-            </tr>
+                <tr th:each="mapEntry : ${bm_utxo}">
+                    <td th:text="${mapEntry.key}"> transaction_id </td>
+                    <td th:text="${mapEntry.value.getRecipient()}"> recipient_address </td>
+                    <td th:text="${mapEntry.value.getValue()}"> transaction_value </td>
+                    <td th:text="${mapEntry.value.getParentTransactionId()}"> transaction_parent_id </td>
+                </tr>
+                <tr th:each="mapEntry : ${bm_utxo}">
+                    <td colspan=3>
+                        <div>
+                            <table>
+                                <tr>
+                                    <td th:text="${mapEntry.key}"> transaction_id </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>
 
-    <!--  All Transactions for Block 'N' -->
+    <!--  [All] BlockMatrix Transactions -->
     <div class="container">
+
+        <!--
+        Section Header
+        -->
+
         <i class="fas fa-history fa-2x"></i>
         <h3>Transactions History</h3>
 
-        <!-- Table of Transactions -->
+        <!--
+        Table of Transactions
+        -->
+
         <table class="table">
             <thead>
-            <tr>
-                <th scope="col">Transaction ID</th>
-                <th scope="col">Sender</th>
-                <th scope="col">Recipient</th>
-                <th scope="col">Value</th>
-                <th scope="col">Info</th>
-                <th scope="col">Block Number</th>
-            </tr>
+                <tr>
+                    <th scope="col">Transaction ID</th>
+                    <th scope="col">Sender</th>
+                    <th scope="col">Recipient</th>
+                    <th scope="col">Value</th>
+                    <th scope="col">Info</th>
+                    <th scope="col">Block Number</th>
+                </tr>
             </thead>
             <tbody>
-            <tr th:each="list_value : ${bm_all_transactions}">
-                <td th:text="${list_value.getTransactionId()}"> transaction_id </td>
-                <td th:text="${list_value.getSender()}"> sender_address </td>
-                <td th:text="${list_value.getRecipient()}"> recipient_address </td>
-                <td th:text="${list_value.getValue()}"> transaction_value </td>
-                <td th:text="${list_value.getInfo()}"> transaction_value </td>
-                <td th:text="${list_value.getBlockNumber()}"> transaction_value </td>
-            </tr>
+                <tr th:each="list_value : ${bm_all_transactions}">
+                    <td th:text="${list_value.getTransactionId()}"> transaction_id </td>
+                    <td th:text="${list_value.getSender()}"> sender_address </td>
+                    <td th:text="${list_value.getRecipient()}"> recipient_address </td>
+                    <td th:text="${list_value.getValue()}"> transaction_value </td>
+                    <td th:text="${list_value.getInfo()}"> transaction_info </td>
+                    <td th:text="${list_value.getBlockNumber()}"> transaction_block_num </td>
+                </tr>
             </tbody>
         </table>
+
     </div>
 
 </body>
+
 </html>

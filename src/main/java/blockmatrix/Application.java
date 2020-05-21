@@ -30,11 +30,11 @@ public class Application {
 
     @Bean
     public BlockMatrix new_blockMatrix() {
-        BlockMatrix bm = new BlockMatrix(10000);             // instantiate new BlockMatrix
+        BlockMatrix bm = new BlockMatrix(10000);                        // instantiate new BlockMatrix
         bm.setUpSecurity();                                             // apply block security to the BlockMatrix
         bm.setMinimumTransaction(3.0F);                                 // ..
         wallet_genesis = new Wallet();                                  // instantiate a genesis Wallet
-        bm.generate_Genesis_Block(wallet_genesis, 200.0F);        // ..
+        bm.generate_Genesis_Block(wallet_genesis, 200.0F);              // ..
         System.out.println(wallet_genesis.get_Wallet_Balance());
         return bm;
     }
