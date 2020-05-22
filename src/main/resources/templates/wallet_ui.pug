@@ -23,6 +23,7 @@ mixin input_form(inputHeader, num)
         if num == 3
             input(autocomplete="off" type="text" class="form-control" id="transaction_msg"
                                 aria-label="Message" th:name="msg")       
+
 //- _________________________
 //- Start of HTML file
 
@@ -139,6 +140,10 @@ html(lang="en", xmlns:th="http://www.thymeleaf.org")
                         td(style="font-size:12px" th:text="${mapEntry.value.getParentTransactionId()}") transaction_parent_id
                         td
                             button(style="font-size:14px;" class="btn btn-danger") Modify Transaction Info 
+
+        //- _________________________
+        //- Inlcude Footer
+        include pug/includes/footer.pug
 
         //- _________________________                          
         //- Bootstrap JS CDNs

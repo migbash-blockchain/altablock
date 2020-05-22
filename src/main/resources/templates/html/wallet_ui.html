@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlockMatrix Chain</title>
+    <script src="https://kit.fontawesome.com/62abfc2872.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" th:href="@{styles/main.css}">
+    <script type="text/javascript" th:src="@{/main.js}"></script>
+  </head>
+  <body>
+    <div class="my_alert" role="alert"><strong>Private Key</strong>
+      <p><span th:text="${priv_address}"></span></p>
+      <button class="close" type="button" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <header class="container p-3">
+      <div class="row">
+        <div class="col-lg mx-auto"><i class="fas fa-wallet fa-x2" style="float: left;"></i>
+          <h3><strong>Wallet Dashboard</strong></h3>
+        </div>
+      </div>
+    </header>
+    <div class="container p-3">
+      <div class="row">
+        <div class="col-lg">
+          <div class="container justify-content-center mx-auto"><img style="border-radius: 80%; width: 100px; height 100px;" th:src="@{/images/cCvnG-937HE.png}" alt="Avatar">
+            <p><strong>~mbash</strong></p>
+            <div class="btn-group-vertical">
+              <button type="button"><span>Copy Wallet Address</span><img th:src="@{/images/Vector.png}"/><img th:src="@{/images/NewWallet_icon.png}"/>
+              </button>
+              <button type="button"><span>View Private Key</span><i class="fas fa-key"></i>
+              </button>
+              <button type="button"><span>Generate New wallet</span><img th:src="@{/images/NewWallet_icon.png}"/>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg">
+          <h3> <strong>Wallet Ballance</strong></h3><br>
+          <h4><span th:text="${balance}"> </span><span style="color: #00A3FF;"><strong>Mx's</strong></span></h4>
+        </div>
+        <div class="col-lg">
+          <form action="#" th:action="@{/send_funds}" method="post">
+            <div class="form-group">
+              <h3><strong>Send Funds</strong></h3>
+              <div class="form-group mb-3">
+                <label class="control-label" for="recipient_address">Recipients Address</label>
+                <input class="form-control" autocomplete="off" type="text" id="recipient_address" aria-describedby="basic-addon3"/>
+              </div>
+              <div class="form-group mb-3">
+                <label class="control-label" for="recipient_address">Amount</label>
+                <input class="form-control" autocomplete="off" type="text" id="transaction_amount" aria-label="Amount (to the nearest dollar)" th:name="funds"/>
+              </div>
+              <div class="form-group mb-3">
+                <label class="control-label" for="recipient_address">Transaction Message</label>
+                <input class="form-control" autocomplete="off" type="text" id="transaction_msg" aria-label="Message" th:name="msg"/>
+              </div>
+            </div>
+            <button class="btn btn-primary" type="submit">Send Transaction<i class="fas fa-paper-plane"></i></button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="container"><i class="fas fa-history fa-2x">
+        <h3>Transaction Histroy</h3>
+        <table class="table table-borderless">
+          <thead>
+            <tr>
+              <th scope="col">Transaction ID</th>
+              <th scope="col">Sender</th>
+              <th scope="col">Recipient</th>
+              <th scope="col">Value</th>
+              <th scope="col">Info</th>
+              <th scope="col">Block Number</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="list_value : ${bm_all_transactions}">
+              <td th:text="${list_value.getTransactionId()}"></td>
+              <td th:text="${list_value.getSender()}"></td>
+              <td th:text="${list_value.getRecipient()}"></td>
+              <td th:text="${list_value.getValue()}"></td>
+              <td th:text="${list_value.getInfo()}"></td>
+              <td th:text="${list_value.getBlockNumber()}"></td>
+            </tr>
+          </tbody>
+        </table></i></div>
+    <div class="container"><i class="fas fa-history fa-2x" style="float: left;"></i>
+      <h3>My Transaction History</h3>
+      <table class="table table-borderless">
+        <thead>
+          <tr>
+            <th scope="col">Transaction ID</th>
+            <th scope="col">Recipient</th>
+            <th scope="col">Value</th>
+            <th scope="col">Info</th>
+            <th scope="col">Parent ID</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="mapEntry : ${transactions}">
+            <td style="font-size:12px" th:text="${mapEntry.key}">transaction_id</td>
+            <td style="font-size:8px" th:text="${mapEntry.value.getRecipient()}">recipient_address</td>
+            <td style="font-size:14px" th:text="${mapEntry.value.getValue()}">transaction_value</td>
+            <td style="font-size:12px" th:text="${mapEntry.value.getParentTransactionId()}">transaction_parent_id</td>
+            <td>
+              <button class="btn btn-danger" style="font-size:14px;">Modify Transaction Info </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <footer class="container-fluid">
+      <div class="row">
+        <div class="col-lg">
+          <ul>Home</ul>
+          <ul>About</ul>
+          <ul>Wallet</ul>
+          <ul>Block Explorer</ul>
+          <ul>Follow Us</ul>
+        </div>
+        <div class="col-lg">
+          <ul>Follow Us</ul>
+          <ul>Join us</ul>
+        </div>
+        <div class="col-lg"></div>
+      </div>
+      <div class="container-fluid">Copyright @ MatrixTechnologies 2020</div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  </body>
+</html>

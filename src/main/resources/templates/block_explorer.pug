@@ -52,43 +52,30 @@ head
   table.table
     thead
       tr
-        th(scope='col') Transaction ID
-        th(scope='col') Recipient
-        th(scope='col') Value
-        th(scope='col') Parent ID
-        th(scope='col')  
+        each n in ["Transaction ID", "Recipient", "Value", "Info", "Parent ID", ""]
+            th(scope="col")= n
     tbody
       tr(th:each='mapEntry : ${bm_utxo}')
         td(th:text='${mapEntry.key}')  transaction_id 
         td(th:text='${mapEntry.value.getRecipient()}')  recipient_address 
         td(th:text='${mapEntry.value.getValue()}')  transaction_value 
         td(th:text='${mapEntry.value.getParentTransactionId()}')  transaction_parent_id 
-      tr(th:each='mapEntry : ${bm_utxo}')
-        td(colspan='3')
-          div
-            table
-              tr
-                td(th:text='${mapEntry.key}')  transaction_id 
-
+      
 //- _________________________
-//- [All] BlockMatrix Transactions Table
+//- [All] Blockmatrix Transactions Table
 .container
-  i.fas.fa-history.fa-2x
-  h3 Transactions History
-  table.table
-    thead
-      tr
-        th(scope='col') Transaction ID
-        th(scope='col') Sender
-        th(scope='col') Recipient
-        th(scope='col') Value
-        th(scope='col') Info
-        th(scope='col') Block Number
-    tbody
-      tr(th:each='list_value : ${bm_all_transactions}')
-        td(th:text='${list_value.getTransactionId()}')  transaction_id 
-        td(th:text='${list_value.getSender()}')  sender_address 
-        td(th:text='${list_value.getRecipient()}')  recipient_address 
-        td(th:text='${list_value.getValue()}')  transaction_value 
-        td(th:text='${list_value.getInfo()}')  transaction_info 
-        td(th:text='${list_value.getBlockNumber()}')  transaction_block_num 
+  i.fas.fa-histroy.fa-2x
+      h3 Transaction Histroy
+      table(class="table table-borderless")
+          thead
+              tr
+                  each n in ["Transaction ID", "Sender", "Recipient", "Value", "Info", "Block Number"]
+                      th(scope="col")= n
+          tbody
+              tr(th:each="list_value : ${bm_all_transactions}")
+                  td(th:text="${list_value.getTransactionId()}")
+                  td(th:text="${list_value.getSender()}")
+                  td(th:text="${list_value.getRecipient()}")
+                  td(th:text="${list_value.getValue()}")
+                  td(th:text="${list_value.getInfo()}")
+                  td(th:text="${list_value.getBlockNumber()}")

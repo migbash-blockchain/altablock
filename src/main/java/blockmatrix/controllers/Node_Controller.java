@@ -38,7 +38,7 @@ public class Node_Controller {
         model.addAttribute("bm_dimen", new_blockMatrix.getDimension());
         model.addAttribute("bm_utxo", new_blockMatrix.getUTXOs());
         model.addAttribute("bm_all_transactions", new_blockMatrix.getAllTransactions());
-        return "block_explorer";
+        return "html/block_explorer";
     }
 
     // __________________
@@ -52,6 +52,6 @@ public class Node_Controller {
         model.addAttribute("pub_address", StringUtil.getStringFromKey(wallet_genesis.getPublicKey()));
         model.addAttribute("priv_address", StringUtil.getStringFromKey(wallet_genesis.getPrivateKey()));
         model.addAttribute("bm_user_all_transactions", new_blockMatrix.getAllTransactions());
-        return "dist/main";
+        return "html/wallet_ui";
     }
 }
