@@ -1,0 +1,62 @@
+extends ../layouts/html_tamplate.pug
+
+//- _________________________
+//- Mixins Definitions
+
+mixin my_button(btnText, num)
+        button(type="button")
+            span= btnText
+            if num == 1
+                img(th:src="@{/images/Vector.png}")
+            if num == 2
+                i(class="fas fa-key")
+            else
+                img(th:src="@{/images/NewWallet_icon.png}")
+
+mixin input_form(inputHeader, num)
+    div(class="form-group mb-3")
+        label(for="recipient_address" class="control-label")= inputHeader
+        if num == 1
+            input(autocomplete="off" type="text" class="form-control" id="recipient_address" 
+                                aria-describedby="basic-addon3")
+        if num == 2
+            input(autocomplete="off" type="text" class="form-control" id="transaction_amount" 
+                                aria-label="Amount (to the nearest dollar)" th:name="funds")
+        if num == 3
+            input(autocomplete="off" type="text" class="form-control" id="transaction_msg"
+                                aria-label="Message" th:name="msg")       
+
+//- _________________________
+//- Start of HTML file
+
+block content
+
+    //- _________________________
+    //- Alerts [Using Bootstrap]
+    div(class="my_alert" role="alert")
+        strong Private Key
+        p
+            span(th:text="${priv_address}")
+        button(type="button" class="close" data-dismiss="alert" aria-label="Close")
+            span(aria-hidden="true") &times;
+
+    //- _________________________
+    //- Wallet Dashboard [Header]
+    header(class="container p-3")
+        div(class="row")
+            div(class="col-lg mx-auto")
+                i(style="float: left;" class="fas fa-wallet fa-x2")
+                h3
+                    strong Wallet Dashboard
+
+    //- _________________________
+    //- User Wallet Actions
+    include ../includes/user_wallet_actions.pug
+
+    //- _________________________
+    //- [All] Blockmatrix Transactions
+    include ../includes/bm_tx_table.pug
+
+    //- _________________________
+    //- [MY] Transactions
+    include ../includes/user_tx_table.pug

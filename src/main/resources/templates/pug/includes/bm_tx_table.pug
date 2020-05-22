@@ -1,0 +1,16 @@
+div(class="container")
+            i(class="fas fa-history fa-2x")
+                h3 Transaction Histroy
+                table(class="table table-borderless")
+                    thead
+                        tr
+                            each n in ["Transaction ID", "Sender", "Recipient", "Value", "Info", "Block Number"]
+                                th(scope="col")= n
+                    tbody
+                        tr(th:each="list_value : ${bm_all_transactions}")
+                            td(th:text="${list_value.getTransactionId()}")
+                            td(th:text="${list_value.getSender()}")
+                            td(th:text="${list_value.getRecipient()}")
+                            td(th:text="${list_value.getValue()}")
+                            td(th:text="${list_value.getInfo()}")
+                            td(th:text="${list_value.getBlockNumber()}")

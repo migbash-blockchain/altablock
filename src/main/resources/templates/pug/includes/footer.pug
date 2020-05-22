@@ -2,12 +2,13 @@
 //- Footer HTML Code
 
 footer.container-fluid
-    .row
-        .col-lg
+    .row.p-4
+        .col-lg.text-white
             for n in ["Home", "About", "Wallet", "Block Explorer", "Follow Us"]
                 ul= n
         .col-lg
             for n in ["Follow Us", "Join us"]
                 ul= n
         .col-lg
-    .container-fluid Copyright @ MatrixTechnologies 2020
+        
+    .container-fluid.text-center Copyright @ MatrixTechnologies 2020
