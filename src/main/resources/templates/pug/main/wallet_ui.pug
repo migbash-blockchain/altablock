@@ -4,27 +4,27 @@ extends ../layouts/html_tamplate.pug
 //- Mixins Definitions
 
 mixin my_button(btnText, num)
-        button(type="button")
-            span= btnText
-            if num == 1
-                img(th:src="@{/images/Vector.png}")
-            if num == 2
-                i(class="fas fa-key")
-            else
-                img(th:src="@{/images/NewWallet_icon.png}")
+    button(type="button")
+        if num == 1
+            img(th:src="@{/images/Vector.png}")
+        else if num == 2
+            i(class="fas fa-key")
+        else
+            img(th:src="@{/images/NewWallet_icon.png}")
+        span= btnText
 
 mixin input_form(inputHeader, num)
     div(class="form-group mb-3")
         label(for="recipient_address" class="control-label")= inputHeader
         if num == 1
             input(autocomplete="off" type="text" class="form-control" id="recipient_address" 
-                                aria-describedby="basic-addon3")
+                aria-describedby="basic-addon3")
         if num == 2
             input(autocomplete="off" type="text" class="form-control" id="transaction_amount" 
-                                aria-label="Amount (to the nearest dollar)" th:name="funds")
+                aria-label="Amount (to the nearest dollar)" th:name="funds")
         if num == 3
             input(autocomplete="off" type="text" class="form-control" id="transaction_msg"
-                                aria-label="Message" th:name="msg")       
+                aria-label="Message" th:name="msg")       
 
 //- _________________________
 //- Start of HTML file
@@ -32,7 +32,7 @@ mixin input_form(inputHeader, num)
 block content
 
     //- _________________________
-    //- Alerts [Using Bootstrap]
+    //- Alert -> Showing Private Key [Using Bootstrap]
     div(class="my_alert" role="alert")
         strong Private Key
         p

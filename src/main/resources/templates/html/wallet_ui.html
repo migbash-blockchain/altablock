@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/images/logo.png}">
     <title>BlockMatrix Chain</title>
     <script src="https://kit.fontawesome.com/62abfc2872.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" th:href="@{styles/main.css}">
@@ -23,14 +24,14 @@
     <div class="container p-3">
       <div class="row">
         <div class="col-lg">
-          <div class="container justify-content-center mx-auto"><img style="border-radius: 80%; width: 100px; height 100px;" th:src="@{/images/cCvnG-937HE.png}" alt="Avatar">
+          <div class="container text-center mx-auto"><img style="border-radius: 80%; width: 100px; height: 100px;" th:src="@{/images/user_1.png}" alt="Avatar">
             <p><strong>~mbash</strong></p>
             <div class="btn-group-vertical">
-              <button type="button"><span>Copy Wallet Address</span><img th:src="@{/images/Vector.png}"/><img th:src="@{/images/NewWallet_icon.png}"/>
+              <button type="button"><img th:src="@{/images/Vector.png}"/><span>Copy Wallet Address</span>
               </button>
-              <button type="button"><span>View Private Key</span><i class="fas fa-key"></i>
+              <button type="button"><i class="fas fa-key"></i><span>View Private Key</span>
               </button>
-              <button type="button"><span>Generate New wallet</span><img th:src="@{/images/NewWallet_icon.png}"/>
+              <button type="button"><img th:src="@{/images/NewWallet_icon.png}"/><span>Generate New wallet</span>
               </button>
             </div>
           </div>
@@ -61,30 +62,31 @@
         </div>
       </div>
     </div>
-    <div class="container"><i class="fas fa-history fa-2x">
-        <h3>Transaction Histroy</h3>
-        <table class="table table-borderless">
-          <thead>
-            <tr>
-              <th scope="col">Transaction ID</th>
-              <th scope="col">Sender</th>
-              <th scope="col">Recipient</th>
-              <th scope="col">Value</th>
-              <th scope="col">Info</th>
-              <th scope="col">Block Number</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr th:each="list_value : ${bm_all_transactions}">
-              <td th:text="${list_value.getTransactionId()}"></td>
-              <td th:text="${list_value.getSender()}"></td>
-              <td th:text="${list_value.getRecipient()}"></td>
-              <td th:text="${list_value.getValue()}"></td>
-              <td th:text="${list_value.getInfo()}"></td>
-              <td th:text="${list_value.getBlockNumber()}"></td>
-            </tr>
-          </tbody>
-        </table></i></div>
+    <div class="container"><i class="fas fa-history fa-2x" style="float: left;"></i>
+      <h3>Transaction Histroy</h3>
+      <table class="table table-borderless">
+        <thead>
+          <tr>
+            <th scope="col">Transaction ID</th>
+            <th scope="col">Sender</th>
+            <th scope="col">Recipient</th>
+            <th scope="col">Value</th>
+            <th scope="col">Info</th>
+            <th scope="col">Block Number</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="list_value : ${bm_all_transactions}">
+            <td class="overflow_style" th:text="${list_value.getTransactionId()}"></td>
+            <td class="overflow_style" th:text="${list_value.getSender()}"></td>
+            <td class="overflow_style" th:text="${list_value.getRecipient()}"></td>
+            <td th:text="${list_value.getValue()}"></td>
+            <td th:text="${list_value.getInfo()}"></td>
+            <td th:text="${list_value.getBlockNumber()}"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
     <div class="container"><i class="fas fa-history fa-2x" style="float: left;"></i>
       <h3>My Transaction History</h3>
       <table class="table table-borderless">
@@ -120,7 +122,7 @@
           <ul>Block Explorer</ul>
           <ul>Follow Us</ul>
         </div>
-        <div class="col-lg">
+        <div class="col-lg text-white">
           <ul>Follow Us</ul>
           <ul>Join us</ul>
         </div>

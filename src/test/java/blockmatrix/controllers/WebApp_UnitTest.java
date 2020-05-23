@@ -29,17 +29,17 @@ public class WebApp_UnitTest {
         this.base = new URL("http://localhost:" + port + "/");
     }
 
-    @Test
-    public void getHello() throws Exception {
-        ResponseEntity<String> response = template.getForEntity(base.toString(),
-                String.class);
-        assertThat(response.getBody()).isEqualTo("Greetings from Spring Boot!");
-    }
+    // @Test
+    // public void getHello() throws Exception {
+    //     ResponseEntity<String> response = template.getForEntity(base.toString(),
+    //             String.class);
+    //     assertThat(response.getBody()).isEqualTo("Greetings from Spring Boot!");
+    // }
 
-    @Test
-    public void getNewWallet() throws Exception {
-        ResponseEntity<String> response = template.getForEntity(base.toString(),
-                String.class);
-        assertThat(response.getBody()).isEqualTo("Greetings from Spring Boot!");
-    }
+    // @Test
+    // public void getNewWallet() throws Exception {
+    //     ResponseEntity<String> response = template.getForEntity(base.toString(),
+    //             String.class);
+    //     assertThat(response.getBody()).isEqualTo("Greetings from Spring Boot!");
+    // }
 }

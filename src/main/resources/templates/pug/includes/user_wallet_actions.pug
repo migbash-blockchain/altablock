@@ -1,37 +1,37 @@
-div(class="container p-3")
-            div(class="row")
+.container.p-3
+    .row
 
-                //- My Wallet Actions & Details
-                div(class="col-lg")
-                    div(class="container justify-content-center mx-auto")
-                        img(style="border-radius: 80%; width: 100px; height 100px;" th:src="@{/images/cCvnG-937HE.png}" alt="Avatar")
-                        p
-                            strong ~mbash
-                        
-                        //- Buttons Group [Bootstrap]
-                        div(class="btn-group-vertical")
-                            +my_button("Copy Wallet Address", 1)
-                            +my_button("View Private Key", 2)
-                            +my_button("Generate New wallet", 3)
-                        
-                //- Wallet balance
-                div(class="col-lg")
-                    h3 
-                        strong Wallet Ballance
-                    br
-                    h4
-                        span(th:text="${balance}") 
-                        span(style="color: #00A3FF;")
-                            strong Mx's
+        //- My Wallet Actions & Details
+        .col-lg
+            .container.text-center.mx-auto
+                img(style="border-radius: 80%; width: 100px; height: 100px;" th:src="@{/images/user_1.png}" alt="Avatar")
+                p
+                    strong ~mbash
 
-                //- Wallet Send Funds Form Action
-                div(class="col-lg")
-                    form(action="#" th:action="@{/send_funds}" method="post")
-                        div(class="form-group")
-                            h3
-                                strong Send Funds
-                            +input_form("Recipients Address", 1)
-                            +input_form("Amount", 2)
-                            +input_form("Transaction Message", 3)
-                        button(type="submit" class="btn btn-primary") Send Transaction
-                            i(class="fas fa-paper-plane")
+                //- Buttons Group [Bootstrap]
+                .btn-group-vertical
+                    +my_button("Copy Wallet Address", 1)
+                    +my_button("View Private Key", 2)
+                    +my_button("Generate New wallet", 3)
+
+        //- Wallet balance
+        .col-lg
+            h3 
+                strong Wallet Ballance
+            br
+            h4
+                span(th:text="${balance}") 
+                span(style="color: #00A3FF;")
+                    strong Mx's
+
+        //- Wallet Send Funds Form Action
+        .col-lg
+            form(action="#" th:action="@{/send_funds}" method="post")
+                div(class="form-group")
+                    h3
+                        strong Send Funds
+                    +input_form("Recipients Address", 1)
+                    +input_form("Amount", 2)
+                    +input_form("Transaction Message", 3)
+                button(type="submit" class="btn btn-primary") Send Transaction
+                    i(class="fas fa-paper-plane")

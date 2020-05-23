@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/images/logo.png}">
     <title>BlockMatrix Chain</title>
     <script src="https://kit.fontawesome.com/62abfc2872.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" th:href="@{styles/main.css}">
@@ -11,72 +12,79 @@
   <body>
     <div class="container p-3">
       <div class="row">
-        <div class="col-lg my-auto"><i class="fas fa-cubes fa-2x"></i>
-          <h5> Block Explorer </h5>
+        <div class="col-lg my-auto"><img style="float: left; transform: scale(1)" th:src="@{/images/vector_cube.png}" alt="block_vector">
+          <h5>Block Explorer</h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg my-auto"><i class="fas fa-info-circle" style="float: left;"></i>
+          <p>
+            Here you can find all of the details and in-depth information about the blockmatrix and 
+            discover all of the available RESTful APIs availble on the network.
+          </p>
         </div>
       </div>
     </div>
-    <div class="container p-3">
-      <div class="row">
-        <div class="col-lg"><i class="fas fa-edit fa-2x"></i>
-          <p><strong> Modified Blocks </strong><span th:text="${mod_blocks}"> </span></p>
-        </div>
-        <div class="col-lg"><i class="fas fa-cube fa-2x"></i>
-          <p><strong> Number of Blocks </strong><span th:text="${block_num}"> </span></p>
-        </div>
-        <div class="col-lg">
-          <div class="container" style="border:2px solid black">
-            <p th:text="${bm_dimen}"></p>
+    <div class="container p-3" id="block_info">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-7">
+            <div class="row">
+              <div class="col text-center"><i class="fas fa-edit fa-2x"></i>
+                <h5><strong> Modified Blocks </strong></h5>
+                <h5 th:text="${mod_blocks}"> </h5>
+              </div>
+              <div class="col text-center"><i class="fas fa-cubes fa-2x"></i>
+                <h5><strong> Blocks Count</strong></h5>
+                <h5 th:text="${block_num}"> </h5>
+              </div>
+              <div class="col text-center"><img style="width: 32px; height: 32px;" th:src="@{/images/dimension_img_no_license.png}" alt="block_vector">
+                <h5><strong>BlockMatrix Dimensions</strong></h5>
+                <h5 th:text="${bm_dimen}"></h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-1">
+            <div class="vl"></div>
+          </div>
+          <div class="col-lg-4">
+            <div class="contaier">
+              <p> <strong>Explore Further</strong></p>
+              <div class="btn-group" role="group">
+                <button class="btn btn-outline-primary" type="button">Block</button>
+                <button class="btn btn-outline-primary" type="button">Transaction</button>
+                <button class="btn btn-outline-primary" type="button">User/Address</button>
+              </div>
+              <input class="p-2" autocomplete="off" type="text">
+            </div>
           </div>
         </div>
       </div>
-      <div class="container"><i class="fas fa-history fa-2x"></i>
-        <h3>Transactions History</h3>
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Transaction ID</th>
-              <th scope="col">Recipient</th>
-              <th scope="col">Value</th>
-              <th scope="col">Info</th>
-              <th scope="col">Parent ID</th>
-              <th scope="col"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr th:each="mapEntry : ${bm_utxo}">
-              <td th:text="${mapEntry.key}"> transaction_id </td>
-              <td th:text="${mapEntry.value.getRecipient()}"> recipient_address </td>
-              <td th:text="${mapEntry.value.getValue()}"> transaction_value </td>
-              <td th:text="${mapEntry.value.getParentTransactionId()}"> transaction_parent_id </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="container"><i class="fas fa-histroy fa-2x">
-          <h3>Transaction Histroy</h3>
-          <table class="table table-borderless">
-            <thead>
-              <tr>
-                <th scope="col">Transaction ID</th>
-                <th scope="col">Sender</th>
-                <th scope="col">Recipient</th>
-                <th scope="col">Value</th>
-                <th scope="col">Info</th>
-                <th scope="col">Block Number</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr th:each="list_value : ${bm_all_transactions}">
-                <td th:text="${list_value.getTransactionId()}"></td>
-                <td th:text="${list_value.getSender()}"></td>
-                <td th:text="${list_value.getRecipient()}"></td>
-                <td th:text="${list_value.getValue()}"></td>
-                <td th:text="${list_value.getInfo()}"></td>
-                <td th:text="${list_value.getBlockNumber()}"></td>
-              </tr>
-            </tbody>
-          </table></i></div>
+    </div>
+    <div class="container"><i class="fas fa-history fa-2x" style="float: left;"></i>
+      <h3>Transaction Histroy</h3>
+      <table class="table table-borderless">
+        <thead>
+          <tr>
+            <th scope="col">Transaction ID</th>
+            <th scope="col">Sender</th>
+            <th scope="col">Recipient</th>
+            <th scope="col">Value</th>
+            <th scope="col">Info</th>
+            <th scope="col">Block Number</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="list_value : ${bm_all_transactions}">
+            <td class="overflow_style" th:text="${list_value.getTransactionId()}"></td>
+            <td class="overflow_style" th:text="${list_value.getSender()}"></td>
+            <td class="overflow_style" th:text="${list_value.getRecipient()}"></td>
+            <td th:text="${list_value.getValue()}"></td>
+            <td th:text="${list_value.getInfo()}"></td>
+            <td th:text="${list_value.getBlockNumber()}"></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
     <footer class="container-fluid">
       <div class="row p-4">
@@ -87,7 +95,7 @@
           <ul>Block Explorer</ul>
           <ul>Follow Us</ul>
         </div>
-        <div class="col-lg">
+        <div class="col-lg text-white">
           <ul>Follow Us</ul>
           <ul>Join us</ul>
         </div>
