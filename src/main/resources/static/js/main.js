@@ -3,14 +3,16 @@ async function clearData(x) {
 
     // get the selected row data
     var block_num = x.parentNode.parentNode.getElementsByTagName("strong")[5].innerHTML
-    var transaction_num = x.parentNode.parentNode.childNodes[1].innerHTML
+    // var transaction_num = x.parentNode.parentNode.getElementsByTagName("strong")[5].innerHTML
+    var new_info = "Wassap m8 :)"
 
     alert(block_num)
 
-    var url = new URL("http://127.0.0.1:8080/clear_info_block"),
+    var url = new URL("http://127.0.0.1:8080/modify_transaction_info"),
         params = {
             num: block_num,
-            transaction: 0
+            transaction: 0,
+            new_info: new_info
         }
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
 

@@ -283,13 +283,18 @@ public class BlockMatrix {
         return StringUtil.apply_Sha256(sb.toString());
     }
 
-    public void clear_Info_In_Transaction(int blockNumber, int transactionNumber) {
+    public void modifyTXinfo_InBM(int blockNumber, int transactionNumber, String new_transaction_info) {
         // the "delete" function, which will overwrite and message info passed in along with the transaction for every transaction in the block
 
         this.blocksWithModifiedData.add(blockNumber);                               // Add 'this' block to a list to keep track of all modified blocks
         int row = get_Block_Row_Index(blockNumber);                                 // ..
         int column = get_Block_Column_Index(blockNumber);                           // ..
-        getBlock(blockNumber).clear_Transaction_Info_In_Block(transactionNumber);   // Clear the transaction in that particular block
+
+        if (new_transaction_info.equals("null")) {
+            getBlock(blockNumber).clear_Transaction_Info_In_Block(transactionNumber);               // Clear the transaction in that particular block
+        } else {
+            getBlock(blockNumber).modifyTX_InfoInBlock(transactionNumber, new_transaction_info);    // Modify the transaction in that particular block
+        }
 
         String[] prevRowHashes = this.getRowHashes().clone();
         String[] prevColumnHashes = this.getColumnHashes().clone();

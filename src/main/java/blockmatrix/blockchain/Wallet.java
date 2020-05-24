@@ -107,6 +107,6 @@ public class Wallet {
     public PrivateKey getPrivateKey() { return this.privateKey; }
     public PublicKey getPublicKey() { return this.publicKey; }
     public HashMap<String, Transaction_Output> getUTXOs() { return this.UTXOs; }
-    public ArrayList<Transaction> getTransactions() {return this.transaction_list; }
+    public ArrayList<Transaction> getTransactions() {return this.transaction_list;}
 
 }

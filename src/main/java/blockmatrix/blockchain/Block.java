@@ -80,6 +80,12 @@ public class Block {
         this.hash = calculate_Block_Hash();
     }
 
+    public void modifyTX_InfoInBlock(int transactionNumber, String new_transaction_info){
+        transactions.get(transactionNumber).modifyTX(new_transaction_info);
+        merkleRoot = StringUtil.getMerkleRoot(transactions);
+        this.hash = calculate_Block_Hash();
+    }
+
     // __________________
     // Getters
 

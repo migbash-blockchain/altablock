@@ -69,17 +69,11 @@ public class BlockChain_Controller {
         new_blockMatrix.add_Block(n_block);
     }
 
-    @RequestMapping(value = "/clear_info_block")
-    public String clear_info_block(@RequestParam(value="num", required = true, defaultValue = "1") int blockNumber,
-                                 @RequestParam(value="transaction", required = true, defaultValue = "0") int transactionNumber) {
-        new_blockMatrix.clear_Info_In_Transaction(blockNumber, transactionNumber);
-        return "Success";
-    }
-
     @RequestMapping(value = "/modify_transaction_info")
-    public void modify_transaction_info(@RequestParam(value="transaction_block_num", required = true, defaultValue = "1") int blockNumber,
-                                        @RequestParam(value="transaction_id", required = true, defaultValue = "0") int transactionNumber) {
-        new_blockMatrix.clear_Info_In_Transaction(blockNumber, transactionNumber);
+    public void modify_transaction_info(@RequestParam(value="num", required = true, defaultValue = "1") int blockNumber,
+                                        @RequestParam(value="transaction", required = true, defaultValue = "0") int transactionNumber,
+                                        @RequestParam(value="new_info", required = true, defaultValue = "null") String new_info) {
+        new_blockMatrix.modifyTXinfo_InBM(blockNumber, transactionNumber, new_info);
     }
 
 //    @Scheduled(fixedRate = 5000) // ms = (5 sec)
