@@ -4,10 +4,18 @@ import java.security.*;
 import java.util.ArrayList;
 import java.util.Base64;
 
+import org.springframework.stereotype.Component;
+
 /**
- * This Class is used for using cryptographic function in our blockchain
+ * This Class is used for using for:
+ * 
+ *  - (Return String) Generating a "SHA256" from a String
+ *  - (Return byte[] Array) Apply ECDSA "Signatures" & verify its validity
+ *  - (Return String) Obtain a readable string from a Private/Public Key
+ *  - (Return String) Obtain a hash merkel-root for all the trnasactions that will be in a block
  */
 
+@Component
 public class StringUtil {
 
     // _________________

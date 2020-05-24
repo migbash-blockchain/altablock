@@ -10894,6 +10894,17 @@ footer {
   background-color: #ff8686;
 }
 
+footer ul {
+  font-weight: bold;
+  -webkit-transition-delay: 0.3s;
+          transition-delay: 0.3s;
+}
+
+footer ul:hover {
+  color: black;
+  cursor: pointer;
+}
+
 input[type="text"], select.form-control {
   background: transparent;
   border: none;
@@ -10914,8 +10925,12 @@ table {
 
 .overflow_style {
   overflow: hidden;
-  text-overflow: fade;
-  max-width: 40px;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  background-image: -webkit-gradient(linear, left top, right top, color-stop(35%, #000000), to(rgba(0, 0, 0, 0)));
+  background-image: linear-gradient(90deg, #000000 35%, rgba(0, 0, 0, 0));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 #block_info .row .col {

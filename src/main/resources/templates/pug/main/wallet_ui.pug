@@ -1,4 +1,4 @@
-extends ../layouts/html_tamplate.pug
+extends ../layouts/main_layout.pug
 
 //- _________________________
 //- Mixins Definitions
@@ -11,20 +11,17 @@ mixin my_button(btnText, num)
             i(class="fas fa-key")
         else
             img(th:src="@{/images/NewWallet_icon.png}")
-        span= btnText
+        span.p-2= btnText
 
 mixin input_form(inputHeader, num)
     div(class="form-group mb-3")
         label(for="recipient_address" class="control-label")= inputHeader
         if num == 1
-            input(autocomplete="off" type="text" class="form-control" id="recipient_address" 
-                aria-describedby="basic-addon3")
+            input#r_address(autocomplete="off" type="text" class="form-control" aria-describedby="basic-addon3" required)
         if num == 2
-            input(autocomplete="off" type="text" class="form-control" id="transaction_amount" 
-                aria-label="Amount (to the nearest dollar)" th:name="funds")
+            input#amount(autocomplete="off" type="text" class="form-control" aria-label="Amount (to the nearest dollar)" th:name="funds" required)
         if num == 3
-            input(autocomplete="off" type="text" class="form-control" id="transaction_msg"
-                aria-label="Message" th:name="msg")       
+            input#msg(autocomplete="off" type="text" class="form-control" aria-label="Message" th:name="msg" required) 
 
 //- _________________________
 //- Start of HTML file
@@ -51,12 +48,12 @@ block content
 
     //- _________________________
     //- User Wallet Actions
-    include ../includes/user_wallet_actions.pug
+    include ../includes/wallet_actions_row.pug
 
     //- _________________________
     //- [All] Blockmatrix Transactions
-    include ../includes/bm_tx_table.pug
+    include ../includes/table_wallet_user_txs.pug
 
     //- _________________________
-    //- [MY] Transactions
-    include ../includes/user_tx_table.pug
+    //- [MY UTXOs] Transactions
+    //- include ../includes/table_wallet_user_utxo.pug

@@ -8,6 +8,8 @@ import java.util.Date;
 
 /**
  * Class Model for "Block(s)"
+ * holds the modal structure for a block in the "blockmatrix"
+
  */
 
 public class Block {

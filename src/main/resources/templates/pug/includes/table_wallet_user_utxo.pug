@@ -1,0 +1,26 @@
+//- _________________________
+//- User Wallet User UTXOs Table
+//- _________________________
+
+.container
+    .container(style="display: flex; align-items: center;")
+        i.fas.fa-history.fa-2x(style="float: left;")
+        span.p-2
+            strong(style="font-size: 32px;") My UTXOs History
+    table.table.table-borderless
+        thead
+            tr
+                each n in ["Transaction ID", "Recipient", "Value", "Info", "Parent ID", ""]
+                    th(scope="col")= n
+        tbody
+            tr(th:each="mapEntry : ${transactions}")
+                td.overflow_style
+                    strong(th:text="${mapEntry.key}") transaction_id
+                td.overflow_style
+                    strong(th:text="${@stringUtil.getStringFromKey(mapEntry.value.getRecipient())}") recipient_address
+                td
+                    strong(th:text="${mapEntry.value.getValue()}") transaction_value
+                td
+                    strong(th:text="${mapEntry.value.getParentTransactionId()}") transaction_parent_id
+                td
+                    button#select_tx_btn(style="font-size:12px;" class="btn btn-danger" th:onclick="clickRow(this)") Modify Transaction Info 

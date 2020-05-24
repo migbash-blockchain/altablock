@@ -24,9 +24,9 @@ public class BlockMatrix {
     private int inputCount = 0;                                           // blocks added to the block matrix
     private boolean deletionValidity;                                     // whether or not all deletions have been valid. Used to check blockmatrix validity
     private Block[][] blockData;                                          // ..
-    private String[] rowHashes;
-    private String[] columnHashes;
-    static float minimumTransaction;
+    private String[] rowHashes;                                           // array of all hashes in a blockmatrix
+    private String[] columnHashes;                                        // array of all hashes in a blockmatrix
+    static float minimumTransaction;                                      // ..
     private Transaction genesisTransaction;                               // ..
     static HashMap<String, Transaction_Output> UTXOs = new HashMap<>();   // list containing all of the UTXO's transaction
     private boolean generated;                                            // verify whether the genesis block/wallet has been instantiated
@@ -377,7 +377,7 @@ public class BlockMatrix {
         // Loop through each block in the network
         while(i-1 < inputCount){
             list.addAll(getBlock(i).getTransactions());
-            System.out.println(list);
+            // System.out.println(list);
             i++;
         }
 

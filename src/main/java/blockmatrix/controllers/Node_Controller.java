@@ -9,6 +9,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+/**
+ * This class is responsible for managing the viewable dashboard which is
+ * directly connected to the blockmatrix for a clearer visualization of
+ * what is going on the blockmatrix at any moment in time.
+ */
+
 @Controller
 public class Node_Controller {
 
@@ -27,10 +33,22 @@ public class Node_Controller {
     @Value("${blockchain.node.id}")
     private String blockChainNodeId;
 
-    // __________________
-    // Blockchain Data (Explorer)
+    /**
+     * _________________
+     * Blockchain Data (Explorer)
+     * 
+     * Returns ->
+     * 
+     * - Block Count Number in the BlockMatrix 
+     * - Modified Blocks Number in the BlockMatrix
+     * - BlockMatrix Status (if blocks are correct or not)
+     * - BlockMatrix current dimensions
+     * - BlockMatrix all UTXOs'
+     * - BlockMatrix all transactions list
+     * 
+     */
 
-    @GetMapping("/block_explorer")
+     @GetMapping("/block_explorer")
     public String block_explorer(Model model) {
         model.addAttribute("block_num", new_blockMatrix.getInputCount());
         model.addAttribute("mod_blocks", new_blockMatrix.getBlocksWithModifiedData().toString());
@@ -51,7 +69,7 @@ public class Node_Controller {
         model.addAttribute("transactions", wallet_genesis.getUTXOs());
         model.addAttribute("pub_address", StringUtil.getStringFromKey(wallet_genesis.getPublicKey()));
         model.addAttribute("priv_address", StringUtil.getStringFromKey(wallet_genesis.getPrivateKey()));
-        model.addAttribute("bm_user_all_transactions", new_blockMatrix.getAllTransactions());
+        model.addAttribute("wallet_txs", wallet_genesis.getTransactions());
         return "html/wallet_ui";
     }
 }

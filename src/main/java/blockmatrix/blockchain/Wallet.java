@@ -11,9 +11,10 @@ public class Wallet {
     // __________________
     // Class Variables
 
-    private PrivateKey privateKey;
-    private PublicKey publicKey;
+    private PrivateKey privateKey;                                           // 'this' wallet private Key
+    private PublicKey publicKey;                                             // 'this' wallet public Key
     private HashMap<String, Transaction_Output> UTXOs = new HashMap<>();     // only UTXOs owned by this wallet.
+    private ArrayList<Transaction> transaction_list = new ArrayList<>();          // only transactions made by this wallet.
 
     // __________________
     // Class Constructors
@@ -67,7 +68,7 @@ public class Wallet {
 
         // Generates and returns a new transaction from this wallet.
 
-        // gather balance and check funds.
+        // [Validation] -> gather balance and check funds.
         if(get_Wallet_Balance() < value) {
             System.out.println("# Not Enough funds to send transaction. Transaction Discarded.");
             return null;
@@ -79,7 +80,7 @@ public class Wallet {
         float total = 0;
 
         for (Map.Entry<String, Transaction_Output> item: UTXOs.entrySet()){
-            Transaction_Output UTXO = item.getValue();
+            Transaction_Output UTXO = item.getValue();                                                  // get total of UTXO in out wallet
             total += UTXO.value;
             inputs.add(new Transaction_Input(UTXO.id));
             if(total > value) break;
@@ -89,9 +90,13 @@ public class Wallet {
         Transaction newTransaction = new Transaction(publicKey, recipient , value, inputs, info);
         newTransaction.generate_Transaction_Signature(privateKey);
 
+        // Remove input values from our Wallet UTXO to keep only the "change/remainder" coins...
         for(Transaction_Input input: inputs){
             UTXOs.remove(input.getTransactionOutputId());
         }
+
+        // add this transaction to our list of transactions in the wallet;
+        transaction_list.add(newTransaction);
 
         return newTransaction;
     }
@@ -102,5 +107,6 @@ public class Wallet {
     public PrivateKey getPrivateKey() { return this.privateKey; }
     public PublicKey getPublicKey() { return this.publicKey; }
     public HashMap<String, Transaction_Output> getUTXOs() { return this.UTXOs; }
+    public ArrayList<Transaction> getTransactions() {return this.transaction_list; }
 
 }

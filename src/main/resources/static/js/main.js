@@ -1,26 +1,38 @@
-//$(document).ready(function () {
-//    $("td[colspan=3]").find("div").hide();
-//    $("tr").click(function(event) {
-//        var $target = $(event.target);
-//        $target.closest("tr").next().find("div").slideToggle();
-//    });
-//});
+// Get the row data clicked intended to be modified
+function clickRow(x) {
+    alert("Row Data: " + x.parentNode.parentNode.childNodes[1].innerHTML)
+    clearData()
+}
 
-// _____________
-// Copy Wallet Address -> Function
+// Make an AJAX Call to clear block infomration
+async function clearData() {
 
-//function myFunction() {
-//
-//  /* Get the text field */
-//  var copyText = document.getElementById("myInput");
-//
-//  /* Select the text field */
-//  copyText.select();
-//  copyText.setSelectionRange(0, 99999); /*For mobile devices*/
-//
-//  /* Copy the text inside the text field */
-//  document.execCommand("copy");
-//
-//  /* Alert the copied text */
-//  alert("Copied the text: " + copyText.value);
-//}
+    var url = new URL("http://127.0.0.1:8080/clear_info_block"), params = {num:1, transaction:0}
+    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
+
+    console.log(url) // TEST
+
+    fetch(url)
+        .then(function (res) {
+            console.log(res);
+        })
+}
+
+// Subimt a Transaction to the Network:
+async function submitTX() {
+
+    // get the form input data:
+    var r_address = document.getElementById("r_address").value;
+    var amount = document.getElementById("amount").value;
+    var msg = document.getElementById("msg").value;
+
+    var url = new URL("http://127.0.0.1:8080/send_funds"), params = {funds:amount, msg:msg}
+    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
+
+    console.log(url) // TEST
+
+    fetch(url)
+        .then(function (res) {
+            console.log(res);
+        })
+}

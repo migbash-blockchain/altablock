@@ -26,12 +26,12 @@
 
         //- Wallet Send Funds Form Action
         .col-lg
-            form(action="#" th:action="@{/send_funds}" method="post")
-                div(class="form-group")
+            form
+                .form-group
                     h3
                         strong Send Funds
                     +input_form("Recipients Address", 1)
                     +input_form("Amount", 2)
                     +input_form("Transaction Message", 3)
-                button(type="submit" class="btn btn-primary") Send Transaction
+                button.btn.btn-primary(type="submit" th:onclick="submitTX(this)") Send Transaction
                     i(class="fas fa-paper-plane")

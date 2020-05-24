@@ -1,20 +1,26 @@
-extends ../layouts/html_tamplate.pug
+extends ../layouts/main_layout.pug
 
 block content
 
   //- _________________________
   //- Block Explorer Header
   .container.p-3
-    .row
-      .col-lg.my-auto
-        img(style="float: left; transform: scale(1)" th:src="@{/images/vector_cube.png}" alt="block_vector")
-        h5 Block Explorer
-    .row
-      .col-lg.my-auto
-        i.fas.fa-info-circle(style="float: left;")
-        p
-          | Here you can find all of the details and in-depth information about the blockmatrix and 
-          | discover all of the available RESTful APIs availble on the network.
+  
+    .container(style="display: flex; align-items: center;")
+      img(style="width: 48px; height: 48px;" th:src="@{/images/vector_cube.png}" alt="block_vector")
+      span.p-2
+        strong(style="font-size: 32px;") Block Explorer
+      div.ml-3
+        span.p-2(style="background-color: #515151; color: white; border-radius: 10px; font-size: 10px;")
+          strong.mr-2 BlockMatrix Status |
+          strong(style="color: #62FE3B" th:text='${bm_verify}')  
+
+    .container(style="display: flex; align-items: center;")
+      i.fas.fa-info-circle
+      span.p-2
+        | Here you can find all of the details and in-depth information about the blockmatrix and
+        br
+        | discover all of the available RESTful APIs availble on the network.
 
   //- _________________________
   //- Modified Blocks & Total Blocks in [BlockMatrix]
@@ -26,7 +32,7 @@ block content
             .col.text-center
               i.fas.fa-edit.fa-2x
               h5
-                strong  Modified Blocks 
+                strong  Modified Blocks
               h5(th:text='${mod_blocks}')  
 
             .col.text-center
@@ -51,7 +57,9 @@ block content
             .btn-group(role="group")
               for n in ["Block", "Transaction", "User/Address"]
                 button.btn.btn-outline-primary(type="button")= n
-            input.p-2(autocomplete="off" type="text")
+            .form-group
+              input.mt-3(autocomplete="off" type="text" class="form-control")
+            button.btn.btn-primary(type="submit") Search
 
   //- _________________________
   //- [All] UTXOs List in BlockMatrix
@@ -72,4 +80,4 @@ block content
 
   //- _________________________
   //- [All] Blockmatrix Transactions Table
-  include ../includes/bm_tx_table.pug
+  include ../includes/table_bm_txs.pug

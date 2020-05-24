@@ -13,6 +13,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
+/**
+ * This class is responsible for the handling of the RESTful calls made to the blockmatrix
+ * which would return calls in a pretty JSON format to anyone who requests it.
+ */
+
 @RestController
 @EnableAutoConfiguration
 @EnableScheduling
@@ -65,9 +70,10 @@ public class BlockChain_Controller {
     }
 
     @RequestMapping(value = "/clear_info_block")
-    public void clear_info_block(@RequestParam(value="num", required = true, defaultValue = "1") int blockNumber,
+    public String clear_info_block(@RequestParam(value="num", required = true, defaultValue = "1") int blockNumber,
                                  @RequestParam(value="transaction", required = true, defaultValue = "0") int transactionNumber) {
         new_blockMatrix.clear_Info_In_Transaction(blockNumber, transactionNumber);
+        return "Success";
     }
 
     @RequestMapping(value = "/modify_transaction_info")

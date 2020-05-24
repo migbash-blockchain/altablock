@@ -1,0 +1,29 @@
+//- Used in:
+
+    block_explorer
+    wallet_ui
+
+.container
+    .container(style="display: flex; align-items: center;")
+        i.fas.fa-history.fa-2x(style="float: left;")
+        span.p-2
+            strong(style="font-size: 32px;") Transaction History
+    table.table.table-borderless.m-3
+        thead
+            tr
+                each n in ["Transaction ID", "Sender", "Recipient", "Value", "Info", "Block Number"]
+                    th(scope="col")= n
+        tbody
+            tr(th:each="list_value : ${bm_all_transactions}")
+                td.overflow_style
+                    strong(th:text="${list_value.getTransactionId()}")
+                td.overflow_style
+                    strong(th:text="${@stringUtil.getStringFromKey(list_value.getSender())}")
+                td.overflow_style
+                    strong(th:text="${@stringUtil.getStringFromKey(list_value.getRecipient())}")
+                td
+                    strong(th:text="${list_value.getValue()}")
+                td
+                    strong(th:text="${list_value.getInfo()}")
+                td
+                    strong(th:text="${list_value.getBlockNumber()}")
