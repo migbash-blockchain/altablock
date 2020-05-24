@@ -1,13 +1,17 @@
-// Get the row data clicked intended to be modified
-function clickRow(x) {
-    alert("Row Data: " + x.parentNode.parentNode.childNodes[1].innerHTML)
-    clearData()
-}
-
 // Make an AJAX Call to clear block infomration
-async function clearData() {
+async function clearData(x) {
 
-    var url = new URL("http://127.0.0.1:8080/clear_info_block"), params = {num:1, transaction:0}
+    // get the selected row data
+    var block_num = x.parentNode.parentNode.getElementsByTagName("strong")[5].innerHTML
+    var transaction_num = x.parentNode.parentNode.childNodes[1].innerHTML
+
+    alert(block_num)
+
+    var url = new URL("http://127.0.0.1:8080/clear_info_block"),
+        params = {
+            num: block_num,
+            transaction: 0
+        }
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
 
     console.log(url) // TEST
@@ -16,6 +20,8 @@ async function clearData() {
         .then(function (res) {
             console.log(res);
         })
+
+    location.reload()
 }
 
 // Subimt a Transaction to the Network:
@@ -26,7 +32,11 @@ async function submitTX() {
     var amount = document.getElementById("amount").value;
     var msg = document.getElementById("msg").value;
 
-    var url = new URL("http://127.0.0.1:8080/send_funds"), params = {funds:amount, msg:msg}
+    var url = new URL("http://127.0.0.1:8080/send_funds"),
+        params = {
+            funds: amount,
+            msg: msg
+        }
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
 
     console.log(url) // TEST
