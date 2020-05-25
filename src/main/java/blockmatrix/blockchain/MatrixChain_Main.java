@@ -55,7 +55,7 @@ public class MatrixChain_Main {
 
         bm.add_Block(block2);                                                                                                   // Add our block with transactions to the BlockMatrix
 
-        bm.clear_Info_In_Transaction(2, 1);                                                                                     // Clear Transaction Info. passed along in the BlockNumber: 2 & Transaction Number: 1
+        // bm.clear_Info_In_Transaction(2, 1);                                                                                     // Clear Transaction Info. passed along in the BlockNumber: 2 & Transaction Number: 1
 
         block2.print_Block_Transactions();                                                                                      //..
 

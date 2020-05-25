@@ -3,6 +3,7 @@ package blockmatrix.controllers;
 import blockmatrix.blockchain.BlockMatrix;
 import blockmatrix.blockchain.StringUtil;
 import blockmatrix.blockchain.Wallet;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -35,7 +36,7 @@ public class Wallet_Controller {
 
     /**
      * _________________
-     * Blockchain Data (Explorer)
+     * Blockchain Data (Explorer) @GetMapping
      * 
      * Returns ->
      * 
@@ -64,7 +65,7 @@ public class Wallet_Controller {
 
     /**
      * __________________
-     * User Dashboard (UI/UX)
+     * User Dashboard (UI/UX) @GetMapping
      * 
      * Returns ->
      * 

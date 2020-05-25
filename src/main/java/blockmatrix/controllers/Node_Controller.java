@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import blockmatrix.blockchain.BlockMatrix;
 
 @Controller
+@RequestMapping("/node")
 public class Node_Controller {
 
     // __________________
@@ -26,7 +27,7 @@ public class Node_Controller {
     private BlockMatrix new_blockMatrix;
 
     /**
-     * Registerin the nodes onto the network
+     * Registering the nodes onto the network
      */
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)

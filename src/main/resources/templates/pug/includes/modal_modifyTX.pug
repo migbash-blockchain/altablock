@@ -1,0 +1,17 @@
+#exampleModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true')
+    .modal-dialog
+        .modal-content
+            .modal-header
+                h5#exampleModalLabel.modal-title New Transaction Message
+                button.close(type='button' data-dismiss='modal' aria-label='Close')
+                    span(aria-hidden='true') &times;
+            .modal-body
+                form
+                    .form-group
+                        label.col-form-label(for='message-text') 
+                            strong Message
+                        textarea#message-text.form-control
+            .modal-footer
+                button.btn.btn-danger(type='button') Delete 
+                button.btn.btn-secondary(type='button' data-dismiss='modal') Close
+                button.btn.btn-primary(type='button') Modify

@@ -1,29 +1,6 @@
 extends ../layouts/main_layout.pug
 
 //- _________________________
-//- Mixins Definitions
-
-mixin my_button(btnText, num)
-    button(type="button")
-        if num == 1
-            img(th:src="@{/images/Vector.png}")
-        else if num == 2
-            i(class="fas fa-key")
-        else
-            img(th:src="@{/images/NewWallet_icon.png}")
-        span.p-2= btnText
-
-mixin input_form(inputHeader, num)
-    div(class="form-group mb-3")
-        label(for="recipient_address" class="control-label")= inputHeader
-        if num == 1
-            input#r_address(autocomplete="off" type="text" class="form-control" aria-describedby="basic-addon3" required)
-        if num == 2
-            input#amount(autocomplete="off" type="text" class="form-control" aria-label="Amount (to the nearest dollar)" th:name="funds" required)
-        if num == 3
-            input#msg(autocomplete="off" type="text" class="form-control" aria-label="Message" th:name="msg" required) 
-
-//- _________________________
 //- Start of HTML file
 
 block content
@@ -32,12 +9,12 @@ block content
 
         //- _________________________
         //- Wallet Dashboard [Header]
-        header.container(style="display: flex; align-items: center;")
+        header.container.m-5(style="display: flex; align-items: center;")
             i(style="float: left;" class="fas fa-wallet fa-2x")
             span.p-2
                 strong(style="font-size: 32px;") Wallet Dashboard
             div.ml-3
-                button
+                button(type="button" class="btn btn-outline-primary")
                     strong Access another wallet
 
         //- _________________________
@@ -47,3 +24,7 @@ block content
         //- _________________________
         //- [All] Blockmatrix Transactions
         include ../includes/table_wallet_user_txs.pug
+
+        //- _________________________
+        //- Dashboard Modal Box for Modifying Transaction Info
+        include ../includes/modal_modifyTX.pug

@@ -1,23 +1,23 @@
-.container.p-3
+.container.m-5
     .row
 
         //- My Wallet Actions & Details
         .col-lg
             .container.text-center.mx-auto
-                img(style="border-radius: 80%; width: 100px; height: 100px;" th:src="@{/images/user_1.png}" alt="Avatar")
-                p
+                img.img-fluid(th:src="@{/images/user_1.png}" alt="Avatar")
+                p.m-2
                     strong ~mbash
 
                 //- Buttons Group [Bootstrap]
                 .btn-group-vertical
-                    +my_button("Copy Wallet Address", 1)
-                    +my_button("View Private Key", 2)
-                    +my_button("Generate New wallet", 3)
+                    +main_btn_img("Copy Wallet Address", "@{/images/Vector.png}")
+                    +main_btn_img("View Private Key", 2)
+                    +main_btn_img("Generate New wallet", "@{/images/NewWallet_icon.png}")
 
         //- Wallet balance
         .col-lg
             h3 
-                strong Wallet Ballance
+                strong Wallet Balance
             br
             h4
                 span(th:text="${balance}") 
@@ -33,5 +33,7 @@
                     +input_form("Recipients Address", 1)
                     +input_form("Amount", 2)
                     +input_form("Transaction Message", 3)
+                    div#msg_text(contenteditable)
                 button.btn.btn-primary(type="submit" th:onclick="submitTX(this)") Send Transaction
-                    i(class="fas fa-paper-plane")
+                    span.pl-2
+                        i(class="fas fa-paper-plane")

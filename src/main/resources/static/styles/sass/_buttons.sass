@@ -1,0 +1,31 @@
+.user_wallet_btn
+    background-color: $primary_light;
+    color: $secondary_dark;
+    border: 1px solid $secondary_light_shadow;
+    margin: 1px;
+
+.user_wallet_btn:hover
+    background-color: $primary_dark;
+    border: 1px solid $primary_dark;
+    color: $primary_light;
+
+span
+    .info_tag
+        background-color: $primary_dark; 
+        color: $primary_light; 
+        border-radius: 5px; 
+        font-size: 10px; float: left;
+
+/* ____ ANIMATIONS ____*/
+    
+.dot
+    animation: blinker 3s linear infinite;
+    height: 8px;
+    width: 8px;
+    background-color: $terciary_light;
+    border-radius: 50%;
+    display: inline-block;
+
+@keyframes blinker 
+    50%
+        opacity: 0;

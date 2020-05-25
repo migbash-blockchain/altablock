@@ -8,8 +8,8 @@ import java.util.Date;
 
 /**
  * Class Model for "Block(s)"
- * holds the modal structure for a block in the "blockmatrix"
-
+ * holds the modal structure for a block in 
+ * the "blockmatrix"
  */
 
 public class Block {
@@ -25,6 +25,7 @@ public class Block {
     private long timeStamp;                                           // number of milliseconds since 1/1/1970
     private int nonce;                                                // first number a blockchain miner needs to discover before solving for a block in the blockchain
     private boolean genesis;                                          // whether or not this block is genesis block, by default it is 'FALSE'
+    private static int difficulty = 5;                                // blockchain mining difficulty (more higher = more difficult)
 
     // __________________
     // Class Constructors
@@ -49,8 +50,15 @@ public class Block {
     }
 
     public void mine_Block() {
-        merkleRoot = StringUtil.getMerkleRoot(transactions);
-        hash = calculate_Block_Hash();
+        String target = new String(new char[difficulty]).replace('\0', '0'); // Create a string with difficulty * "0" 
+        
+        merkleRoot = StringUtil.getMerkleRoot(transactions);                 // Get the MerkleRoot (Block Hash)
+
+        while(!hash.substring(0, difficulty).equals(target)) {               // Infinite while loop until the hash is found
+            nonce++;
+            hash = calculate_Block_Hash();
+        }
+
         System.out.println("Block Mined: " + hash);
     }
 

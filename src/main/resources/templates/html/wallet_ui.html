@@ -5,35 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" sizes="16x16" th:href="@{/images/logo.png}">
     <title>BlockMatrix Chain</title>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/62abfc2872.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" th:href="@{styles/main.css}">
-    <script type="text/javascript" th:src="@{js/main.js}"></script>
   </head>
   <body>
+    <div class="ml-3"><span class="p-2 m-3 info_tag"><strong class="mr-2">Test Net</strong><span class="dot"></span></span></div>
     <section>
-      <header class="container" style="display: flex; align-items: center;"><i class="fas fa-wallet fa-2x" style="float: left;"></i><span class="p-2"><strong style="font-size: 32px;">Wallet Dashboard</strong></span>
+      <header class="container m-5" style="display: flex; align-items: center;"><i class="fas fa-wallet fa-2x" style="float: left;"></i><span class="p-2"><strong style="font-size: 32px;">Wallet Dashboard</strong></span>
         <div class="ml-3">
-          <button><strong>Access another wallet</strong></button>
+          <button class="btn btn-outline-primary" type="button"><strong>Access another wallet</strong></button>
         </div>
       </header>
-      <div class="container p-3">
+      <div class="container m-5">
         <div class="row">
           <div class="col-lg">
-            <div class="container text-center mx-auto"><img style="border-radius: 80%; width: 100px; height: 100px;" th:src="@{/images/user_1.png}" alt="Avatar">
-              <p><strong>~mbash</strong></p>
+            <div class="container text-center mx-auto"><img class="img-fluid" th:src="@{/images/user_1.png}" alt="Avatar">
+              <p class="m-2"><strong>~mbash</strong></p>
               <div class="btn-group-vertical">
-                <button type="button"><img th:src="@{/images/Vector.png}"/><span class="p-2">Copy Wallet Address</span>
-                </button>
-                <button type="button"><i class="fas fa-key"></i><span class="p-2">View Private Key</span>
-                </button>
-                <button type="button"><img th:src="@{/images/NewWallet_icon.png}"/><span class="p-2">Generate New wallet</span>
-                </button>
+                <button class="user_wallet_btn text-left btn" type="button"><img th:src="@{/images/Vector.png}"/><span class="pl-2">Copy Wallet Address</span></button>
+                <button class="user_wallet_btn text-left btn" type="button"><img th:src="2"/><span class="pl-2">View Private Key</span></button>
+                <button class="user_wallet_btn text-left btn" type="button"><img th:src="@{/images/NewWallet_icon.png}"/><span class="pl-2">Generate New wallet</span></button>
               </div>
             </div>
           </div>
           <div class="col-lg">
-            <h3> <strong>Wallet Ballance</strong></h3><br>
+            <h3> <strong>Wallet Balance</strong></h3><br>
             <h4><span th:text="${balance}"> </span><span class="p-2" style="font-size: 18px; color: #00A3FF;"><strong>Mx's</strong></span></h4>
           </div>
           <div class="col-lg">
@@ -52,8 +48,9 @@
                   <label class="control-label" for="recipient_address">Transaction Message</label>
                   <input class="form-control" id="msg" autocomplete="off" type="text" aria-label="Message" th:name="msg" required="required"/>
                 </div>
+                <div id="msg_text" contenteditable></div>
               </div>
-              <button class="btn btn-primary" type="submit" th:onclick="submitTX(this)">Send Transaction<i class="fas fa-paper-plane"></i></button>
+              <button class="btn btn-primary" type="submit" th:onclick="submitTX(this)">Send Transaction<span class="pl-2"><i class="fas fa-paper-plane"></i></span></button>
             </form>
           </div>
         </div>
@@ -80,11 +77,34 @@
               <td><strong th:text="${tsx.getInfo()}"></strong></td>
               <td><strong th:text="${tsx.getBlockNumber()}"></strong></td>
               <td>
-                <button class="btn btn-danger" id="select_tx_btn" style="font-size:12px;" th:onclick="clearData(this)">Modify Transaction Info </button>
+                <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Modify Transaction Info</button>
               </td>
             </tr>
           </tbody>
         </table>
+      </div>
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">New Transaction Message</h5>
+              <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <label class="col-form-label" for="message-text"> <strong>Message</strong></label>
+                  <textarea class="form-control" id="message-text"></textarea>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-danger" type="button">Delete </button>
+              <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+              <button class="btn btn-primary" type="button">Modify</button>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
     <footer class="container-fluid">
@@ -111,5 +131,8 @@
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script type="text/javascript" th:src="@{js/main.js}"></script>
+    <script src="https://kit.fontawesome.com/62abfc2872.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
   </body>
 </html>

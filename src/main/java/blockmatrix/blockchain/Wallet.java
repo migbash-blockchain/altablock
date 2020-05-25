@@ -6,6 +6,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Class Model for "Wallet"
+ * holds the modal structure for a wallet on
+ * on the blockmatrix;
+ */
+
 public class Wallet {
 
     // __________________
@@ -14,7 +20,7 @@ public class Wallet {
     private PrivateKey privateKey;                                           // 'this' wallet private Key
     private PublicKey publicKey;                                             // 'this' wallet public Key
     private HashMap<String, Transaction_Output> UTXOs = new HashMap<>();     // only UTXOs owned by this wallet.
-    private ArrayList<Transaction> transaction_list = new ArrayList<>();          // only transactions made by this wallet.
+    private ArrayList<Transaction> transaction_list = new ArrayList<>();     // only transactions made by this wallet.
 
     // __________________
     // Class Constructors

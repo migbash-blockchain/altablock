@@ -142,6 +142,7 @@ public class BlockMatrix {
     }
 
     public Boolean is_Matrix_Valid() {
+        
         // sees if our matrix has maintained its security, or if it has been tampered with
         Block currentBlock;                                                                          // ..
         HashMap<String, Transaction_Output> tempUTXOs = new HashMap<>();                             // a temporary working list of unspent transactions at a given block state.
@@ -160,7 +161,7 @@ public class BlockMatrix {
                 return false;
             }
 
-            // check if hash is solved
+            // check if hash is solved (mined)
             // if(!currentBlock.getHash().substring(0, difficulty).equals(hashTarget)) {
             // System.out.println("Block " + i +  " hasn't been mined (first instance of unmined block, there may be more)");
             // return false;
@@ -169,7 +170,7 @@ public class BlockMatrix {
             // loop through blockchain transactions
             Transaction_Output tempOutput;
 
-            for(int t=0; t <currentBlock.getTransactions().size(); t++) {
+            for(int t=0; t < currentBlock.getTransactions().size(); t++) {
                 Transaction currentTransaction = currentBlock.getTransactions().get(t);
 
                 if(!currentTransaction.verify_Transaction_Signature()) {
