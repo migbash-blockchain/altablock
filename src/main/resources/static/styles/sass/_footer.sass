@@ -1,12 +1,15 @@
 footer
-    background-color: #ff8686;
+    background-color: $primary_dark;
+    color: $primary_light;
 
-// On Hover Footer Menu Actions
-footer
     ul
-        font-weight: bold;
-        transition-delay: 0.3s;
+        list-style-type: none;
 
-    ul:hover
-        color: black;
+    a
+        font-weight: bold;
+        text-decoration: none !important;
+        color: $primary_light;
+
+    a:hover
+        color: $secondary_light;
         cursor: pointer;

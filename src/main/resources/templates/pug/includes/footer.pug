@@ -2,16 +2,24 @@
 //- Footer HTML Code
 //- _________________________
 
+mixin footer_menu(name, href)
+    li.m-3
+        a(href=href)= name
+
 footer.container-fluid
     .row.p-4
         .col-lg.text-white
             h3
                 strong Matrix Technologies
         .col-lg.text-white
-            for n in ["Home", "About", "Wallet", "Block Explorer", "Follow Us"]
-                ul= n
+            ul
+                +footer_menu("Home", "/")
+                +footer_menu("About", "/")
+                +footer_menu("Wallet", "/wallet")
+                +footer_menu("Block Explorer", "/block_explorer")
         .col-lg.text-white
-            for n in ["Follow Us", "Join us"]
-                ul= n
-        
+            ul
+                +footer_menu("Follow Us", "/")
+                +footer_menu("Join Us", "/")
+
     .container-fluid.text-center Copyright @ MatrixTechnologies 2020

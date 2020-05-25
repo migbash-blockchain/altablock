@@ -2,82 +2,32 @@ extends ../layouts/main_layout.pug
 
 block content
 
-  //- _________________________
-  //- Block Explorer Header
-  .container.p-3
-  
-    .container(style="display: flex; align-items: center;")
-      img(style="width: 48px; height: 48px;" th:src="@{/images/vector_cube.png}" alt="block_vector")
-      span.p-2
-        strong(style="font-size: 32px;") Block Explorer
-      div.ml-3
-        span.p-2(style="background-color: #515151; color: white; border-radius: 10px; font-size: 10px;")
-          strong.mr-2 BlockMatrix Status |
-          strong(style="color: #62FE3B" th:text='${bm_verify}')  
+  section
 
-    .container(style="display: flex; align-items: center;")
-      i.fas.fa-info-circle
-      span.p-2
-        | Here you can find all of the details and in-depth information about the blockmatrix and
-        br
-        | discover all of the available RESTful APIs availble on the network.
+    //- _________________________
+    //- Block Explorer Header
+    .container.p-3
+    
+      .container(style="display: flex; align-items: center;")
+        img(style="width: 48px; height: 48px;" th:src="@{/images/vector_cube.png}" alt="block_vector")
+        span.p-2
+          strong(style="font-size: 32px;") Block Explorer
+        div.ml-3
+          span.p-2(style="background-color: #515151; color: white; border-radius: 10px; font-size: 10px;")
+            strong.mr-2 BlockMatrix Status |
+            strong(style="color: #62FE3B" th:text='${bm_verify}')  
 
-  //- _________________________
-  //- Modified Blocks & Total Blocks in [BlockMatrix]
-  #block_info.container.p-3
-    .container
-      .row
-        .col-lg-7
-          .row
-            .col.text-center
-              i.fas.fa-edit.fa-2x
-              h5
-                strong  Modified Blocks
-              h5(th:text='${mod_blocks}')  
+      .container(style="display: flex; align-items: center;")
+        i.fas.fa-info-circle
+        span.p-2
+          | Here you can find all of the details and in-depth information about the blockmatrix and
+          br
+          | discover all of the available RESTful APIs availble on the network.
 
-            .col.text-center
-              i.fas.fa-cubes.fa-2x
-              h5
-                strong  Blocks Count
-              h5(th:text='${block_num}')  
+    //- _________________________
+    //- Row of User Visual Info of BlockMatrix
+    include ../includes/row_block_explorer_info_view.pug
 
-            .col.text-center
-              img(style="width: 32px; height: 32px;" th:src="@{/images/dimension_img_no_license.png}" alt="block_vector")
-              h5
-                strong BlockMatrix Dimensions
-              h5(th:text='${bm_dimen}')
-        
-        .col-lg-1
-          .vl
-
-        .col-lg-4
-          .contaier
-            p 
-              strong Explore Further
-            .btn-group(role="group")
-              for n in ["Block", "Transaction", "User/Address"]
-                button.btn.btn-outline-primary(type="button")= n
-            .form-group
-              input.mt-3(autocomplete="off" type="text" class="form-control")
-            button.btn.btn-primary(type="submit") Search
-
-  //- _________________________
-  //- [All] UTXOs List in BlockMatrix
-  //- .container
-    i.fas.fa-history.fa-2x
-    h3 Transactions History
-    table.table
-      thead
-        tr
-          each n in ["Transaction ID", "Recipient", "Value", "Info", "Parent ID", ""]
-            th(scope="col")= n
-      tbody
-        tr(th:each='mapEntry : ${bm_utxo}')
-          td(th:text='${mapEntry.key}')  transaction_id 
-          td(th:text='${mapEntry.value.getRecipient()}')  recipient_address 
-          td(th:text='${mapEntry.value.getValue()}')  transaction_value 
-          td(th:text='${mapEntry.value.getParentTransactionId()}')  transaction_parent_id 
-
-  //- _________________________
-  //- [All] Blockmatrix Transactions Table
-  include ../includes/table_bm_txs.pug
+    //- _________________________
+    //- [All] Blockmatrix Transactions Table
+    include ../includes/table_bm_txs.pug

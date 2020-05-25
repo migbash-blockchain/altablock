@@ -11,36 +11,44 @@
     <script type="text/javascript" th:src="@{js/main.js}"></script>
   </head>
   <body>
-    <div class="container p-3">
-      <div class="container" style="display: flex; align-items: center;"><img style="width: 48px; height: 48px;" th:src="@{/images/vector_cube.png}" alt="block_vector"><span class="p-2"><strong style="font-size: 32px;">Block Explorer</strong></span>
-        <div class="ml-3"><span class="p-2" style="background-color: #515151; color: white; border-radius: 10px; font-size: 10px;"><strong class="mr-2">BlockMatrix Status |</strong><strong style="color: #62FE3B" th:text="${bm_verify}"> </strong></span></div>
+    <section>
+      <div class="container p-3">
+        <div class="container" style="display: flex; align-items: center;"><img style="width: 48px; height: 48px;" th:src="@{/images/vector_cube.png}" alt="block_vector"><span class="p-2"><strong style="font-size: 32px;">Block Explorer</strong></span>
+          <div class="ml-3"><span class="p-2" style="background-color: #515151; color: white; border-radius: 10px; font-size: 10px;"><strong class="mr-2">BlockMatrix Status |</strong><strong style="color: #62FE3B" th:text="${bm_verify}"> </strong></span></div>
+        </div>
+        <div class="container" style="display: flex; align-items: center;"><i class="fas fa-info-circle"></i><span class="p-2">Here you can find all of the details and in-depth information about the blockmatrix and<br>discover all of the available RESTful APIs availble on the network.</span></div>
       </div>
-      <div class="container" style="display: flex; align-items: center;"><i class="fas fa-info-circle"></i><span class="p-2">Here you can find all of the details and in-depth information about the blockmatrix and<br>discover all of the available RESTful APIs availble on the network.</span></div>
-    </div>
-    <div class="container p-3" id="block_info">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-7">
-            <div class="row">
-              <div class="col text-center"><i class="fas fa-edit fa-2x"></i>
-                <h5><strong> Modified Blocks</strong></h5>
-                <h5 th:text="${mod_blocks}"> </h5>
+      <div class="container p-3" id="block_info">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-7 text-center">
+              <div class="row">
+                <div class="col"><i class="fas fa-edit fa-2x"></i>
+                  <h5><strong> Modified Blocks</strong></h5>
+                  <h5 th:text="${mod_blocks}"> </h5>
+                </div>
+                <div class="col"><i class="fas fa-cubes fa-2x"></i>
+                  <h5><strong> Blocks Count</strong></h5>
+                  <h5 th:text="${block_num}"> </h5>
+                </div>
+                <div class="col"><img style="width: 32px; height: 32px;" th:src="@{/images/dimension_img_no_license.png}" alt="block_vector">
+                  <h5><strong>BlockMatrix Dimensions</strong></h5>
+                  <h5 th:text="${bm_dimen}"></h5>
+                </div>
               </div>
-              <div class="col text-center"><i class="fas fa-cubes fa-2x"></i>
-                <h5><strong> Blocks Count</strong></h5>
-                <h5 th:text="${block_num}"> </h5>
-              </div>
-              <div class="col text-center"><img style="width: 32px; height: 32px;" th:src="@{/images/dimension_img_no_license.png}" alt="block_vector">
-                <h5><strong>BlockMatrix Dimensions</strong></h5>
-                <h5 th:text="${bm_dimen}"></h5>
+              <div class="row">
+                <div class="col"><i class="fas fa-exchange-alt fa-2x"></i>
+                  <h5><strong>Number of Transactions</strong></h5>
+                  <h5 th:text="${bm_all_transactions.size()}"></h5>
+                </div>
+                <div class="col"></div>
+                <div class="col"></div>
               </div>
             </div>
-          </div>
-          <div class="col-lg-1">
-            <div class="vl"></div>
-          </div>
-          <div class="col-lg-4">
-            <div class="contaier">
+            <div class="col-lg-1">
+              <div class="vl"></div>
+            </div>
+            <div class="col-lg-4">
               <p> <strong>Explore Further</strong></p>
               <div class="btn-group" role="group">
                 <button class="btn btn-outline-primary" type="button">Block</button>
@@ -55,47 +63,50 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="container">
-      <div class="container" style="display: flex; align-items: center;"><i class="fas fa-history fa-2x" style="float: left;"></i><span class="p-2"><strong style="font-size: 32px;">Transaction History</strong></span></div>
-      <table class="table table-borderless m-3">
-        <thead>
-          <tr>
-            <th scope="col">Transaction ID</th>
-            <th scope="col">Sender</th>
-            <th scope="col">Recipient</th>
-            <th scope="col">Value</th>
-            <th scope="col">Info</th>
-            <th scope="col">Block Number</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr th:each="list_value : ${bm_all_transactions}">
-            <td class="overflow_style"><strong th:text="${list_value.getTransactionId()}"></strong></td>
-            <td class="overflow_style"><strong th:text="${@stringUtil.getStringFromKey(list_value.getSender())}"></strong></td>
-            <td class="overflow_style"><strong th:text="${@stringUtil.getStringFromKey(list_value.getRecipient())}"></strong></td>
-            <td><strong th:text="${list_value.getValue()}"></strong></td>
-            <td><strong th:text="${list_value.getInfo()}"></strong></td>
-            <td><strong th:text="${list_value.getBlockNumber()}"></strong></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+      <div class="container">
+        <div class="container" style="display: flex; align-items: center;"><i class="fas fa-history fa-2x" style="float: left;"></i><span class="p-2"><strong style="font-size: 32px;">Transaction History</strong></span></div>
+        <table class="table table-borderless m-3">
+          <thead>
+            <tr>
+              <th scope="col">Transaction ID</th>
+              <th scope="col">Sender</th>
+              <th scope="col">Recipient</th>
+              <th scope="col">Value</th>
+              <th scope="col">Info</th>
+              <th scope="col">Block Number</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="list_value : ${bm_all_transactions}">
+              <td class="overflow_style"><strong th:text="${list_value.getTransactionId()}"></strong></td>
+              <td class="overflow_style"><strong th:text="${@stringUtil.getStringFromKey(list_value.getSender())}"></strong></td>
+              <td class="overflow_style"><strong th:text="${@stringUtil.getStringFromKey(list_value.getRecipient())}"></strong></td>
+              <td><strong th:text="${list_value.getValue()}"></strong></td>
+              <td><strong th:text="${list_value.getInfo()}"></strong></td>
+              <td><strong th:text="${list_value.getBlockNumber()}"></strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
     <footer class="container-fluid">
       <div class="row p-4">
         <div class="col-lg text-white">
           <h3><strong>Matrix Technologies</strong></h3>
         </div>
         <div class="col-lg text-white">
-          <ul>Home</ul>
-          <ul>About</ul>
-          <ul>Wallet</ul>
-          <ul>Block Explorer</ul>
-          <ul>Follow Us</ul>
+          <ul>
+                <li class="m-3"><a href="/">Home</a></li>
+                <li class="m-3"><a href="/">About</a></li>
+                <li class="m-3"><a href="/wallet">Wallet</a></li>
+                <li class="m-3"><a href="/block_explorer">Block Explorer</a></li>
+          </ul>
         </div>
         <div class="col-lg text-white">
-          <ul>Follow Us</ul>
-          <ul>Join us</ul>
+          <ul>
+                <li class="m-3"><a href="/">Follow Us</a></li>
+                <li class="m-3"><a href="/">Join Us</a></li>
+          </ul>
         </div>
       </div>
       <div class="container-fluid text-center">Copyright @ MatrixTechnologies 2020</div>

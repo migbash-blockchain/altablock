@@ -1,0 +1,16 @@
+//- _________________________
+//- [All] UTXOs List in BlockMatrix
+.container
+    i.fas.fa-history.fa-2x
+    h3 Transactions History
+    table.table
+        thead
+            tr
+                each n in ["Transaction ID", "Recipient", "Value", "Info", "Parent ID", ""]
+                    th(scope="col")= n
+        tbody
+            tr(th:each='mapEntry : ${bm_utxo}')
+                td(th:text='${mapEntry.key}')  transaction_id 
+                td(th:text='${mapEntry.value.getRecipient()}')  recipient_address 
+                td(th:text='${mapEntry.value.getValue()}')  transaction_value 
+                td(th:text='${mapEntry.value.getParentTransactionId()}')  transaction_parent_id 

@@ -11,101 +11,100 @@
     <script type="text/javascript" th:src="@{js/main.js}"></script>
   </head>
   <body>
-    <div class="my_alert" role="alert"><strong>Private Key</strong>
-      <p><span th:text="${priv_address}"></span></p>
-      <button class="close" type="button" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    </div>
-    <header class="container p-3">
-      <div class="row">
-        <div class="col-lg mx-auto"><i class="fas fa-wallet fa-x2" style="float: left;"></i>
-          <h3><strong>Wallet Dashboard</strong></h3>
+    <section>
+      <header class="container" style="display: flex; align-items: center;"><i class="fas fa-wallet fa-2x" style="float: left;"></i><span class="p-2"><strong style="font-size: 32px;">Wallet Dashboard</strong></span>
+        <div class="ml-3">
+          <button><strong>Access another wallet</strong></button>
         </div>
-      </div>
-    </header>
-    <div class="container p-3">
-      <div class="row">
-        <div class="col-lg">
-          <div class="container text-center mx-auto"><img style="border-radius: 80%; width: 100px; height: 100px;" th:src="@{/images/user_1.png}" alt="Avatar">
-            <p><strong>~mbash</strong></p>
-            <div class="btn-group-vertical">
-              <button type="button"><img th:src="@{/images/Vector.png}"/><span class="p-2">Copy Wallet Address</span>
-              </button>
-              <button type="button"><i class="fas fa-key"></i><span class="p-2">View Private Key</span>
-              </button>
-              <button type="button"><img th:src="@{/images/NewWallet_icon.png}"/><span class="p-2">Generate New wallet</span>
-              </button>
+      </header>
+      <div class="container p-3">
+        <div class="row">
+          <div class="col-lg">
+            <div class="container text-center mx-auto"><img style="border-radius: 80%; width: 100px; height: 100px;" th:src="@{/images/user_1.png}" alt="Avatar">
+              <p><strong>~mbash</strong></p>
+              <div class="btn-group-vertical">
+                <button type="button"><img th:src="@{/images/Vector.png}"/><span class="p-2">Copy Wallet Address</span>
+                </button>
+                <button type="button"><i class="fas fa-key"></i><span class="p-2">View Private Key</span>
+                </button>
+                <button type="button"><img th:src="@{/images/NewWallet_icon.png}"/><span class="p-2">Generate New wallet</span>
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-lg">
-          <h3> <strong>Wallet Ballance</strong></h3><br>
-          <h4><span th:text="${balance}"> </span><span style="color: #00A3FF;"><strong>Mx's</strong></span></h4>
-        </div>
-        <div class="col-lg">
-          <form>
-            <div class="form-group">
-              <h3><strong>Send Funds</strong></h3>
-              <div class="form-group mb-3">
-                <label class="control-label" for="recipient_address">Recipients Address</label>
-                <input class="form-control" id="r_address" autocomplete="off" type="text" aria-describedby="basic-addon3" required="required"/>
+          <div class="col-lg">
+            <h3> <strong>Wallet Ballance</strong></h3><br>
+            <h4><span th:text="${balance}"> </span><span class="p-2" style="font-size: 18px; color: #00A3FF;"><strong>Mx's</strong></span></h4>
+          </div>
+          <div class="col-lg">
+            <form>
+              <div class="form-group">
+                <h3><strong>Send Funds</strong></h3>
+                <div class="form-group mb-3">
+                  <label class="control-label" for="recipient_address">Recipients Address</label>
+                  <input class="form-control" id="r_address" autocomplete="off" type="text" aria-describedby="basic-addon3" required="required"/>
+                </div>
+                <div class="form-group mb-3">
+                  <label class="control-label" for="recipient_address">Amount</label>
+                  <input class="form-control" id="amount" autocomplete="off" type="text" aria-label="Amount (to the nearest dollar)" th:name="funds" required="required"/>
+                </div>
+                <div class="form-group mb-3">
+                  <label class="control-label" for="recipient_address">Transaction Message</label>
+                  <input class="form-control" id="msg" autocomplete="off" type="text" aria-label="Message" th:name="msg" required="required"/>
+                </div>
               </div>
-              <div class="form-group mb-3">
-                <label class="control-label" for="recipient_address">Amount</label>
-                <input class="form-control" id="amount" autocomplete="off" type="text" aria-label="Amount (to the nearest dollar)" th:name="funds" required="required"/>
-              </div>
-              <div class="form-group mb-3">
-                <label class="control-label" for="recipient_address">Transaction Message</label>
-                <input class="form-control" id="msg" autocomplete="off" type="text" aria-label="Message" th:name="msg" required="required"/>
-              </div>
-            </div>
-            <button class="btn btn-primary" type="submit" th:onclick="submitTX(this)">Send Transaction<i class="fas fa-paper-plane"></i></button>
-          </form>
+              <button class="btn btn-primary" type="submit" th:onclick="submitTX(this)">Send Transaction<i class="fas fa-paper-plane"></i></button>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="container">
-      <div class="container" style="display: flex; align-items: center;"><i class="fas fa-history fa-2x" style="float: left;"></i><span class="p-2"><strong style="font-size: 32px;">My Transaction History</strong></span></div>
-      <table class="table table-borderless m-3">
-        <thead>
-          <tr>
-            <th scope="col">Transaction ID</th>
-            <th scope="col">Sender</th>
-            <th scope="col">Recipient</th>
-            <th scope="col">Value</th>
-            <th scope="col">Info</th>
-            <th scope="col">Block Number</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr th:each="tsx : ${wallet_txs}">
-            <td class="overflow_style"><strong th:text="${tsx.getTransactionId()}"></strong></td>
-            <td class="overflow_style"><strong th:text="${@stringUtil.getStringFromKey(tsx.getSender())}"></strong></td>
-            <td class="overflow_style"><strong th:text="${@stringUtil.getStringFromKey(tsx.getRecipient())}"></strong></td>
-            <td><strong th:text="${tsx.getValue()}"></strong></td>
-            <td><strong th:text="${tsx.getInfo()}"></strong></td>
-            <td><strong th:text="${tsx.getBlockNumber()}"></strong></td>
-            <td>
-              <button class="btn btn-danger" id="select_tx_btn" style="font-size:12px;" th:onclick="clearData(this)">Modify Transaction Info </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+      <div class="container">
+        <div class="container" style="display: flex; align-items: center;"><i class="fas fa-history fa-2x" style="float: left;"></i><span class="p-2"><strong style="font-size: 32px;">My Transaction History</strong></span></div>
+        <table class="table table-borderless m-3">
+          <thead>
+            <tr>
+              <th scope="col">Transaction ID</th>
+              <th scope="col">Sender</th>
+              <th scope="col">Recipient</th>
+              <th scope="col">Value</th>
+              <th scope="col">Info</th>
+              <th scope="col">Block Number</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="tsx : ${wallet_txs}">
+              <td class="overflow_style"><strong th:text="${tsx.getTransactionId()}"></strong></td>
+              <td class="overflow_style"><strong th:text="${@stringUtil.getStringFromKey(tsx.getSender())}"></strong></td>
+              <td class="overflow_style"><strong th:text="${@stringUtil.getStringFromKey(tsx.getRecipient())}"></strong></td>
+              <td><strong th:text="${tsx.getValue()}"></strong></td>
+              <td><strong th:text="${tsx.getInfo()}"></strong></td>
+              <td><strong th:text="${tsx.getBlockNumber()}"></strong></td>
+              <td>
+                <button class="btn btn-danger" id="select_tx_btn" style="font-size:12px;" th:onclick="clearData(this)">Modify Transaction Info </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
     <footer class="container-fluid">
       <div class="row p-4">
         <div class="col-lg text-white">
           <h3><strong>Matrix Technologies</strong></h3>
         </div>
         <div class="col-lg text-white">
-          <ul>Home</ul>
-          <ul>About</ul>
-          <ul>Wallet</ul>
-          <ul>Block Explorer</ul>
-          <ul>Follow Us</ul>
+          <ul>
+                <li class="m-3"><a href="/">Home</a></li>
+                <li class="m-3"><a href="/">About</a></li>
+                <li class="m-3"><a href="/wallet">Wallet</a></li>
+                <li class="m-3"><a href="/block_explorer">Block Explorer</a></li>
+          </ul>
         </div>
         <div class="col-lg text-white">
-          <ul>Follow Us</ul>
-          <ul>Join us</ul>
+          <ul>
+                <li class="m-3"><a href="/">Follow Us</a></li>
+                <li class="m-3"><a href="/">Join Us</a></li>
+          </ul>
         </div>
       </div>
       <div class="container-fluid text-center">Copyright @ MatrixTechnologies 2020</div>

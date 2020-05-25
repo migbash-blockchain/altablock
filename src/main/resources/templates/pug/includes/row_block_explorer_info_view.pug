@@ -1,0 +1,45 @@
+//- _________________________
+//- Modified Blocks & Total Blocks in [BlockMatrix]
+#block_info.container.p-3
+    .container
+        .row
+            .col-lg-7.text-center
+                .row
+                    .col
+                        i.fas.fa-edit.fa-2x
+                        h5
+                            strong  Modified Blocks
+                        h5(th:text='${mod_blocks}')  
+
+                    .col
+                        i.fas.fa-cubes.fa-2x
+                        h5
+                            strong  Blocks Count
+                        h5(th:text='${block_num}')  
+
+                    .col
+                        img(style="width: 32px; height: 32px;" th:src="@{/images/dimension_img_no_license.png}" alt="block_vector")
+                        h5
+                            strong BlockMatrix Dimensions
+                        h5(th:text='${bm_dimen}')
+                .row
+                    .col
+                        i.fas.fa-exchange-alt.fa-2x
+                        h5
+                            strong Number of Transactions
+                        h5(th:text='${bm_all_transactions.size()}')
+                    .col
+                    .col
+
+            .col-lg-1
+                .vl
+
+            .col-lg-4
+                p 
+                    strong Explore Further
+                .btn-group(role="group")
+                    for n in ["Block", "Transaction", "User/Address"]
+                        button.btn.btn-outline-primary(type="button")= n
+                .form-group
+                    input.mt-3(autocomplete="off" type="text" class="form-control")
+                button.btn.btn-primary(type="submit") Search

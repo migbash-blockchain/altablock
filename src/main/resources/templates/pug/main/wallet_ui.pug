@@ -28,32 +28,22 @@ mixin input_form(inputHeader, num)
 
 block content
 
-    //- _________________________
-    //- Alert -> Showing Private Key [Using Bootstrap]
-    div(class="my_alert" role="alert")
-        strong Private Key
-        p
-            span(th:text="${priv_address}")
-        button(type="button" class="close" data-dismiss="alert" aria-label="Close")
-            span(aria-hidden="true") &times;
+    section
 
-    //- _________________________
-    //- Wallet Dashboard [Header]
-    header(class="container p-3")
-        div(class="row")
-            div(class="col-lg mx-auto")
-                i(style="float: left;" class="fas fa-wallet fa-x2")
-                h3
-                    strong Wallet Dashboard
+        //- _________________________
+        //- Wallet Dashboard [Header]
+        header.container(style="display: flex; align-items: center;")
+            i(style="float: left;" class="fas fa-wallet fa-2x")
+            span.p-2
+                strong(style="font-size: 32px;") Wallet Dashboard
+            div.ml-3
+                button
+                    strong Access another wallet
 
-    //- _________________________
-    //- User Wallet Actions
-    include ../includes/wallet_actions_row.pug
+        //- _________________________
+        //- User Wallet Actions
+        include ../includes/row_wallet_user_actions.pug
 
-    //- _________________________
-    //- [All] Blockmatrix Transactions
-    include ../includes/table_wallet_user_txs.pug
-
-    //- _________________________
-    //- [MY UTXOs] Transactions
-    //- include ../includes/table_wallet_user_utxo.pug
+        //- _________________________
+        //- [All] Blockmatrix Transactions
+        include ../includes/table_wallet_user_txs.pug

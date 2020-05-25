@@ -46,9 +46,12 @@ public class Node_Controller {
      * - BlockMatrix all UTXOs'
      * - BlockMatrix all transactions list
      * 
+     * @param model
+     * @return
+     * 
      */
 
-     @GetMapping("/block_explorer")
+    @GetMapping("/block_explorer")
     public String block_explorer(Model model) {
         model.addAttribute("block_num", new_blockMatrix.getInputCount());
         model.addAttribute("mod_blocks", new_blockMatrix.getBlocksWithModifiedData().toString());
@@ -59,12 +62,25 @@ public class Node_Controller {
         return "html/block_explorer";
     }
 
-    // __________________
-    // User Dashboard (UI/UX)
+    /**
+     * __________________
+     * User Dashboard (UI/UX)
+     * 
+     * Returns ->
+     * 
+     * - Users Wallet Balance
+     * - Users Wallet UTXO List
+     * - Users Public Key
+     * - Users Private Key [! Warning]
+     * - Users Wallet Whole TXs List
+     * 
+     * @param model
+     * @return
+     */
 
     @GetMapping("/wallet")
     public String wallet(Model model) {
-        model.addAttribute("uuid", blockChainNodeId);
+        model.addAttribute("uuid", blockChainNodeId); // TESTME
         model.addAttribute("balance", wallet_genesis.get_Wallet_Balance());
         model.addAttribute("transactions", wallet_genesis.getUTXOs());
         model.addAttribute("pub_address", StringUtil.getStringFromKey(wallet_genesis.getPublicKey()));

@@ -1,12 +1,31 @@
+function myFunction() {
+    /* Get the text field */
+    var copyText = document.getElementById("myInput");
+  
+    /* Select the text field */
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+  
+    /* Copy the text inside the text field */
+    document.execCommand("copy");
+  
+    /* Alert the copied text */
+    alert("Copied the text: " + copyText.value);
+  }
+
+
+
+// _________________________
+// AJAX / ASYNC Functions
+// _________________________
+
 // Make an AJAX Call to clear block infomration
 async function clearData(x) {
 
     // get the selected row data
     var block_num = x.parentNode.parentNode.getElementsByTagName("strong")[5].innerHTML
     // var transaction_num = x.parentNode.parentNode.getElementsByTagName("strong")[5].innerHTML
-    var new_info = "Wassap m8 :)"
-
-    alert(block_num)
+    var new_info = "null"
 
     var url = new URL("http://127.0.0.1:8080/modify_transaction_info"),
         params = {
