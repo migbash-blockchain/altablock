@@ -1,15 +1,14 @@
+//- ______________________
+//- Buttons
 mixin main_btn_img(btnText, btn_img)
 
-    button.user_wallet_btn.text-left(type="button" class="btn")
+    button.user_wallet_btn.text-left.btn(type="button")&attributes(attributes)
         img(th:src= btn_img)
         span.pl-2= btnText
 
-mixin input_form(inputHeader, num)
+//- ______________________
+//- Input Forms
+mixin input_form(inputHeader, inputID)
     div(class="form-group mb-3")
         label(for="recipient_address" class="control-label")= inputHeader
-        if num == 1
-            input#r_address(autocomplete="off" type="text" class="form-control" aria-describedby="basic-addon3" required)
-        if num == 2
-            input#amount(autocomplete="off" type="text" class="form-control" aria-label="Amount (to the nearest dollar)" th:name="funds" required)
-        if num == 3
-            input#msg(autocomplete="off" type="text" class="form-control" aria-label="Message" th:name="msg" required) 
+        input(id=inputID autocomplete="off" type="text" class="form-control" aria-describedby="basic-addon3" required)

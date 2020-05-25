@@ -14,16 +14,16 @@ html(lang="en", xmlns:th="http://www.thymeleaf.org")
 
         //- Bootstrap CSS-Only 
         link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css' integrity='sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk' crossorigin='anonymous')
-        link(rel="stylesheet", th:href="@{styles/main.css}")
+        link(rel="stylesheet" th:href="@{styles/main.css}")
 
     body
 
         //- _________________________
         //- TestNet Tag [here]
-        div.ml-3
-          span.p-2.m-3.info_tag
-            strong.mr-2 Test Net
-            span.dot
+        .ml-3
+            span.info.p-2.m-3
+                strong.mr-2 Test Net
+                span.dot
 
         //- _________________________
         //- html 'section' code goes here
@@ -35,10 +35,10 @@ html(lang="en", xmlns:th="http://www.thymeleaf.org")
 
         //- _________________________                          
         //- Bootstrap JS CDNs
-        //- script(src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous")
+        script(src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous")
         script(src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous")
         script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous")
-        
+
         //- _________________________ 
         //- Other JS Links
         script(type="text/javascript" th:src="@{js/main.js}")

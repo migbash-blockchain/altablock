@@ -1,25 +1,22 @@
-function myFunction() {
-    /* Get the text field */
-    var copyText = document.getElementById("myInput");
-  
-    /* Select the text field */
-    copyText.select();
-    copyText.setSelectionRange(0, 99999); /*For mobile devices*/
-  
-    /* Copy the text inside the text field */
+// _________________________
+// UI/UX Functions
+// _________________________
+
+function copyClipboard(x) {
+    var dummy = document.createElement("input");
+    var copyText = x.getAttribute("alt");
+    document.body.appendChild(dummy);
+    dummy.value = copyText
+    dummy.select()
     document.execCommand("copy");
-  
-    /* Alert the copied text */
-    alert("Copied the text: " + copyText.value);
-  }
-
-
+    document.body.removeChild(dummy);
+}
 
 // _________________________
 // AJAX / ASYNC Functions
 // _________________________
 
-// Make an AJAX Call to clear block infomration
+// Make an AJAX Call to Modify TX info
 async function clearData(x) {
 
     // get the selected row data
@@ -35,8 +32,6 @@ async function clearData(x) {
         }
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
 
-    console.log(url) // TEST
-
     fetch(url)
         .then(function (res) {
             console.log(res);
@@ -51,7 +46,7 @@ async function submitTX() {
     // get the form input data:
     var r_address = document.getElementById("r_address").value;
     var amount = document.getElementById("amount").value;
-    var msg = document.getElementById("msg").value;
+    var msg = document.getElementById("msg_text").textContent;
 
     var url = new URL("http://127.0.0.1:8080/send_funds"),
         params = {
@@ -59,8 +54,6 @@ async function submitTX() {
             msg: msg
         }
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
-
-    console.log(url) // TEST
 
     fetch(url)
         .then(function (res) {

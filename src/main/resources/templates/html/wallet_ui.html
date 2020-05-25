@@ -9,7 +9,7 @@
     <link rel="stylesheet" th:href="@{styles/main.css}">
   </head>
   <body>
-    <div class="ml-3"><span class="p-2 m-3 info_tag"><strong class="mr-2">Test Net</strong><span class="dot"></span></span></div>
+    <div class="ml-3"><span class="info p-2 m-3"><strong class="mr-2">Test Net</strong><span class="dot"></span></span></div>
     <section>
       <header class="container m-5" style="display: flex; align-items: center;"><i class="fas fa-wallet fa-2x" style="float: left;"></i><span class="p-2"><strong style="font-size: 32px;">Wallet Dashboard</strong></span>
         <div class="ml-3">
@@ -22,7 +22,7 @@
             <div class="container text-center mx-auto"><img class="img-fluid" th:src="@{/images/user_1.png}" alt="Avatar">
               <p class="m-2"><strong>~mbash</strong></p>
               <div class="btn-group-vertical">
-                <button class="user_wallet_btn text-left btn" type="button"><img th:src="@{/images/Vector.png}"/><span class="pl-2">Copy Wallet Address</span></button>
+                <button class="user_wallet_btn text-left btn" type="button" id="cpy_pub_add" th:onclick="copyClipboard(this)" th:alt="${pub_address}"><img th:src="@{/images/Vector.png}"/><span class="pl-2">Copy Wallet Address</span></button>
                 <button class="user_wallet_btn text-left btn" type="button"><img th:src="2"/><span class="pl-2">View Private Key</span></button>
                 <button class="user_wallet_btn text-left btn" type="button"><img th:src="@{/images/NewWallet_icon.png}"/><span class="pl-2">Generate New wallet</span></button>
               </div>
@@ -42,13 +42,9 @@
                 </div>
                 <div class="form-group mb-3">
                   <label class="control-label" for="recipient_address">Amount</label>
-                  <input class="form-control" id="amount" autocomplete="off" type="text" aria-label="Amount (to the nearest dollar)" th:name="funds" required="required"/>
+                  <input class="form-control" id="amount" autocomplete="off" type="text" aria-describedby="basic-addon3" required="required"/>
                 </div>
-                <div class="form-group mb-3">
-                  <label class="control-label" for="recipient_address">Transaction Message</label>
-                  <input class="form-control" id="msg" autocomplete="off" type="text" aria-label="Message" th:name="msg" required="required"/>
-                </div>
-                <div id="msg_text" contenteditable></div>
+                <div id="msg_text" contenteditable required></div>
               </div>
               <button class="btn btn-primary" type="submit" th:onclick="submitTX(this)">Send Transaction<span class="pl-2"><i class="fas fa-paper-plane"></i></span></button>
             </form>
@@ -74,7 +70,7 @@
               <td class="overflow_style"><strong th:text="${@stringUtil.getStringFromKey(tsx.getSender())}"></strong></td>
               <td class="overflow_style"><strong th:text="${@stringUtil.getStringFromKey(tsx.getRecipient())}"></strong></td>
               <td><strong th:text="${tsx.getValue()}"></strong></td>
-              <td><strong th:text="${tsx.getInfo()}"></strong></td>
+              <td class="overflow_style"><strong th:text="${tsx.getInfo()}"></strong></td>
               <td><strong th:text="${tsx.getBlockNumber()}"></strong></td>
               <td>
                 <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Modify Transaction Info</button>
@@ -129,6 +125,7 @@
       </div>
       <div class="container-fluid text-center">Copyright @ MatrixTechnologies 2020</div>
     </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <script type="text/javascript" th:src="@{js/main.js}"></script>

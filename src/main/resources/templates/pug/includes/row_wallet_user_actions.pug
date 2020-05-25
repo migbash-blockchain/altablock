@@ -7,10 +7,8 @@
                 img.img-fluid(th:src="@{/images/user_1.png}" alt="Avatar")
                 p.m-2
                     strong ~mbash
-
-                //- Buttons Group [Bootstrap]
                 .btn-group-vertical
-                    +main_btn_img("Copy Wallet Address", "@{/images/Vector.png}")
+                    +main_btn_img("Copy Wallet Address", "@{/images/Vector.png}")(id="cpy_pub_add" th:onclick="copyClipboard(this)" th:alt="${pub_address}")
                     +main_btn_img("View Private Key", 2)
                     +main_btn_img("Generate New wallet", "@{/images/NewWallet_icon.png}")
 
@@ -30,10 +28,10 @@
                 .form-group
                     h3
                         strong Send Funds
-                    +input_form("Recipients Address", 1)
-                    +input_form("Amount", 2)
-                    +input_form("Transaction Message", 3)
-                    div#msg_text(contenteditable)
+                    +input_form("Recipients Address", "r_address")
+                    +input_form("Amount", "amount")
+                    //- +input_form("Transaction Message", "msg")
+                    div#msg_text(contenteditable required)
                 button.btn.btn-primary(type="submit" th:onclick="submitTX(this)") Send Transaction
                     span.pl-2
                         i(class="fas fa-paper-plane")
