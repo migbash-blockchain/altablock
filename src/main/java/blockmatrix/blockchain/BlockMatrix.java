@@ -3,6 +3,7 @@ package blockmatrix.blockchain;
 import com.google.gson.GsonBuilder;
 import org.springframework.stereotype.Component;
 
+import java.net.URL;
 import java.security.Security;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,6 +32,7 @@ public class BlockMatrix {
     static HashMap<String, Transaction_Output> UTXOs = new HashMap<>();   // list containing all of the UTXO's transaction
     private boolean generated;                                            // verify whether the genesis block/wallet has been instantiated
     private ArrayList<Integer> blocksWithModifiedData;                    // ..
+    private ArrayList<URL> nodesList;                                     // stores all "registered" nodes on the blockmatrix network 
 
     // __________________
     // Class Constructors
@@ -334,6 +336,10 @@ public class BlockMatrix {
         return true;
     }
 
+    public void registerNodes(URL url){
+        this.nodesList.add(url);
+    }
+
     // __________________
     // Getters & Setters
 
@@ -410,6 +416,7 @@ public class BlockMatrix {
         return this.blocksWithModifiedData;
     }
     public HashMap<String, Transaction_Output> getUTXOs() { return UTXOs; }
+    public ArrayList<URL> getList() {return this.nodesList; }
 
     public void setMinimumTransaction(float num) { minimumTransaction = num; }
 

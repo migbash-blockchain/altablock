@@ -1,19 +1,20 @@
 package blockmatrix.controllers;
 
-import blockmatrix.blockchain.BlockMatrix;
-import blockmatrix.blockchain.StringUtil;
-import blockmatrix.blockchain.Wallet;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-/**
- * This class is responsible for managing the viewable dashboard which is
- * directly connected to the blockmatrix for a clearer visualization of
- * what is going on the blockmatrix at any moment in time.
- */
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import blockmatrix.blockchain.BlockMatrix;
 
 @Controller
 public class Node_Controller {
@@ -24,68 +25,29 @@ public class Node_Controller {
     @Autowired
     private BlockMatrix new_blockMatrix;
 
-    @Autowired
-    private Wallet wallet_genesis;
-
-    @Autowired
-    private Wallet new_wallet;
-
-    @Value("${blockchain.node.id}")
-    private String blockChainNodeId;
-
     /**
-     * _________________
-     * Blockchain Data (Explorer)
-     * 
-     * Returns ->
-     * 
-     * - Block Count Number in the BlockMatrix 
-     * - Modified Blocks Number in the BlockMatrix
-     * - BlockMatrix Status (if blocks are correct or not)
-     * - BlockMatrix current dimensions
-     * - BlockMatrix all UTXOs'
-     * - BlockMatrix all transactions list
-     * 
-     * @param model
-     * @return
-     * 
+     * Registerin the nodes onto the network
      */
 
-    @GetMapping("/block_explorer")
-    public String block_explorer(Model model) {
-        model.addAttribute("block_num", new_blockMatrix.getInputCount());
-        model.addAttribute("mod_blocks", new_blockMatrix.getBlocksWithModifiedData().toString());
-        model.addAttribute("bm_verify", new_blockMatrix.is_Matrix_Valid().toString());
-        model.addAttribute("bm_dimen", new_blockMatrix.getDimension());
-        model.addAttribute("bm_utxo", new_blockMatrix.getUTXOs());
-        model.addAttribute("bm_all_transactions", new_blockMatrix.getAllTransactions());
-        return "html/block_explorer";
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public ResponseEntity<Object> registerNodes(@RequestBody List<String> nodes) {
+        if (nodes == null || nodes.size() == 0) {
+            return new ResponseEntity<Object>("Error: Please supply a valid list of nodes", HttpStatus.BAD_REQUEST);
+        }
+
+        for (String node : nodes) {
+            try {
+                new_blockMatrix.registerNodes(new URL(node));
+            } catch (MalformedURLException e) {
+                return new ResponseEntity<Object>("Error: Invalid node " + node + ", Please supply a valid node", HttpStatus.BAD_REQUEST);
+            }
+        }
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", "New nodes have been added");
+        response.put("total_nodes", new_blockMatrix.getList());
+
+        return new ResponseEntity<Object>(response, HttpStatus.CREATED);
     }
 
-    /**
-     * __________________
-     * User Dashboard (UI/UX)
-     * 
-     * Returns ->
-     * 
-     * - Users Wallet Balance
-     * - Users Wallet UTXO List
-     * - Users Public Key
-     * - Users Private Key [! Warning]
-     * - Users Wallet Whole TXs List
-     * 
-     * @param model
-     * @return
-     */
-
-    @GetMapping("/wallet")
-    public String wallet(Model model) {
-        model.addAttribute("uuid", blockChainNodeId); // TESTME
-        model.addAttribute("balance", wallet_genesis.get_Wallet_Balance());
-        model.addAttribute("transactions", wallet_genesis.getUTXOs());
-        model.addAttribute("pub_address", StringUtil.getStringFromKey(wallet_genesis.getPublicKey()));
-        model.addAttribute("priv_address", StringUtil.getStringFromKey(wallet_genesis.getPrivateKey()));
-        model.addAttribute("wallet_txs", wallet_genesis.getTransactions());
-        return "html/wallet_ui";
-    }
 }

@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @EnableAutoConfiguration
 @EnableScheduling
 @RequestMapping("/")
-public class BlockChain_Controller {
+public class Blockmatrix_Controller {
 
     @Autowired
     private BlockMatrix new_blockMatrix;
