@@ -89,4 +89,5 @@ public class Wallet_Controller {
         model.addAttribute("wallet_txs", wallet_genesis.getTransactions());
         return "html/wallet_ui";
     }
+    
 }

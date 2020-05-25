@@ -60,3 +60,24 @@ async function submitTX() {
             console.log(res);
         })
 }
+
+// Generate New Matrix Wallet
+async function createNewWallet() {
+
+    var url = new URL("http://127.0.0.1:8080/generate_new_wallet")
+
+    // fetch(url)
+    //     .then(function (res) {
+    //         console.log(res);
+    //     })
+
+    fetch(url)
+        .then((res) => res.text())
+        .then((data) => {
+            $('#staticBackdrop').modal('toggle')
+            // var modal = document.getElementById("staticBackdrop").modal("show")
+            // modal.getElementByClassName("modal-body").innerHTML = data
+            alert(data);
+        })
+        .catch((err) => console.log(err))
+}

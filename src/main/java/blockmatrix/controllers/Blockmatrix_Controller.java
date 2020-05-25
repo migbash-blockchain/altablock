@@ -2,6 +2,7 @@ package blockmatrix.controllers;
 
 import blockmatrix.blockchain.Block;
 import blockmatrix.blockchain.BlockMatrix;
+import blockmatrix.blockchain.StringUtil;
 import blockmatrix.blockchain.Transaction;
 import blockmatrix.blockchain.Wallet;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,26 +42,42 @@ public class Blockmatrix_Controller {
 
     // __________________
     // Blockchain Data (Explorer)
+    // 
+    // Used as RESTful end-points for blockmatrix Data
 
-    @RequestMapping("/get_block_data")
+    /**
+     * @param blockNumber
+     * @return
+     */
+
+    @RequestMapping(path = "/get_block_data")
     public String getBlockData(@RequestParam(value="num", required=true, defaultValue="1") int blockNumber) {
         return new_blockMatrix.getBlockData(blockNumber);
     }
 
-    @RequestMapping("/get_block_transactions")
+    @RequestMapping(path = "/get_block_transactions")
     public ArrayList<Transaction> getBlockTransactions(@RequestParam(value = "num", required = true, defaultValue = "1") int blockNumber) {
         return new_blockMatrix.getBlockTransactions(blockNumber);
     }
 
+    // @RequestMapping("/get_matrix_chain")
+    // public String get_matrix_chain() {
+    //     return
+    // } 
+
     // __________________
     // User Actions
 
-    @RequestMapping(value = "/generate_new_wallet")
+    @RequestMapping(path = "/generate_new_wallet")
     public String generate_new_wallet() {
-        return new Wallet().toString();
+        Wallet new_wallet = new Wallet();
+        String pub_key = StringUtil.getStringFromKey(new_wallet.getPublicKey());
+        String priv_key = StringUtil.getStringFromKey(new_wallet.getPrivateKey());
+        return "Public Key: " + pub_key + '\n' +
+                "Private Key: " + priv_key;
     }
 
-    @RequestMapping(value = "/send_funds")
+    @RequestMapping(path = "/send_funds")
     @ResponseStatus(HttpStatus.CREATED)
     public void send_funds(@RequestParam(value="funds", required = true) float value,
                            @RequestParam(value="msg", required = true) String msg) {
@@ -69,7 +86,7 @@ public class Blockmatrix_Controller {
         new_blockMatrix.add_Block(n_block);
     }
 
-    @RequestMapping(value = "/modify_transaction_info")
+    @RequestMapping(path = "/modify_transaction_info")
     public void modify_transaction_info(@RequestParam(value="num", required = true, defaultValue = "1") int blockNumber,
                                         @RequestParam(value="transaction", required = true, defaultValue = "0") int transactionNumber,
                                         @RequestParam(value="new_info", required = true, defaultValue = "null") String new_info) {
@@ -81,4 +98,5 @@ public class Blockmatrix_Controller {
 //    public void add_block(){
 //        new_blockMatrix.add_Block(new_block);
 //    }
+
 }

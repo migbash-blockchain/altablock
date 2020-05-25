@@ -8,9 +8,9 @@
                 p.m-2
                     strong ~mbash
                 .btn-group-vertical
-                    +main_btn_img("Copy Wallet Address", "@{/images/Vector.png}")(id="cpy_pub_add" th:onclick="copyClipboard(this)" th:alt="${pub_address}")
-                    +main_btn_img("View Private Key", 2)
-                    +main_btn_img("Generate New wallet", "@{/images/NewWallet_icon.png}")
+                    +main_btn_img("Copy Wallet Address", "fas fa-copy")(id="cpy_pub_add" th:onclick="copyClipboard(this)" th:alt="${pub_address}")
+                    +main_btn_img("View Private Key", "fas fa-key")
+                    +main_btn_img("Generate New wallet", "fas fa-wallet")(id="new_wallet" th:onclick="createNewWallet()")
 
         //- Wallet balance
         .col-lg

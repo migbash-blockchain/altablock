@@ -1,9 +1,9 @@
 //- ______________________
 //- Buttons
-mixin main_btn_img(btnText, btn_img)
+mixin main_btn_img(btnText, icon_class)
 
     button.user_wallet_btn.text-left.btn(type="button")&attributes(attributes)
-        img(th:src= btn_img)
+        i(class=icon_class)
         span.pl-2= btnText
 
 //- ______________________

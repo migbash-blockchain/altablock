@@ -30,5 +30,5 @@
                 td
                     strong(th:text="${tsx.getBlockNumber()}")
                 td
-                    //- button#select_tx_btn(style="font-size:12px;" class="btn btn-danger" th:onclick="clearData(this)") Modify Transaction Info
-                    button.btn.btn-primary(type='button' data-toggle='modal' data-target='#exampleModal' data-whatever='@getbootstrap') Modify Transaction Info
+                    button#select_tx_btn(style="font-size:12px;" class="btn btn-danger" th:onclick="clearData(this)") Modify Transaction Info
+                    //- button.btn.btn-primary(type='button' data-toggle='modal' data-target='#exampleModal' data-whatever='@getbootstrap') Modify Transaction Info

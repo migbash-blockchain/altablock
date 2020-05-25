@@ -6,12 +6,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.stereotype.Component;
+
 /**
  * Class Model for "Wallet"
  * holds the modal structure for a wallet on
  * on the blockmatrix;
  */
 
+@Component
 public class Wallet {
 
     // __________________
@@ -37,7 +40,7 @@ public class Wallet {
             ECGenParameterSpec ecSpec = new ECGenParameterSpec("prime192v1");
 
             // Initialize the key generator and generate a KeyPair
-            keyGen.initialize(ecSpec, random);                 // 256 bytes provides an acceptable security level
+            keyGen.initialize(ecSpec, random);                                     // 256 bytes provides an acceptable security level
             KeyPair keyPair = keyGen.generateKeyPair();
 
             // Set the public and private keys from the keyPair

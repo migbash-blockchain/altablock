@@ -352,6 +352,7 @@ public class BlockMatrix {
             // Block number is even
             int s = (int) Math.floor(Math.sqrt(blockNumber));
             int row = (blockNumber <= s*s + s) ? s : s + 1;
+            System.out.println("Block Row:" + row);
             return row;
 
         } else {
@@ -360,6 +361,7 @@ public class BlockMatrix {
             int s = (int) Math.floor(Math.sqrt(blockNumber + 1));
             int column = (blockNumber < s*s + s) ? s: s + 1;
             int row = (blockNumber - (column*column - column + 1))/2;
+            System.out.println("Block Row:" + row);
             return row;
         }
     }
