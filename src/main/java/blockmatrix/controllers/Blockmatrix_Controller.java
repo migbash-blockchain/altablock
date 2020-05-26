@@ -45,18 +45,13 @@ public class Blockmatrix_Controller {
     // 
     // Used as RESTful end-points for blockmatrix Data
 
-    /**
-     * @param blockNumber
-     * @return
-     */
-
     @RequestMapping(path = "/get_block_data")
-    public String getBlockData(@RequestParam(value="num", required=true, defaultValue="1") int blockNumber) {
+    public String getBlockData(@RequestParam(value = "num", required = true, defaultValue = "1") int blockNumber) {
         return new_blockMatrix.getBlockData(blockNumber);
     }
 
     @RequestMapping(path = "/get_block_transactions")
-    public ArrayList<Transaction> getBlockTransactions(@RequestParam(value = "num", required = true, defaultValue = "1") int blockNumber) {
+    public ArrayList < Transaction > getBlockTransactions(@RequestParam(value = "num", required = true, defaultValue = "1") int blockNumber) {
         return new_blockMatrix.getBlockTransactions(blockNumber);
     }
 
@@ -74,29 +69,29 @@ public class Blockmatrix_Controller {
         String pub_key = StringUtil.getStringFromKey(new_wallet.getPublicKey());
         String priv_key = StringUtil.getStringFromKey(new_wallet.getPrivateKey());
         return "Public Key: " + pub_key + '\n' +
-                "Private Key: " + priv_key;
+            "Private Key: " + priv_key;
     }
 
     @RequestMapping(path = "/send_funds")
     @ResponseStatus(HttpStatus.CREATED)
-    public void send_funds(@RequestParam(value="funds", required = true) float value,
-                           @RequestParam(value="msg", required = true) String msg) {
+    public void send_funds(@RequestParam(value = "funds", required = true) float value,
+        @RequestParam(value = "msg", required = true) String msg) {
         Block n_block = new Block();
         n_block.add_Transaction_To_Block(wallet_genesis.send_Wallet_Funds(new_wallet.getPublicKey(), value, msg));
         new_blockMatrix.add_Block(n_block);
     }
 
     @RequestMapping(path = "/modify_transaction_info")
-    public void modify_transaction_info(@RequestParam(value="num", required = true, defaultValue = "1") int blockNumber,
-                                        @RequestParam(value="transaction", required = true, defaultValue = "0") int transactionNumber,
-                                        @RequestParam(value="new_info", required = true, defaultValue = "null") String new_info) {
+    public void modify_transaction_info(@RequestParam(value = "num", required = true, defaultValue = "1") int blockNumber,
+        @RequestParam(value = "transaction", required = true, defaultValue = "0") int transactionNumber,
+        @RequestParam(value = "new_info", required = true, defaultValue = "null") String new_info) {
         new_blockMatrix.modifyTXinfo_InBM(blockNumber, transactionNumber, new_info);
     }
 
-//    @Scheduled(fixedRate = 5000) // ms = (5 sec)
-//    @RequestMapping("/add_block")
-//    public void add_block(){
-//        new_blockMatrix.add_Block(new_block);
-//    }
+    //    @Scheduled(fixedRate = 5000) // ms = (5 sec)
+    //    @RequestMapping("/add_block")
+    //    public void add_block(){
+    //        new_blockMatrix.add_Block(new_block);
+    //    }
 
 }

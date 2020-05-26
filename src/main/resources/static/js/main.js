@@ -75,9 +75,8 @@ async function createNewWallet() {
         .then((res) => res.text())
         .then((data) => {
             $('#staticBackdrop').modal('toggle')
-            // var modal = document.getElementById("staticBackdrop").modal("show")
-            // modal.getElementByClassName("modal-body").innerHTML = data
-            alert(data);
+            document.getElementById("wallet_info").innerHTML = data
+            // alert(data);
         })
         .catch((err) => console.log(err))
 }

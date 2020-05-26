@@ -1,4 +1,4 @@
-.container.m-5
+.container
     .row
 
         //- My Wallet Actions & Details
@@ -30,7 +30,7 @@
                         strong Send Funds
                     +input_form("Recipients Address", "r_address")
                     +input_form("Amount", "amount")
-                    //- +input_form("Transaction Message", "msg")
+                    label(for="msg_text" class="control-label") Transaction Message
                     div#msg_text(contenteditable required)
                 button.btn.btn-primary(type="submit" th:onclick="submitTX(this)") Send Transaction
                     span.pl-2
