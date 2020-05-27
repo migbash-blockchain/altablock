@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * BlockMatrix is essentially the equivalent of a 'Blockchain' class, however with the addition
@@ -32,7 +34,7 @@ public class BlockMatrix {
     static HashMap<String, Transaction_Output> UTXOs = new HashMap<>();   // list containing all of the UTXO's transaction
     private boolean generated;                                            // verify whether the genesis block/wallet has been instantiated
     private ArrayList<Integer> blocksWithModifiedData;                    // ..
-    private ArrayList<URL> nodesList;                                     // stores all "registered" nodes on the blockmatrix network 
+    private Set<URL> nodesList;                                           // stores all "registered" nodes on the blockmatrix network 
 
     // __________________
     // Class Constructors
@@ -53,6 +55,7 @@ public class BlockMatrix {
         this.deletionValidity = true;
         this.generated = false;
         this.blocksWithModifiedData = new ArrayList<>();
+        this.nodesList = Collections.synchronizedSet(new HashSet<>());
 
         for (int i = 0; i < dimension; i++) {
             update_Row_Hash(i);
@@ -140,6 +143,77 @@ public class BlockMatrix {
         // sets up our security provider so we can create our wallets
         Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
     }
+
+    private void update_Row_Hash(int row) {
+        // Uses data in each block in the row except those that are null and those in the diagonal
+        rowHashes[row] =  calculate_Row_Hash(row);
+    }
+
+    private void update_Column_Hash(int column) {
+        // Uses data in each block in the column except those that are null and those in the diagonal
+        columnHashes[column] = calculate_Column_Hash(column);
+    }
+
+    private String calculate_Row_Hash(int row) {
+
+        StringBuilder sb = new StringBuilder();
+
+        for (int column = 0; column < dimension; column++) {
+            if (row != column && blockData[row][column] != null) {
+                sb.append(blockData[row][column].getHash());
+            }
+        }
+        return StringUtil.apply_Sha256(sb.toString());
+    }
+
+    private String calculate_Column_Hash(int column) {
+
+        StringBuilder sb = new StringBuilder();
+
+        for (int row = 0; row < dimension; row++) {
+            if (row != column && blockData[row][column] != null) {
+                sb.append(blockData[row][column].getHash());
+            }
+        }
+
+        return StringUtil.apply_Sha256(sb.toString());
+    }
+
+    public void modifyTXinfo_InBM(int blockNumber, int transactionNumber, String new_transaction_info) {
+        // the "delete" function, which will overwrite and message info passed in along with the transaction for every transaction in the block
+
+        this.blocksWithModifiedData.add(blockNumber);                               // Add 'this' block to a list to keep track of all modified blocks
+        int row = get_Block_Row_Index(blockNumber);                                 // ..
+        int column = get_Block_Column_Index(blockNumber);                           // ..
+
+        if (new_transaction_info.equals("null")) {
+            getBlock(blockNumber).clear_Transaction_Info_In_Block(transactionNumber);               // Clear the transaction in that particular block
+        } else {
+            getBlock(blockNumber).modifyTX_InfoInBlock(transactionNumber, new_transaction_info);    // Modify the transaction in that particular block
+        }
+
+        String[] prevRowHashes = this.getRowHashes().clone();
+        String[] prevColumnHashes = this.getColumnHashes().clone();
+
+        update_Row_Hash(row);
+        update_Column_Hash(column);
+
+        String[] newRowHashes = this.getRowHashes().clone();
+        String[] newColumnHashes = this.getColumnHashes().clone();
+
+        if (!check_Valid_Deletion(prevRowHashes, prevColumnHashes, newRowHashes, newColumnHashes)) {
+            System.out.println("Bad deletion, more or less than one row and column hash affected");
+            deletionValidity = false; // This might be better as something that throws an exception.
+        }
+
+    }
+
+    public void registerNodes(URL url){
+        this.nodesList.add(url);
+    }
+
+    // __________________
+    // Validation & Checks
 
     public Boolean is_Matrix_Valid() {
         
@@ -251,70 +325,6 @@ public class BlockMatrix {
         return true;
     }
 
-    private void update_Row_Hash(int row) {
-        // Uses data in each block in the row except those that are null and those in the diagonal
-        rowHashes[row] =  calculate_Row_Hash(row);
-    }
-
-    private void update_Column_Hash(int column) {
-        // Uses data in each block in the column except those that are null and those in the diagonal
-        columnHashes[column] = calculate_Column_Hash(column);
-    }
-
-    private String calculate_Row_Hash(int row) {
-
-        StringBuilder sb = new StringBuilder();
-
-        for (int column = 0; column < dimension; column++) {
-            if (row != column && blockData[row][column] != null) {
-                sb.append(blockData[row][column].getHash());
-            }
-        }
-        return StringUtil.apply_Sha256(sb.toString());
-    }
-
-    private String calculate_Column_Hash(int column) {
-
-        StringBuilder sb = new StringBuilder();
-
-        for (int row = 0; row < dimension; row++) {
-            if (row != column && blockData[row][column] != null) {
-                sb.append(blockData[row][column].getHash());
-            }
-        }
-
-        return StringUtil.apply_Sha256(sb.toString());
-    }
-
-    public void modifyTXinfo_InBM(int blockNumber, int transactionNumber, String new_transaction_info) {
-        // the "delete" function, which will overwrite and message info passed in along with the transaction for every transaction in the block
-
-        this.blocksWithModifiedData.add(blockNumber);                               // Add 'this' block to a list to keep track of all modified blocks
-        int row = get_Block_Row_Index(blockNumber);                                 // ..
-        int column = get_Block_Column_Index(blockNumber);                           // ..
-
-        if (new_transaction_info.equals("null")) {
-            getBlock(blockNumber).clear_Transaction_Info_In_Block(transactionNumber);               // Clear the transaction in that particular block
-        } else {
-            getBlock(blockNumber).modifyTX_InfoInBlock(transactionNumber, new_transaction_info);    // Modify the transaction in that particular block
-        }
-
-        String[] prevRowHashes = this.getRowHashes().clone();
-        String[] prevColumnHashes = this.getColumnHashes().clone();
-
-        update_Row_Hash(row);
-        update_Column_Hash(column);
-
-        String[] newRowHashes = this.getRowHashes().clone();
-        String[] newColumnHashes = this.getColumnHashes().clone();
-
-        if (!check_Valid_Deletion(prevRowHashes, prevColumnHashes, newRowHashes, newColumnHashes)) {
-            System.out.println("Bad deletion, more or less than one row and column hash affected");
-            deletionValidity = false; // This might be better as something that throws an exception.
-        }
-
-    }
-
     private boolean check_Valid_Deletion(String[] prevRow, String[] prevCol, String[] newRow, String[] newCol) {
         // tests to make sure only one row hash and one column hash have been modified. If not, then integrity is likely compromised
 
@@ -336,13 +346,9 @@ public class BlockMatrix {
 
         return true;
     }
-
-    public void registerNodes(URL url){
-        this.nodesList.add(url);
-    }
-
+    
     // __________________
-    // Getters & Setters
+    // Class Getters
 
     private int get_Block_Row_Index(int blockNumber) {
         // helper method to get the row of a block, given a block number
@@ -419,7 +425,10 @@ public class BlockMatrix {
         return this.blocksWithModifiedData;
     }
     public HashMap<String, Transaction_Output> getUTXOs() { return UTXOs; }
-    public ArrayList<URL> getList() {return this.nodesList; }
+    public Set<URL> getList() {return Collections.unmodifiableSet(this.nodesList); }
+
+    // ________________
+    // Class Setters
 
     public void setMinimumTransaction(float num) { minimumTransaction = num; }
 
