@@ -1,9 +1,11 @@
-package blockmatrix.blockchain;
+package blockmatrix.model;
 
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import blockmatrix.helpers.StringUtil;
 
 /**
  * Class Model for a "Transaction" that will be stored inside a Block

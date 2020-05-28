@@ -1,18 +1,22 @@
 package blockmatrix.controllers;
 
-import blockmatrix.blockchain.Block;
-import blockmatrix.blockchain.BlockMatrix;
-import blockmatrix.blockchain.StringUtil;
-import blockmatrix.blockchain.Transaction;
-import blockmatrix.blockchain.Wallet;
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
+import blockmatrix.helpers.StringUtil;
+import blockmatrix.model.Block;
+import blockmatrix.model.BlockMatrix;
+import blockmatrix.model.Transaction;
+import blockmatrix.model.Wallet;
 
 /**
  * This class is responsible for the handling of the RESTful calls made to the blockmatrix

@@ -1,14 +1,14 @@
 package blockmatrix.controllers;
 
-import blockmatrix.blockchain.BlockMatrix;
-import blockmatrix.blockchain.StringUtil;
-import blockmatrix.blockchain.Wallet;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import blockmatrix.helpers.StringUtil;
+import blockmatrix.model.BlockMatrix;
+import blockmatrix.model.Wallet;
 
 /**
  * This class is responsible for managing the viewable dashboard which is

@@ -1,7 +1,4 @@
-package blockmatrix.blockchain;
-
-import com.google.gson.GsonBuilder;
-import org.springframework.stereotype.Component;
+package blockmatrix.model;
 
 import java.net.URL;
 import java.security.Security;
@@ -11,6 +8,12 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
+
+import com.google.gson.GsonBuilder;
+
+import org.springframework.stereotype.Component;
+
+import blockmatrix.helpers.StringUtil;
 
 /**
  * BlockMatrix is essentially the equivalent of a 'Blockchain' class, however with the addition

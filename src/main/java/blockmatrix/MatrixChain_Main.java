@@ -1,7 +1,13 @@
-package blockmatrix.blockchain;
+package blockmatrix;
 
 import java.security.PrivateKey;
 import java.util.HashMap;
+
+import blockmatrix.model.Block;
+import blockmatrix.model.BlockMatrix;
+import blockmatrix.model.Transaction;
+import blockmatrix.model.Transaction_Output;
+import blockmatrix.model.Wallet;
 
 /** 
  * This is a Class is for purely demonstrative porpuses of

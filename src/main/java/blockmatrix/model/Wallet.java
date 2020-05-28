@@ -1,4 +1,4 @@
-package blockmatrix.blockchain;
+package blockmatrix.model;
 
 import java.security.*;
 import java.security.spec.ECGenParameterSpec;

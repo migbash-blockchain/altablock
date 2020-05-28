@@ -1,4 +1,4 @@
-package blockmatrix.blockchain;
+package blockmatrix.model;
 
 public class Transaction_Input {
 

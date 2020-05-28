@@ -1,10 +1,12 @@
-package blockmatrix.blockchain;
+package blockmatrix.model;
+
+import java.util.ArrayList;
+import java.util.Date;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.Date;
+import blockmatrix.helpers.StringUtil;
 
 /**
  * Class Model for "Block(s)"
@@ -50,11 +52,11 @@ public class Block {
     }
 
     public void mine_Block() {
-        String target = new String(new char[difficulty]).replace('\0', '0'); // Create a string with difficulty * "0" 
+        String target = new String(new char[difficulty]).replace('\0', '0');    // Create a string with difficulty * "0" 
         
-        merkleRoot = StringUtil.getMerkleRoot(transactions);                 // Get the MerkleRoot (Block Hash)
+        merkleRoot = StringUtil.getMerkleRoot(transactions);                    // Get the MerkleRoot (Block Hash)
 
-        while(!hash.substring(0, difficulty).equals(target)) {               // Infinite while loop until the hash is found
+        while(!hash.substring(0, difficulty).equals(target)) {                  // Infinite while loop until the hash is found
             nonce++;
             hash = calculate_Block_Hash();
         }

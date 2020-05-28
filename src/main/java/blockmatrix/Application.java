@@ -1,13 +1,15 @@
 package blockmatrix;
 
-import blockmatrix.blockchain.Block;
-import blockmatrix.blockchain.BlockMatrix;
-import blockmatrix.blockchain.Wallet;
+import java.security.Security;
+import java.util.UUID;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import java.util.UUID;
+import blockmatrix.model.Block;
+import blockmatrix.model.BlockMatrix;
+import blockmatrix.model.Wallet;
 
 @SpringBootApplication
 public class Application {
@@ -16,11 +18,13 @@ public class Application {
 
     public static void main(String[] args) {
 
+        Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider()); // [Works]
+
         if (System.getProperty("blockchain.node.id") == null) {
             System.setProperty("blockchain.node.id", UUID.randomUUID().toString().replace("-", ""));
         }
 
-        SpringApplication.run(Application.class, args);     // Start the SpringBoot Application
+        SpringApplication.run(Application.class, args);                 // Start the SpringBoot Application
     }
 
     @Bean
@@ -35,7 +39,7 @@ public class Application {
         bm.setMinimumTransaction(3.0F);                                 // ..
         wallet_genesis = new Wallet();                                  // instantiate a genesis Wallet
         bm.generate_Genesis_Block(wallet_genesis, 200.0F);              // ..
-        System.out.println(wallet_genesis.get_Wallet_Balance());
+        System.out.println(wallet_genesis.get_Wallet_Balance());        
         return bm;
     }
 

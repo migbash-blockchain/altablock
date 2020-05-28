@@ -1,10 +1,12 @@
-package blockmatrix.blockchain;
+package blockmatrix.helpers;
 
 import java.security.*;
 import java.util.ArrayList;
 import java.util.Base64;
 
 import org.springframework.stereotype.Component;
+
+import blockmatrix.model.Transaction;
 
 /**
  * This Class is used for using for:
@@ -96,7 +98,7 @@ public class StringUtil {
 
         // Add all block transactions to a List
         for(Transaction transaction : transactions) {
-            previousTreeLayer.add(transaction.transactionId);
+            previousTreeLayer.add(transaction.getTransactionId());
         }
 
         ArrayList<String> treeLayer = previousTreeLayer;                         // assign

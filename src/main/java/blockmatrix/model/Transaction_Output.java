@@ -1,6 +1,8 @@
-package blockmatrix.blockchain;
+package blockmatrix.model;
 
 import java.security.PublicKey;
+
+import blockmatrix.helpers.StringUtil;
 
 public class Transaction_Output {
 
