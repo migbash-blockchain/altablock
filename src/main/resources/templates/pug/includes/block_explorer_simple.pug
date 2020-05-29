@@ -1,5 +1,3 @@
-//- _________________________
-//- Modified Blocks & Total Blocks in [BlockMatrix]
 #block_info.container.p-3
     .container.text-center
         .row
@@ -19,13 +17,13 @@
                     //- TODO: Add more data here as planned in the future
                 .row
                     .col#matrix_search
-                        p 
+                        h4.text-left
                             strong Search
                         for n in ["Block", "Transaction", "User/Address"]
                             button.button_main_light(type="button")= n
-                        .form-group
-                            input.mt-3(autocomplete="off" type="text" class="form-control")
-                        button.btn.btn-primary(type="submit") Search
+                        input.mt-3(autocomplete="off" type="text" class="form-control")
+                        span
+                            button.btn.btn-primary(type="submit") Search
 
             .col-lg-8
                 include table_bm_txs.pug

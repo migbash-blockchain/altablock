@@ -12,21 +12,20 @@
     transition-duration: 0.5s;
     background-color: $bg_color;
     color: $txt_color;
-    margin: 0px 10px;
+    margin: 0px 5px;
 
 .button_main
     @include button_struct($primary_light, $secondary_dark);
 
-.button_main:hover
+.button_main:hover, .button_main:focus, .button_main:active
     background-color: #708FFE;
     color: $primary_light;
 
 .button_main_light
     @include button_struct($primary_light, $secondary_dark);
 
-.button_main_light:hover
+.button_main_light:hover, .button_main_light:focus, .button_main_light:active 
     background-color: $primary_dark;
-    border: 1px solid $primary_dark;
     color: $primary_light;
 
 .info

@@ -19,6 +19,7 @@ function copyClipboard(x) {
     document.body.removeChild(dummy);
 }
 
+
 // _________________________
 // AJAX / ASYNC UI/UX Functions
 // _________________________
@@ -86,8 +87,9 @@ async function createNewWallet() {
 // Updating Visual Block Explorer Table Data
 async function getVisualMatrixData() {
 
-    // TODO: Disable the "Simple View" button
-    document.getElementById('simple_view').style.display = 'none';
+    //TODO: Hide the "simple" layout
+    document.getElementById('simple_view_div').style.display = 'none'
+    document.getElementById('visual_view_div').style.display = 'block'
 
     //TODO: Fetch BlockData for the existing blocks on the matrix
 
@@ -111,6 +113,9 @@ async function getVisualMatrixData() {
 
 // Updating Simple Block Explorer Data
 async function getSimpleMatrixData() {
+
+    document.getElementById('simple_view_div').style.display = 'block'
+    document.getElementById('visual_view_div').style.display = 'none'
 
     //TODO: get simple blockchain data for updating the block_explorer
 
