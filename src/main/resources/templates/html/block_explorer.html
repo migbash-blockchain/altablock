@@ -12,7 +12,7 @@
     <section>
       <div class="container text-center m-3" id="status_bar">
         <div class="info p-2 m-3"><strong class="mr-2">Test Net</strong><span class="dot"></span></div>
-        <div class="info p-2 m-3"><strong class="mr-2">BlockMatrix Status |</strong><strong th:text="${bm_verify}"> </strong></div>
+        <div class="info p-2 m-3"><img style="width: 16px; height: 16px;" th:src="@{/images/Iconstatus.png}" alt="info_vector"><strong class="mr-2 ml-2">BlockMatrix Status |</strong><strong th:text="${bm_verify}"> </strong></div>
       </div>
       <div class="container p-3">
         <div class="container m-2" style="display: flex; align-items: center;"><img style="width: 48px; height: 48px;" th:src="@{/images/vector_cube.png}" alt="block_vector"><span class="p-2"><strong style="font-size: 32px;">Block Explorer</strong></span></div>
@@ -28,21 +28,21 @@
             <div class="row">
               <div class="col-lg-4">
                 <div class="row">
-                  <div class="col"><i class="fas fa-edit fa-2x"></i>
+                  <div class="col"><img style="width: 32px; height: 32px;" th:src="@{/images/Vectormod_block.png}" alt="block_vector"/>
                     <h5><strong>Modified Blocks</strong></h5>
                     <h5 th:text="${mod_blocks}"></h5>
                   </div>
-                  <div class="col"><i class="fas fa-cubes fa-2x"></i>
+                  <div class="col"><img style="width: 32px; height: 32px;" th:src="@{/images/dimension_img_no_license.png}" alt="block_vector"/>
                     <h5><strong>Blocks Count</strong></h5>
                     <h5 th:text="${block_num}"></h5>
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col"><img style="width: 32px; height: 32px;" th:src="@{/images/dimension_img_no_license.png}" alt="block_vector"><i class="fas fa-exchange-alt fa-2x"></i>
+                  <div class="col"><img style="width: 32px; height: 32px;" th:src="@{/images/dimension_img_no_license.png}" alt="block_vector"/>
                     <h5><strong>BlockMatrix Dimensions</strong></h5>
                     <h5 th:text="${bm_dimen}"></h5>
                   </div>
-                  <div class="col"><i class="fas fa-exchange-alt fa-2x"></i>
+                  <div class="col"><img style="width: 32px; height: 32px;" th:src="@{/images/dimension_img_no_license.png}" alt="block_vector"/>
                     <h5><strong>Number of Transactions</strong></h5>
                     <h5 th:text="${bm_all_transactions.size()}"></h5>
                   </div>

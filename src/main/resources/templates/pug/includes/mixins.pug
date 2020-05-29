@@ -20,8 +20,8 @@ mixin input_form(inputHeader, inputID)
 
 //- ______________________
 //- BlockMatrix Info Blocks
-mixin info_block(icon_class, title, data)
-    i(class=icon_class)
+mixin info_block(img_src, title, data)
+    img(style="width: 32px; height: 32px;" th:src= img_src alt="block_vector")
     h5
         strong= title
     h5(th:text= data)

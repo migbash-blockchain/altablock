@@ -23,11 +23,14 @@ html(lang="en", xmlns:th="http://www.thymeleaf.org")
             //- _________________________
             //- TestNet Info Tags
             #status_bar.container.text-center.m-3
+
                 .info.p-2.m-3
                     strong.mr-2 Test Net
                     span.dot
+
                 .info.p-2.m-3
-                    strong.mr-2 BlockMatrix Status |
+                    img(style="width: 16px; height: 16px;" th:src="@{/images/Iconstatus.png}" alt="info_vector")
+                    strong.mr-2.ml-2 BlockMatrix Status |
                     strong(th:text='${bm_verify}')  
 
             //- _________________________
