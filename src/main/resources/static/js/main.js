@@ -1,5 +1,12 @@
 // _________________________
-// UI/UX Functions
+// Event Listeners
+// _________________________
+
+document.getElementById('simple_view').addEventListener('click', getSimpleMatrixData);
+document.getElementById('visual_view').addEventListener('click', getVisualMatrixData);
+
+// _________________________
+// Simple UI/UX Functions Triggers
 // _________________________
 
 function copyClipboard(x) {
@@ -13,7 +20,7 @@ function copyClipboard(x) {
 }
 
 // _________________________
-// AJAX / ASYNC Functions
+// AJAX / ASYNC UI/UX Functions
 // _________________________
 
 // Make an AJAX Call to Modify TX info
@@ -77,15 +84,16 @@ async function createNewWallet() {
 }
 
 // Updating Visual Block Explorer Table Data
-async function getMatrix() {
+async function getVisualMatrixData() {
+
+    // TODO: Disable the "Simple View" button
+    document.getElementById('simple_view').style.display = 'none';
 
     //TODO: Fetch BlockData for the existing blocks on the matrix
 
     var main_div = document.getElementById('block_view')
     
-    var url = new URL("http://127.0.0.1:8080/get_matrix_block_num")
-
-    fetch(url)
+    fetch('/get_matrix_block_num')
         .then((res) => res.text())
         .then((data) => {
             main_div.innerHTML = ""
@@ -98,5 +106,20 @@ async function getMatrix() {
         })
         .catch((err) => console.log(err))
     
-    setTimeout(getMatrix, 1000);
+    // setTimeout(getVisualMatrixData, 1000);
+}
+
+// Updating Simple Block Explorer Data
+async function getSimpleMatrixData() {
+
+    //TODO: get simple blockchain data for updating the block_explorer
+
+    fetch('/get_blockmatrix')
+    .then((res) => res.text())
+    .then((data) => {
+        var result = JSON.parse(data);
+        document.getElementById('block_num').textContent = result.block_count
+        // alert(result.block_count)
+    })
+    .catch((err) => console.log(err))
 }

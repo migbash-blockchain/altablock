@@ -21,13 +21,13 @@ public class Block {
     // __________________
     // Class Variables
 
-    private String hash;                                              // 'this' block hash value
-    private String merkleRoot;                                        // 'this' block hash value (tree-like combinations of all transaction hashes)
-    private ArrayList<Transaction> transactions = new ArrayList<>();  // 'this' block transactions list
-    private long timeStamp;                                           // number of milliseconds since 1/1/1970
-    private int nonce;                                                // first number a blockchain miner needs to discover before solving for a block in the blockchain
-    private boolean genesis;                                          // whether or not this block is genesis block, by default it is 'FALSE'
-    private static int difficulty = 5;                                // blockchain mining difficulty (more higher = more difficult)
+    private String hash;                                                // 'this' block hash value
+    private String merkleRoot;                                          // 'this' block hash value (tree-like combinations of all transaction hashes)
+    private ArrayList<Transaction> transactions = new ArrayList<>();    // 'this' block transactions list
+    private long timeStamp;                                             // number of milliseconds since 1/1/1970
+    private int nonce;                                                  // first number a blockchain miner needs to discover before solving for a block in the blockchain
+    private boolean genesis;                                            // whether or not this block is genesis block, by default it is 'FALSE'
+    private static int difficulty = 5;                                  // blockchain mining difficulty (more higher = more difficult)
 
     // __________________
     // Class Constructors
@@ -99,7 +99,8 @@ public class Block {
     // __________________
     // Getters
 
-    public String getHash() { return hash; }
+    public String getHash() { return this.hash; }
+    public long getTimeStamp() { return this.timeStamp; }
     public ArrayList<Transaction> getTransactions() { return this.transactions; }
 
     // __________________

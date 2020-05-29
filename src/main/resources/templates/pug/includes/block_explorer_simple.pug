@@ -1,0 +1,32 @@
+//- _________________________
+//- Modified Blocks & Total Blocks in [BlockMatrix]
+#block_info.container.p-3
+    .container.text-center
+        .row
+            .col-lg-4
+                .row
+                    .col
+                        +info_block('fas fa-edit fa-2x', 'Modified Blocks', '${mod_blocks}')
+                    .col
+                        +info_block('fas fa-cubes fa-2x', 'Blocks Count', '${block_num}')
+                .row
+                    .col
+                        img(style="width: 32px; height: 32px;" th:src="@{/images/dimension_img_no_license.png}" alt="block_vector")
+                        +info_block('fas fa-exchange-alt fa-2x', 'BlockMatrix Dimensions', '${bm_dimen}')
+                    .col
+                        +info_block('fas fa-exchange-alt fa-2x', 'Number of Transactions', '${bm_all_transactions.size()}')
+                .row
+                    //- TODO: Add more data here as planned in the future
+                .row
+                    .col#matrix_search
+                        p 
+                            strong Search
+                        .btn-group(role="group")
+                            for n in ["Block", "Transaction", "User/Address"]
+                                button.btn.btn-outline-primary(type="button")= n
+                        .form-group
+                            input.mt-3(autocomplete="off" type="text" class="form-control")
+                        button.btn.btn-primary(type="submit") Search
+
+            .col-lg-8
+                include table_bm_txs.pug

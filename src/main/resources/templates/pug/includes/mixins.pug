@@ -1,3 +1,8 @@
+//- _________________________
+//- Mixin PUG Code
+//- _________________________
+
+
 //- ______________________
 //- Buttons
 mixin main_btn_img(btnText, icon_class)
@@ -12,3 +17,17 @@ mixin input_form(inputHeader, inputID)
     div(class="form-group mb-3")
         label(for="recipient_address" class="control-label")= inputHeader
         input(id=inputID autocomplete="off" type="text" class="form-control" aria-describedby="basic-addon3" required)
+
+//- ______________________
+//- BlockMatrix Info Blocks
+mixin info_block(icon_class, title, data)
+    i(class=icon_class)
+    h5
+        strong= title
+    h5(th:text= data)
+
+//- _______________________
+//- Footer
+mixin footer_menu(name, href)
+    li.m-3
+        a(href=href)= name

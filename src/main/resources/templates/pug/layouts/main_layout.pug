@@ -9,7 +9,7 @@ html(lang="en", xmlns:th="http://www.thymeleaf.org")
     head
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        link(rel="icon" type="image/png" sizes="16x16" th:href="@{/images/logo.png}")
+        link(rel="icon" type="image/png" sizes="16x16" th:href="@{/images/logo_vector.png}")
         title BlockMatrix Chain
 
         //- Bootstrap CSS-Only 
@@ -18,16 +18,21 @@ html(lang="en", xmlns:th="http://www.thymeleaf.org")
 
     body
 
-        //- _________________________
-        //- TestNet Tag [here]
-        .ml-3
-            span.info.p-2.m-3
-                strong.mr-2 Test Net
-                span.dot
+        section
 
-        //- _________________________
-        //- html 'section' code goes here
-        block content
+            //- _________________________
+            //- TestNet Tag [here]
+            #status_bar.container.text-center
+                span.info.p-2.m-3
+                    strong.mr-2 Test Net
+                    span.dot
+                span.p-2(style="background-color: #515151; color: white; border-radius: 10px; font-size: 10px;")
+                    strong.mr-2 BlockMatrix Status |
+                    strong(style="color: #62FE3B" th:text='${bm_verify}')  
+
+            //- _________________________
+            //- html 'section' code goes here
+            block content
 
         //- _________________________
         //- Inlcude Footer

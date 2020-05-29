@@ -2,15 +2,10 @@
 //- Footer HTML Code
 //- _________________________
 
-mixin footer_menu(name, href)
-    li.m-3
-        a(href=href)= name
-
 footer.container-fluid
     .row.p-4
         .col-lg.text-white
-            h3
-                strong Matrix Technologies
+            img(style="height: 64px;" th:src="@{/images/logo.png}" alt="Atla Logo")
         .col-lg.text-white
             ul
                 +footer_menu("Home", "/")
@@ -22,4 +17,4 @@ footer.container-fluid
                 +footer_menu("Follow Us", "/")
                 +footer_menu("Join Us", "/")
 
-    .container-fluid.text-center Copyright @ MatrixTechnologies 2020
+    .container-fluid.text-center Copyright @ 2020 Atla

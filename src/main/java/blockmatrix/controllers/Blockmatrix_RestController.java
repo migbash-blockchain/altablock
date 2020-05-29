@@ -1,11 +1,14 @@
 package blockmatrix.controllers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,7 +30,7 @@ import blockmatrix.model.Wallet;
 @EnableAutoConfiguration
 @EnableScheduling
 @RequestMapping("/")
-public class Blockmatrix_Controller {
+public class Blockmatrix_RestController {
 
     @Autowired
     private BlockMatrix new_blockMatrix;
@@ -60,8 +63,18 @@ public class Blockmatrix_Controller {
     }
 
     @RequestMapping(path = "/get_block_transactions")
-    public ArrayList < Transaction > getBlockTransactions(@RequestParam(value = "num", required = true, defaultValue = "1") int blockNumber) {
+    public ArrayList <Transaction> getBlockTransactions(@RequestParam(value = "num", required = true, defaultValue = "1") int blockNumber) {
         return new_blockMatrix.getBlockTransactions(blockNumber);
+    }
+
+    @RequestMapping(path = "/get_blockmatrix")
+    public ResponseEntity<Object> getBlockMatrix() {
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("block_count", new_blockMatrix.getInputCount());
+        response.put("block_mod_count", new_blockMatrix.getBlocksWithModifiedData().size());
+        
+        return new ResponseEntity<Object>(response, HttpStatus.CREATED);
     }
 
     // @RequestMapping("/get_matrix_chain")

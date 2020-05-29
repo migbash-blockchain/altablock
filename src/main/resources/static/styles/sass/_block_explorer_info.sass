@@ -1,22 +1,19 @@
 #block_info
     .row
         .col
-            box-shadow: 0 0 2px black;
+            box-shadow: 0px 4px 4px black;
             padding: 15px;
             margin: 25px;
             border-radius: 10px;
 
-// On Hover
-#block_info
-    .row
         .col:hover
-            background-color: #C0E8FF;
-            transition-delay: 800;
+            background-color: #708FFE;
+            color: $primary_light;
+            transition-duration: 0.2s;
 
-// Table Line Divider
-.vl
-  border-left: 2px solid $secondary_light_shadow;
-  height: 100%;
+        #matrix_search
+            background-color: #708FFE;
+            color: $primary_light;
 
 .div_block
     margin: 30px;
@@ -29,3 +26,19 @@
     padding: 10px;
     background-color: $secondary_light;
     color: $primary_light;
+
+// ______________
+// Block Explorer View Style
+// ______________
+
+#visual_view_div
+    display: none;
+
+#simple_view_div
+    display: block;
+
+.selected_btn
+    display: block;
+
+.unselected_btn
+    display: none;

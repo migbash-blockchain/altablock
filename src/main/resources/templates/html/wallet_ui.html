@@ -3,14 +3,14 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/images/logo.png}">
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/images/logo_vector.png}">
     <title>BlockMatrix Chain</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" th:href="@{styles/main.css}">
   </head>
   <body>
-    <div class="ml-3"><span class="info p-2 m-3"><strong class="mr-2">Test Net</strong><span class="dot"></span></span></div>
     <section>
+      <div class="container text-center" id="status_bar"><span class="info p-2 m-3"><strong class="mr-2">Test Net</strong><span class="dot"></span></span><span class="p-2" style="background-color: #515151; color: white; border-radius: 10px; font-size: 10px;"><strong class="mr-2">BlockMatrix Status |</strong><strong style="color: #62FE3B" th:text="${bm_verify}"> </strong></span></div>
       <header class="container m-5" style="display: flex; align-items: center;"><i class="fas fa-wallet fa-2x" style="float: left;"></i><span class="p-2"><strong style="font-size: 32px;">Wallet Dashboard</strong></span>
         <div class="ml-3">
           <button class="btn btn-outline-primary" type="button"><strong>Access another wallet</strong></button>
@@ -122,25 +122,23 @@
     </section>
     <footer class="container-fluid">
       <div class="row p-4">
-        <div class="col-lg text-white">
-          <h3><strong>Matrix Technologies</strong></h3>
-        </div>
+        <div class="col-lg text-white"><img style="height: 64px;" th:src="@{/images/logo.png}" alt="Atla Logo"></div>
         <div class="col-lg text-white">
           <ul>
-                <li class="m-3"><a href="/">Home</a></li>
-                <li class="m-3"><a href="/">About</a></li>
-                <li class="m-3"><a href="/wallet">Wallet</a></li>
-                <li class="m-3"><a href="/block_explorer">Block Explorer</a></li>
+            <li class="m-3"><a href="/">Home</a></li>
+            <li class="m-3"><a href="/">About</a></li>
+            <li class="m-3"><a href="/wallet">Wallet</a></li>
+            <li class="m-3"><a href="/block_explorer">Block Explorer</a></li>
           </ul>
         </div>
         <div class="col-lg text-white">
           <ul>
-                <li class="m-3"><a href="/">Follow Us</a></li>
-                <li class="m-3"><a href="/">Join Us</a></li>
+            <li class="m-3"><a href="/">Follow Us</a></li>
+            <li class="m-3"><a href="/">Join Us</a></li>
           </ul>
         </div>
       </div>
-      <div class="container-fluid text-center">Copyright @ MatrixTechnologies 2020</div>
+      <div class="container-fluid text-center">Copyright @ 2020 Atla</div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

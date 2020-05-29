@@ -190,7 +190,7 @@ public class BlockMatrix {
     public void registerNodes(URL url){
         this.nodesList.add(url);
     }
-
+    
     // __________________
     // BlockMatrix Validation & Checks
 
@@ -367,14 +367,14 @@ public class BlockMatrix {
     // BlockMatrix Helper Methods
     
     private int get_Block_Row_Index(int blockNumber) {
+        
         // helper method to get the row of a block, given a block number
-
         if (blockNumber % 2 == 0) {
 
             // Block number is even
             int s = (int) Math.floor(Math.sqrt(blockNumber));
             int row = (blockNumber <= s*s + s) ? s : s + 1;
-            System.out.println("Block Row:" + row);
+            System.out.println("Block Row:" + row); 
             return row;
 
         } else {
