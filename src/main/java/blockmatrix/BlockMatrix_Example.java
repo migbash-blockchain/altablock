@@ -1,6 +1,5 @@
 package blockmatrix;
 
-import java.security.PrivateKey;
 import java.util.HashMap;
 
 import blockmatrix.model.Block;
@@ -15,13 +14,13 @@ import blockmatrix.model.Wallet;
  * enviroment using Decentralized Fianance (DeFi).
 */
 
-public class MatrixChain_Main {
+public class BlockMatrix_Example {
 
     // __________________
     // Class Variables
 
     private static BlockMatrix bm;
-    public static HashMap<String, Transaction_Output> UTXOs = new HashMap();
+    public static HashMap<String, Transaction_Output> UTXOs;
     public static int difficulty = 3;
     public static float minimumTransaction = 0.1F;
     public static Wallet walletA;
@@ -31,7 +30,7 @@ public class MatrixChain_Main {
     // __________________
     // Class Constructors
 
-    public MatrixChain_Main() {}
+    public BlockMatrix_Example() {}
 
     // __________________
     // Main Method

@@ -49,6 +49,11 @@ public class Blockmatrix_Controller {
     // 
     // Used as RESTful end-points for blockmatrix Data
 
+    @RequestMapping(path = "/get_matrix_block_num")
+    public int get_matrix_block_num() {
+        return new_blockMatrix.getInputCount();
+    }
+
     @RequestMapping(path = "/get_block_data")
     public String getBlockData(@RequestParam(value = "num", required = true, defaultValue = "1") int blockNumber) {
         return new_blockMatrix.getBlockData(blockNumber);

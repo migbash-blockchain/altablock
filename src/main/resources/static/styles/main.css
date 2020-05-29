@@ -67,6 +67,21 @@ table tbody tr:nth-child(n+4) {
   height: 100%;
 }
 
+.div_block {
+  margin: 30px;
+  height: 100px;
+  width: 100px;
+  -webkit-box-shadow: 10px -10px 0 #515151, 0 0 10px #dddddd;
+          box-shadow: 10px -10px 0 #515151, 0 0 10px #dddddd;
+  border-radius: 5px;
+}
+
+.div_block:hover {
+  padding: 10px;
+  background-color: #00A3FF;
+  color: #ffffff;
+}
+
 footer {
   background-color: #515151;
   color: #ffffff;

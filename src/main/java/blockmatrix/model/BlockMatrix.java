@@ -17,21 +17,21 @@ import blockmatrix.helpers.StringUtil;
 
 /**
  * BlockMatrix is essentially the equivalent of a 'Blockchain' class, however with the addition
- * of specific methods for handling, updating and verifying the tampering of a "BlockMatrix"
+ * of specific methods for handling, updating and verifying the tampering in a "BlockMatrix"
  */
 
 @Component
 public class BlockMatrix {
 
     // __________________
-    // Class Variables
+    // BlockMatrix Variables
 
-    private int dimension;                                                // block matrix is size dimension^2
-    private int inputCount = 0;                                           // blocks added to the block matrix
-    private boolean deletionValidity;                                     // whether or not all deletions have been valid. Used to check blockmatrix validity
-    private Block[][] blockData;                                          // ..
-    private String[] rowHashes;                                           // array of all hashes in a blockmatrix
-    private String[] columnHashes;                                        // array of all hashes in a blockmatrix
+    private int dimension;                                                // block matrix is size dimension^2,
+    private int inputCount = 0;                                           // blocks added to the block matrix,
+    private boolean deletionValidity;                                     // verify whether or not all deletions have been valid,
+    private Block[][] blockData;                                          // nested-array representing a 'matrix',
+    private String[] rowHashes;                                           // array of all hashes in a blockmatrix,
+    private String[] columnHashes;                                        // array of all hashes in a blockmatrix,
     static float minimumTransaction;                                      // ..
     private Transaction genesisTransaction;                               // ..
     static HashMap<String, Transaction_Output> UTXOs = new HashMap<>();   // list containing all of the UTXO's transaction
@@ -40,7 +40,7 @@ public class BlockMatrix {
     private Set<URL> nodesList;                                           // stores all "registered" nodes on the blockmatrix network 
 
     // __________________
-    // Class Constructors
+    // BlockMatrix Constructors
 
     public BlockMatrix() {}
 
@@ -68,7 +68,7 @@ public class BlockMatrix {
     }
 
     // __________________
-    // Class (Block Matrix) Methods
+    // BlockMatrix Action Methods
 
     public void add_Block(Block newBlock) {
         newBlock.mine_Block();
@@ -76,8 +76,8 @@ public class BlockMatrix {
     }
 
     private void add_Block_To_Matrix(Block block) {
+        
         // adds a block to our blockmatrix
-
         inputCount++;
 
         // no more space in the matrix
@@ -126,7 +126,7 @@ public class BlockMatrix {
 
             // create genesis transaction, which sends coins to our first blockchain wallet
             genesisTransaction = new Transaction(coinbase.getPublicKey(), wallet.getPublicKey(), value, null, null);   // ..
-            genesisTransaction.generate_Transaction_Signature(coinbase.getPrivateKey());	                                                        // manually sign the genesis transaction
+            genesisTransaction.generate_Transaction_Signature(coinbase.getPrivateKey());	                                        // manually sign the genesis transaction
             genesisTransaction.transactionId = "0";                                                                                 // manually set the transaction id
             genesisTransaction.outputs.add(new Transaction_Output(genesisTransaction.recipient, genesisTransaction.value,
                     genesisTransaction.transactionId));                                                                             // manually add the Transactions Output
@@ -143,6 +143,7 @@ public class BlockMatrix {
     }
 
     public void setUpSecurity() {
+        
         // sets up our security provider so we can create our wallets
         Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
     }
@@ -155,31 +156,6 @@ public class BlockMatrix {
     private void update_Column_Hash(int column) {
         // Uses data in each block in the column except those that are null and those in the diagonal
         columnHashes[column] = calculate_Column_Hash(column);
-    }
-
-    private String calculate_Row_Hash(int row) {
-
-        StringBuilder sb = new StringBuilder();
-
-        for (int column = 0; column < dimension; column++) {
-            if (row != column && blockData[row][column] != null) {
-                sb.append(blockData[row][column].getHash());
-            }
-        }
-        return StringUtil.apply_Sha256(sb.toString());
-    }
-
-    private String calculate_Column_Hash(int column) {
-
-        StringBuilder sb = new StringBuilder();
-
-        for (int row = 0; row < dimension; row++) {
-            if (row != column && blockData[row][column] != null) {
-                sb.append(blockData[row][column].getHash());
-            }
-        }
-
-        return StringUtil.apply_Sha256(sb.toString());
     }
 
     public void modifyTXinfo_InBM(int blockNumber, int transactionNumber, String new_transaction_info) {
@@ -216,25 +192,23 @@ public class BlockMatrix {
     }
 
     // __________________
-    // Validation & Checks
+    // BlockMatrix Validation & Checks
 
     public Boolean is_Matrix_Valid() {
         
         // sees if our matrix has maintained its security, or if it has been tampered with
         Block currentBlock;                                                                          // ..
-        HashMap<String, Transaction_Output> tempUTXOs = new HashMap<>();                             // a temporary working list of unspent transactions at a given block state.
-        tempUTXOs.put(genesisTransaction.outputs.get(0).id, genesisTransaction.outputs.get(0));      // ,populate this list with temporary unspent transactions
+        HashMap<String, Transaction_Output> tempUTXOs = new HashMap<>();                             // temporary working list of unspent transactions of a given block state
+        tempUTXOs.put(genesisTransaction.outputs.get(0).id, genesisTransaction.outputs.get(0));      // populate this list with temporary unspent transactions
 
-        // loop through matrix to check block hashes
-        // - start at 2 because we want to skip the genesis transaction/block
-
+        // loop through matrix to check block hashes start at 2 to skip the genesis transaction/block
         for (int i = 2; i < getInputCount(); i++) {
 
             currentBlock = getBlock(i);
 
-            // compare registered hash and calculated hash
+            // compare registered hash to calculated hash
             if (!currentBlock.getHash().equals(currentBlock.calculate_Block_Hash())) {
-                System.out.println("Hashes for Block " + i + " not equal (first instance of block with unequal hashes, there may be more)");
+                System.out.println("Hashes for Block " + i + " not equal (first instance of block with unequal hashes, there may be more)"); //TEST:
                 return false;
             }
 
@@ -351,8 +325,47 @@ public class BlockMatrix {
     }
     
     // __________________
-    // Class Getters
+    // BlockMatrix Getters [For Metrics]
+    
+    public Block getBlock(int blockNumber) { return blockData[get_Block_Row_Index(blockNumber)][get_Block_Column_Index(blockNumber)]; }
+    public String getBlockData(int blockNumber) { return new GsonBuilder().setPrettyPrinting().create().toJson(getBlock(blockNumber).getTransactions()); }
+    public ArrayList<Transaction> getBlockTransactions(int blockNumber) { return getBlock(blockNumber).getTransactions(); }
+    public int getDimension() { return dimension; }
+    public int getInputCount() { return inputCount; }
+    public String[] getRowHashes() { return rowHashes; }
+    public String[] getColumnHashes() { return columnHashes; }
+    public float getMinimumTransaction() { return minimumTransaction; }
+    private boolean getDeletionValidity() { return this.deletionValidity; }
+    public ArrayList<Integer> getBlocksWithModifiedData() {
+        Collections.sort(this.blocksWithModifiedData);
+        return this.blocksWithModifiedData;
+    }
+    public HashMap<String, Transaction_Output> getUTXOs() { return UTXOs; }
+    public Set<URL> getList() {return Collections.unmodifiableSet(this.nodesList); }
 
+    public ArrayList<Transaction> getAllTransactions() {
+
+        ArrayList<Transaction> list = new ArrayList<>();
+        int i = 1;
+
+        // Loop through each block in the network
+        while(i-1 < inputCount){
+            list.addAll(getBlock(i).getTransactions());
+            // System.out.println(list);
+            i++;
+        }
+
+        return list;
+    }
+
+    // ________________
+    // BlockMatrix Setters
+
+    public void setMinimumTransaction(float num) { minimumTransaction = num; }
+
+    // __________________
+    // BlockMatrix Helper Methods
+    
     private int get_Block_Row_Index(int blockNumber) {
         // helper method to get the row of a block, given a block number
 
@@ -392,51 +405,30 @@ public class BlockMatrix {
         }
     }
 
-    public ArrayList<Transaction> getAllTransactions() {
+    private String calculate_Row_Hash(int row) {
 
-        ArrayList<Transaction> list = new ArrayList<>();
-        int i = 1;
+        StringBuilder sb = new StringBuilder();
 
-        // Loop through each block in the network
-        while(i-1 < inputCount){
-            list.addAll(getBlock(i).getTransactions());
-            // System.out.println(list);
-            i++;
+        for (int column = 0; column < dimension; column++) {
+            if (row != column && blockData[row][column] != null) {
+                sb.append(blockData[row][column].getHash());
+            }
+        }
+        return StringUtil.apply_Sha256(sb.toString());
+    }
+
+    private String calculate_Column_Hash(int column) {
+
+        StringBuilder sb = new StringBuilder();
+
+        for (int row = 0; row < dimension; row++) {
+            if (row != column && blockData[row][column] != null) {
+                sb.append(blockData[row][column].getHash());
+            }
         }
 
-        return list;
+        return StringUtil.apply_Sha256(sb.toString());
     }
-
-    public Block getBlock(int blockNumber) {
-        return blockData[get_Block_Row_Index(blockNumber)][get_Block_Column_Index(blockNumber)];
-    }
-    public String getBlockData(int blockNumber) {
-        return new GsonBuilder().setPrettyPrinting().create().toJson(getBlock(blockNumber).getTransactions());
-    }
-    public ArrayList<Transaction> getBlockTransactions(int blockNumber) {
-        return getBlock(blockNumber).getTransactions();
-    }
-
-    public int getDimension() { return dimension; }
-    public int getInputCount() { return inputCount; }
-    public String[] getRowHashes() { return rowHashes; }
-    public String[] getColumnHashes() { return columnHashes; }
-    public float getMinimumTransaction() { return minimumTransaction; }
-    private boolean getDeletionValidity() { return this.deletionValidity; }
-    public ArrayList<Integer> getBlocksWithModifiedData() {
-        Collections.sort(this.blocksWithModifiedData);
-        return this.blocksWithModifiedData;
-    }
-    public HashMap<String, Transaction_Output> getUTXOs() { return UTXOs; }
-    public Set<URL> getList() {return Collections.unmodifiableSet(this.nodesList); }
-
-    // ________________
-    // Class Setters
-
-    public void setMinimumTransaction(float num) { minimumTransaction = num; }
-
-    // __________________
-    // Class Helper Methods
 
     public String toString() {
 

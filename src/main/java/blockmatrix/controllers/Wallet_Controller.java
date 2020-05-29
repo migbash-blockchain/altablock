@@ -34,6 +34,13 @@ public class Wallet_Controller {
     @Value("${blockchain.node.id}")
     private String blockChainNodeId;
 
+    @GetMapping("/block_explorer_visual")
+    public String block_explorer_visual(Model model) {
+        model.addAttribute("bm_matrix", new_blockMatrix.getBlockData(1));
+        model.addAttribute("bm_dimen", new_blockMatrix.getDimension());
+        return "html/visual_block_explorer";
+    }
+
     /**
      * _________________
      * Blockchain Data (Explorer) @GetMapping
@@ -60,7 +67,7 @@ public class Wallet_Controller {
         model.addAttribute("bm_dimen", new_blockMatrix.getDimension());
         model.addAttribute("bm_utxo", new_blockMatrix.getUTXOs());
         model.addAttribute("bm_all_transactions", new_blockMatrix.getAllTransactions());
-        return "html/block_explorer";
+        return "html/simple_block_explorer";
     }
 
     /**

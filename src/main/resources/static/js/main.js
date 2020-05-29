@@ -66,11 +66,6 @@ async function createNewWallet() {
 
     var url = new URL("http://127.0.0.1:8080/generate_new_wallet")
 
-    // fetch(url)
-    //     .then(function (res) {
-    //         console.log(res);
-    //     })
-
     fetch(url)
         .then((res) => res.text())
         .then((data) => {
@@ -79,4 +74,29 @@ async function createNewWallet() {
             // alert(data);
         })
         .catch((err) => console.log(err))
+}
+
+// Updating Visual Block Explorer Table Data
+async function getMatrix() {
+
+    //TODO: Fetch BlockData for the existing blocks on the matrix
+
+    var main_div = document.getElementById('block_view')
+    
+    var url = new URL("http://127.0.0.1:8080/get_matrix_block_num")
+
+    fetch(url)
+        .then((res) => res.text())
+        .then((data) => {
+            main_div.innerHTML = ""
+            for(i = 0; i < data.valueOf(); i++){
+                var new_block = document.createElement('div')
+                new_block.setAttribute('class', 'div_block')
+                new_block.innerHTML = i
+                main_div.appendChild(new_block)
+            }
+        })
+        .catch((err) => console.log(err))
+    
+    setTimeout(getMatrix, 1000);
 }
