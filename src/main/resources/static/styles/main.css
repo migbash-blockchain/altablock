@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 section {
   height: 100vh;
   background-image: url(../../images/Theme.png);
@@ -31,6 +32,7 @@ input[type="text"]:focus, select.form-control:focus, #msg_text:focus {
 
 table {
   table-layout: fixed;
+  zoom: 0.8;
 }
 
 table .overflow_style {
@@ -62,6 +64,10 @@ table tbody tr:nth-child(n+4) {
   padding: 15px;
   margin: 25px;
   border-radius: 10px;
+}
+
+#block_info .row .col h5 {
+  font-size: 12px;
 }
 
 #block_info .row .col:hover {
@@ -127,25 +133,73 @@ footer a:hover {
   cursor: pointer;
 }
 
-.user_wallet_btn {
+.button_main {
+  -webkit-box-shadow: 0 0 4px #dddddd;
+          box-shadow: 0 0 4px #dddddd;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  font-sizes: 12px;
+  font-family: "Open Sans";
+  font-weight: bold;
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
   background-color: #ffffff;
   color: #000000;
-  border: 1px solid #dddddd;
-  margin: 1px;
+  margin: 0px 10px;
 }
 
-.user_wallet_btn:hover {
+.button_main:hover {
+  background-color: #708FFE;
+  color: #ffffff;
+}
+
+.button_main_light {
+  -webkit-box-shadow: 0 0 4px #dddddd;
+          box-shadow: 0 0 4px #dddddd;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  font-sizes: 12px;
+  font-family: "Open Sans";
+  font-weight: bold;
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
+  background-color: #ffffff;
+  color: #000000;
+  margin: 0px 10px;
+}
+
+.button_main_light:hover {
   background-color: #515151;
   border: 1px solid #515151;
   color: #ffffff;
 }
 
-span .info {
+.info {
+  -webkit-box-shadow: 0 0 4px #dddddd;
+          box-shadow: 0 0 4px #dddddd;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  font-sizes: 12px;
+  font-family: "Open Sans";
+  font-weight: bold;
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
   background-color: #515151;
   color: #ffffff;
-  border-radius: 5px;
-  font-size: 10px;
-  float: left;
+  margin: 0px 10px;
+}
+
+.info strong:nth-child(n+2) {
+  color: #62FE3B;
 }
 
 /* ____ ANIMATIONS ____*/

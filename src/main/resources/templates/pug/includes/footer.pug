@@ -4,15 +4,15 @@
 
 footer.container-fluid
     .row.p-4
-        .col-lg.text-white
+        .col-lg-2.text-white
             img(style="height: 64px;" th:src="@{/images/logo.png}" alt="Atla Logo")
-        .col-lg.text-white
+        .col-lg-3.text-white
             ul
                 +footer_menu("Home", "/")
                 +footer_menu("About", "/")
                 +footer_menu("Wallet", "/wallet")
                 +footer_menu("Block Explorer", "/block_explorer")
-        .col-lg.text-white
+        .col-lg-3.text-white
             ul
                 +footer_menu("Follow Us", "/")
                 +footer_menu("Join Us", "/")

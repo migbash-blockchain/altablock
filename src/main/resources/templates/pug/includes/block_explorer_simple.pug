@@ -21,9 +21,8 @@
                     .col#matrix_search
                         p 
                             strong Search
-                        .btn-group(role="group")
-                            for n in ["Block", "Transaction", "User/Address"]
-                                button.btn.btn-outline-primary(type="button")= n
+                        for n in ["Block", "Transaction", "User/Address"]
+                            button.button_main_light(type="button")= n
                         .form-group
                             input.mt-3(autocomplete="off" type="text" class="form-control")
                         button.btn.btn-primary(type="submit") Search

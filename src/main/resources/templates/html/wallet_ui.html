@@ -10,7 +10,10 @@
   </head>
   <body>
     <section>
-      <div class="container text-center" id="status_bar"><span class="info p-2 m-3"><strong class="mr-2">Test Net</strong><span class="dot"></span></span><span class="p-2" style="background-color: #515151; color: white; border-radius: 10px; font-size: 10px;"><strong class="mr-2">BlockMatrix Status |</strong><strong style="color: #62FE3B" th:text="${bm_verify}"> </strong></span></div>
+      <div class="container text-center m-3" id="status_bar">
+        <div class="info p-2 m-3"><strong class="mr-2">Test Net</strong><span class="dot"></span></div>
+        <div class="info p-2 m-3"><strong class="mr-2">BlockMatrix Status |</strong><strong th:text="${bm_verify}"> </strong></div>
+      </div>
       <header class="container m-5" style="display: flex; align-items: center;"><i class="fas fa-wallet fa-2x" style="float: left;"></i><span class="p-2"><strong style="font-size: 32px;">Wallet Dashboard</strong></span>
         <div class="ml-3">
           <button class="btn btn-outline-primary" type="button"><strong>Access another wallet</strong></button>
@@ -22,9 +25,9 @@
             <div class="container text-center mx-auto"><img class="img-fluid" th:src="@{/images/user_1.png}" alt="Avatar">
               <p class="m-2"><strong>~mbash</strong></p>
               <div class="btn-group-vertical">
-                <button class="user_wallet_btn text-left btn" type="button" id="cpy_pub_add" th:onclick="copyClipboard(this)" th:alt="${pub_address}"><i class="fas fa-copy"></i><span class="pl-2">Copy Wallet Address</span></button>
-                <button class="user_wallet_btn text-left btn" type="button"><i class="fas fa-key"></i><span class="pl-2">View Private Key</span></button>
-                <button class="user_wallet_btn text-left btn" type="button" id="new_wallet" th:onclick="createNewWallet()"><i class="fas fa-wallet"></i><span class="pl-2">Generate New wallet</span></button>
+                <button class="button_main_light text-left" type="button" id="cpy_pub_add" th:onclick="copyClipboard(this)" th:alt="${pub_address}"><i class="fas fa-copy"></i><span class="pl-2">Copy Wallet Address</span></button>
+                <button class="button_main_light text-left" type="button"><i class="fas fa-key"></i><span class="pl-2">View Private Key</span></button>
+                <button class="button_main_light text-left" type="button" id="new_wallet" th:onclick="createNewWallet()"><i class="fas fa-wallet"></i><span class="pl-2">Generate New wallet</span></button>
               </div>
             </div>
           </div>
@@ -122,8 +125,8 @@
     </section>
     <footer class="container-fluid">
       <div class="row p-4">
-        <div class="col-lg text-white"><img style="height: 64px;" th:src="@{/images/logo.png}" alt="Atla Logo"></div>
-        <div class="col-lg text-white">
+        <div class="col-lg-2 text-white"><img style="height: 64px;" th:src="@{/images/logo.png}" alt="Atla Logo"></div>
+        <div class="col-lg-3 text-white">
           <ul>
             <li class="m-3"><a href="/">Home</a></li>
             <li class="m-3"><a href="/">About</a></li>
@@ -131,7 +134,7 @@
             <li class="m-3"><a href="/block_explorer">Block Explorer</a></li>
           </ul>
         </div>
-        <div class="col-lg text-white">
+        <div class="col-lg-3 text-white">
           <ul>
             <li class="m-3"><a href="/">Follow Us</a></li>
             <li class="m-3"><a href="/">Join Us</a></li>

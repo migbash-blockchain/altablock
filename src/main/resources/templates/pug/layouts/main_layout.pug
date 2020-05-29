@@ -21,14 +21,14 @@ html(lang="en", xmlns:th="http://www.thymeleaf.org")
         section
 
             //- _________________________
-            //- TestNet Tag [here]
-            #status_bar.container.text-center
-                span.info.p-2.m-3
+            //- TestNet Info Tags
+            #status_bar.container.text-center.m-3
+                .info.p-2.m-3
                     strong.mr-2 Test Net
                     span.dot
-                span.p-2(style="background-color: #515151; color: white; border-radius: 10px; font-size: 10px;")
+                .info.p-2.m-3
                     strong.mr-2 BlockMatrix Status |
-                    strong(style="color: #62FE3B" th:text='${bm_verify}')  
+                    strong(th:text='${bm_verify}')  
 
             //- _________________________
             //- html 'section' code goes here

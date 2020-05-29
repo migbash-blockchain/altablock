@@ -1,32 +1,36 @@
-.user_wallet_btn
-    background-color: $primary_light;
-    color: $secondary_dark;
-    border: 1px solid $secondary_light_shadow;
-    margin: 1px;
+// Project Button Styles
+@mixin button_struct($bg_color, $txt_color)
+    box-shadow: 0 0 4px $secondary_light_shadow;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    font-sizes: 12px;
+    font-family: "Open Sans";
+    font-weight: bold;
+    transition-duration: 0.5s;
+    background-color: $bg_color;
+    color: $txt_color;
+    margin: 0px 10px;
 
-.user_wallet_btn:hover
+.button_main
+    @include button_struct($primary_light, $secondary_dark);
+
+.button_main:hover
+    background-color: #708FFE;
+    color: $primary_light;
+
+.button_main_light
+    @include button_struct($primary_light, $secondary_dark);
+
+.button_main_light:hover
     background-color: $primary_dark;
     border: 1px solid $primary_dark;
     color: $primary_light;
 
-span
-    .info
-        background-color: $primary_dark; 
-        color: $primary_light; 
-        border-radius: 5px; 
-        font-size: 10px; 
-        float: left;
+.info
+    @include button_struct($primary_dark, $primary_light);
 
-/* ____ ANIMATIONS ____*/
-    
-.dot
-    animation: blinker 3s linear infinite;
-    height: 8px;
-    width: 8px;
-    background-color: $terciary_light;
-    border-radius: 50%;
-    display: inline-block;
-
-@keyframes blinker 
-    50%
-        opacity: 0;
+    strong:nth-child(n+2)
+        color: #62FE3B;
