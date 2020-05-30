@@ -1,4 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+h6 {
+  font-family: 'Open Sans';
+  font-size: 14px;
+}
+
 section {
   min-height: 100vh;
   background-image: url(../../images/Theme.png);
@@ -51,6 +56,8 @@ table thead {
 table tbody tr:hover {
   -webkit-box-shadow: 0 3px 4px #dddddd;
           box-shadow: 0 3px 4px #dddddd;
+  -webkit-transition-duration: .5s;
+          transition-duration: .5s;
 }
 
 table tbody tr:nth-child(n+4) {
@@ -67,7 +74,7 @@ table tbody tr:nth-child(n+4) {
 }
 
 #simple_view_div {
-  display: block;
+  display: none;
 }
 
 #simple_view_div .row .col {
@@ -78,15 +85,15 @@ table tbody tr:nth-child(n+4) {
   border-radius: 10px;
 }
 
-#simple_view_div .row .col h5 {
-  font-size: 12px;
-}
-
 #simple_view_div .row .col:hover {
   background-color: #708FFE;
   color: #ffffff;
   -webkit-transition-duration: 0.2s;
           transition-duration: 0.2s;
+}
+
+#simple_view_div .row .col h5 {
+  font-size: 12px;
 }
 
 #visual_view_div {
@@ -130,7 +137,7 @@ footer a:hover {
 
 .button_main {
   border: none;
-  padding: 5px 15px;
+  padding: 2px 8px;
   border-radius: 5px;
   text-decoration: none;
   display: inline-block;
@@ -153,7 +160,7 @@ footer a:hover {
 
 .button_main_light {
   border: none;
-  padding: 5px 15px;
+  padding: 2px 8px;
   border-radius: 5px;
   text-decoration: none;
   display: inline-block;
@@ -165,7 +172,6 @@ footer a:hover {
   background-color: #ffffff;
   color: #000000;
   margin: 0px 5px;
-  font-size: 10px;
 }
 
 .button_main_light:hover, .button_main_light:focus, .button_main_light:active {
@@ -173,9 +179,32 @@ footer a:hover {
   color: #ffffff;
 }
 
+.button_main_light_hollow {
+  border: none;
+  padding: 2px 8px;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  font-sizes: 12px;
+  font-family: "Open Sans";
+  font-weight: bold;
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
+  background-color: transparent;
+  color: #ffffff;
+  margin: 0px 5px;
+  border: 1px solid #ffffff;
+  font-size: 10px;
+}
+
+.button_main_light_hollow:hover {
+  background-color: #ffffff;
+  color: #708FFE;
+}
+
 .info {
   border: none;
-  padding: 5px 15px;
+  padding: 2px 8px;
   border-radius: 5px;
   text-decoration: none;
   display: inline-block;
@@ -217,7 +246,7 @@ footer a:hover {
 }
 
 .enabled {
-  display: block;
+  display: block !important;
   opacity: 1;
   -webkit-animation-name: fadeInOpacity;
           animation-name: fadeInOpacity;
@@ -225,8 +254,8 @@ footer a:hover {
           animation-iteration-count: 1;
   -webkit-animation-timing-function: ease-in;
           animation-timing-function: ease-in;
-  -webkit-animation-duration: 2s;
-          animation-duration: 2s;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
 }
 
 @-webkit-keyframes fadeInOpacity {

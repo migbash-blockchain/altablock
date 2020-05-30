@@ -73,6 +73,7 @@ public class Blockmatrix_RestController {
         Map<String, Object> response = new HashMap<>();
         response.put("block_count", new_blockMatrix.getInputCount());
         response.put("block_mod_count", new_blockMatrix.getBlocksWithModifiedData().size());
+        response.put("tx_count", new_blockMatrix.getAllTransactions().size());
         
         return new ResponseEntity<Object>(response, HttpStatus.CREATED);
     }

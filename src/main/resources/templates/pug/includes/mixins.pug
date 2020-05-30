@@ -2,7 +2,6 @@
 //- Mixin PUG Code
 //- _________________________
 
-
 //- ______________________
 //- Buttons
 mixin main_btn_img(btnText, icon_class)
@@ -21,10 +20,10 @@ mixin input_form(inputHeader, inputID)
 //- ______________________
 //- BlockMatrix Info Blocks
 mixin info_block(img_src, title, data)
-    h5
+    h6
         strong= title
     img(style="width: 32px; height: 32px;" th:src= img_src alt="block_vector")
-    h5(th:text= data)
+    h4(th:text= data)&attributes(attributes)
 
 //- _______________________
 //- Footer

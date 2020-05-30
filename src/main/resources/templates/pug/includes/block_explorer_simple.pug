@@ -3,25 +3,23 @@
         .col-lg-5
             .row
                 .col
-                    +info_block('@{/images/Vectormod_block.png}', 'Modified Blocks', '${mod_blocks}')
+                    +info_block('@{/images/Vectormod_block.png}', 'Modified Blocks', '${mod_blocks}')(id="modBlock_data")
                 .col
-                    +info_block('@{/images/dimension_img_no_license.png}', 'Blocks Count', '${block_num}')
+                    +info_block('@{/images/dimension_img_no_license.png}', 'Blocks Count', '${block_num}')(id="countBlock_data")
             .row
                 .col
                     +info_block('@{/images/dimension_img_no_license.png}', 'BlockMatrix Dimensions', '${bm_dimen}')
                 .col
-                    +info_block('@{/images/dimension_img_no_license.png}', 'Number of Transactions', '${bm_all_transactions.size()}')
-            .row
-                //- TODO: Add more data here as planned in the future
+                    +info_block('@{/images/dimension_img_no_license.png}', 'TX Number', '${bm_all_transactions.size()}')(id="tx_data")
             .row
                 .col#matrix_search.text-left
-                    h4
+                    h6
                         strong Search
                     for n in ["Block", "Transaction", "User/Address"]
-                        button.button_main_light(type="button")= n
-                    input.mt-3(autocomplete="off" type="text" class="form-control" value="enter transaction id")
-                    span
-                        button.button_main(type="submit") Search
+                        button.button_main_light_hollow(type="button")= n
+                    .p-2(style="display: inline-block;")
+                        input.mt-3(style="float: left; display: inline-block;" autocomplete="off" type="text" class="form-control" value="enter transaction id")
+                        button.button_main_light(style="float: right; display: inline-block;" type="submit") Search
 
         .col-lg-7#table_simple
             include table_bm_txs.pug

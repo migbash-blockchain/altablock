@@ -2,8 +2,8 @@
 // Event Listeners
 // _________________________
 
-document.getElementById('simple_view_btn').addEventListener('click', getSimpleMatrixData);
-document.getElementById('visual_view_btn').addEventListener('click', getVisualMatrixData);
+document.getElementById('simple_view_btn').addEventListener('click', switchLayout);
+document.getElementById('visual_view_btn').addEventListener('click', switchLayout);
 
 // _________________________
 // Simple UI/UX Functions Triggers
@@ -19,10 +19,37 @@ function copyClipboard(x) {
     document.body.removeChild(dummy);
 }
 
+function switchLayout() {
+
+    document.getElementById('simple_view_div').classList.toggle('enabled')
+    document.getElementById('visual_view_div').classList.toggle('enabled')
+}
+
 
 // _________________________
 // AJAX / ASYNC UI/UX Functions
 // _________________________
+
+// Subimt a Transaction to the Network
+async function submitTX() {
+
+    // get the form input data:
+    var r_address = document.getElementById("r_address").value;
+    var amount = document.getElementById("amount").value;
+    var msg = document.getElementById("msg_text").textContent;
+
+    var url = new URL("http://127.0.0.1:8080/send_funds"),
+        params = {
+            funds: amount,
+            msg: msg
+        }
+    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
+
+    fetch(url)
+        .then(function (res) {
+            console.log(res);
+        })
+}
 
 // Make an AJAX Call to Modify TX info
 async function clearData(x) {
@@ -48,27 +75,6 @@ async function clearData(x) {
     location.reload()
 }
 
-// Subimt a Transaction to the Network:
-async function submitTX() {
-
-    // get the form input data:
-    var r_address = document.getElementById("r_address").value;
-    var amount = document.getElementById("amount").value;
-    var msg = document.getElementById("msg_text").textContent;
-
-    var url = new URL("http://127.0.0.1:8080/send_funds"),
-        params = {
-            funds: amount,
-            msg: msg
-        }
-    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
-
-    fetch(url)
-        .then(function (res) {
-            console.log(res);
-        })
-}
-
 // Generate New Matrix Wallet
 async function createNewWallet() {
 
@@ -84,25 +90,34 @@ async function createNewWallet() {
         .catch((err) => console.log(err))
 }
 
+// Updating Simple Block Explorer Data
+async function getMatrixData() {
+
+    fetch('/get_blockmatrix')
+        .then((res) => res.text())
+        .then((data) => {
+            var result = JSON.parse(data);
+            document.getElementById('countBlock_data').textContent = result.block_count
+            document.getElementById('modBlock_data').textContent = result.block_mod_count
+            document.getElementById('tx_data').textContent = result.tx_count
+        })
+        .catch((err) => console.log(err))
+
+    setTimeout(getMatrixData, 60000);
+}
+
 // Updating Visual Block Explorer Table Data
-async function getVisualMatrixData() {
-
-    //TODO: Hide the "simple" layout
-    document.getElementById('simple_view_div').style.display = 'none'
-    document.getElementById('visual_view_div').style.display = 'block'
-
-    document.getElementById('simple_view_div').classList.remove('enabled')
-    document.getElementById('visual_view_div').classList.add('enabled')
+async function getBlockData() {
 
     //TODO: Fetch BlockData for the existing blocks on the matrix
 
     var main_div = document.getElementById('visual_view_div')
-    
+
     fetch('/get_matrix_block_num')
         .then((res) => res.text())
         .then((data) => {
             main_div.innerHTML = ""
-            for(i = 0; i < data.valueOf(); i++){
+            for (i = 0; i < data.valueOf(); i++) {
                 var new_block = document.createElement('div')
                 new_block.setAttribute('class', 'div_block')
                 new_block.innerHTML = i
@@ -110,27 +125,6 @@ async function getVisualMatrixData() {
             }
         })
         .catch((err) => console.log(err))
-    
+
     // setTimeout(getVisualMatrixData, 1000);
-}
-
-// Updating Simple Block Explorer Data
-async function getSimpleMatrixData() {
-
-    document.getElementById('simple_view_div').style.display = 'block'
-    document.getElementById('visual_view_div').style.display = 'none'
-
-    document.getElementById('simple_view_div').classList.add('enabled')
-    document.getElementById('visual_view_div').classList.remove('enabled')
-
-    //TODO: get simple blockchain data for updating the block_explorer
-
-    fetch('/get_blockmatrix')
-    .then((res) => res.text())
-    .then((data) => {
-        var result = JSON.parse(data);
-        document.getElementById('block_num').textContent = result.block_count
-        // alert(result.block_count)
-    })
-    .catch((err) => console.log(err))
 }

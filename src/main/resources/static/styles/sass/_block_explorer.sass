@@ -11,7 +11,7 @@
 // _____________
 
 #simple_view_div
-    display: block;
+    display: none;
 
     .row
         .col
@@ -19,14 +19,16 @@
             padding: 15px;
             margin: 25px;
             border-radius: 10px;
+
+            &:hover
+                background-color: #708FFE;
+                color: $primary_light;
+                transition-duration: 0.2s;
         
             h5
                 font-size: 12px;
 
-        .col:hover
-            background-color: #708FFE;
-            color: $primary_light;
-            transition-duration: 0.2s;
+        
 
 // _____________
 // BLockExplorer Visual View
@@ -42,8 +44,8 @@
     box-shadow: 10px -10px 0 $primary_dark, 0 0 10px $secondary_light_shadow;
     border-radius: 5px;
 
-.div_block:hover
-    padding: 10px;
-    background-color: $secondary_light;
-    color: $primary_light;
+    &:hover
+        padding: 10px;
+        background-color: $secondary_light;
+        color: $primary_light;
 

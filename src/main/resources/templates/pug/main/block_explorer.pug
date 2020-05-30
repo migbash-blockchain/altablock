@@ -21,10 +21,10 @@ block content
     //- _________________________
     //- Switch Between Visual & Simple Blockexplorer
     .container.m-2
-      button#simple_view_btn.button_main(type="button" th:onclick='getSimpleMatrixData()') Simple
-      button#visual_view_btn.button_main(type="button" th:onclick='getVisualMatrixData()') Visual
+      button#simple_view_btn.button_main(type="button") Simple
+      button#visual_view_btn.button_main(type="button") Visual
 
-  #simple_view_div.container.p-3
+  #simple_view_div.container.p-3.enabled
 
     //- _________________________
     //- [Simple View] BlockMatrix

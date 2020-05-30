@@ -18,43 +18,44 @@
         <div class="container m-2" style="display: flex; align-items: center;"><img style="width: 48px; height: 48px;" th:src="@{/images/vector_cube.png}" alt="block_vector"><span class="p-2"><strong style="font-size: 32px;">Block Explorer</strong></span></div>
         <div class="container m-2" style="display: flex; align-items: center;"><img style="width: 16px; height: 16px;" th:src="@{/images/info_vector.png}" alt="info_vector"><span class="p-2">Here you can find all of the details and in-depth information about the blockmatrix and<br>discover all of the available RESTful APIs availble on the network.</span></div>
         <div class="container m-2">
-          <button class="button_main" id="simple_view_btn" type="button" th:onclick="getSimpleMatrixData()">Simple</button>
-          <button class="button_main" id="visual_view_btn" type="button" th:onclick="getVisualMatrixData()">Visual</button>
+          <button class="button_main" id="simple_view_btn" type="button">Simple</button>
+          <button class="button_main" id="visual_view_btn" type="button">Visual</button>
         </div>
       </div>
-      <div class="container p-3" id="simple_view_div">
+      <div class="container p-3 enabled" id="simple_view_div">
         <div class="container text-center">
           <div class="row">
             <div class="col-lg-5">
               <div class="row">
                 <div class="col">
-                  <h5><strong>Modified Blocks</strong></h5><img style="width: 32px; height: 32px;" th:src="@{/images/Vectormod_block.png}" alt="block_vector"/>
-                  <h5 th:text="${mod_blocks}"></h5>
+                  <h6><strong>Modified Blocks</strong></h6><img style="width: 32px; height: 32px;" th:src="@{/images/Vectormod_block.png}" alt="block_vector"/>
+                  <h4 th:text="${mod_blocks}" id="modBlock_data"></h4>
                 </div>
                 <div class="col">
-                  <h5><strong>Blocks Count</strong></h5><img style="width: 32px; height: 32px;" th:src="@{/images/dimension_img_no_license.png}" alt="block_vector"/>
-                  <h5 th:text="${block_num}"></h5>
+                  <h6><strong>Blocks Count</strong></h6><img style="width: 32px; height: 32px;" th:src="@{/images/dimension_img_no_license.png}" alt="block_vector"/>
+                  <h4 th:text="${block_num}" id="countBlock_data"></h4>
                 </div>
               </div>
               <div class="row">
                 <div class="col">
-                  <h5><strong>BlockMatrix Dimensions</strong></h5><img style="width: 32px; height: 32px;" th:src="@{/images/dimension_img_no_license.png}" alt="block_vector"/>
-                  <h5 th:text="${bm_dimen}"></h5>
+                  <h6><strong>BlockMatrix Dimensions</strong></h6><img style="width: 32px; height: 32px;" th:src="@{/images/dimension_img_no_license.png}" alt="block_vector"/>
+                  <h4 th:text="${bm_dimen}"></h4>
                 </div>
                 <div class="col">
-                  <h5><strong>Number of Transactions</strong></h5><img style="width: 32px; height: 32px;" th:src="@{/images/dimension_img_no_license.png}" alt="block_vector"/>
-                  <h5 th:text="${bm_all_transactions.size()}"></h5>
+                  <h6><strong>TX Number</strong></h6><img style="width: 32px; height: 32px;" th:src="@{/images/dimension_img_no_license.png}" alt="block_vector"/>
+                  <h4 th:text="${bm_all_transactions.size()}" id="tx_data"></h4>
                 </div>
               </div>
-              <div class="row"></div>
               <div class="row">
                 <div class="col text-left" id="matrix_search">
-                  <h4><strong>Search</strong></h4>
-                  <button class="button_main_light" type="button">Block</button>
-                  <button class="button_main_light" type="button">Transaction</button>
-                  <button class="button_main_light" type="button">User/Address</button>
-                  <input class="mt-3 form-control" autocomplete="off" type="text" value="enter transaction id"><span>
-                    <button class="button_main" type="submit">Search</button></span>
+                  <h6><strong>Search</strong></h6>
+                  <button class="button_main_light_hollow" type="button">Block</button>
+                  <button class="button_main_light_hollow" type="button">Transaction</button>
+                  <button class="button_main_light_hollow" type="button">User/Address</button>
+                  <div class="p-2" style="display: inline-block;">
+                    <input class="mt-3 form-control" style="float: left; display: inline-block;" autocomplete="off" type="text" value="enter transaction id">
+                    <button class="button_main_light" style="float: right; display: inline-block;" type="submit">Search</button>
+                  </div>
                 </div>
               </div>
             </div>

@@ -1,7 +1,7 @@
 // Project Button Styles
 @mixin button_struct($bg_color, $txt_color)
     border: none;
-    padding: 5px 15px;
+    padding: 2px 8px;
     border-radius: 5px;
     text-decoration: none;
     display: inline-block;
@@ -17,17 +17,25 @@
     @include button_struct($primary_light, $secondary_dark);
     box-shadow: 0 0 4px $secondary_light_shadow;
 
-.button_main:hover, .button_main:focus, .button_main:active
-    background-color: #708FFE;
-    color: $primary_light;
+    &:hover, &:focus, &:active
+        background-color: #708FFE;
+        color: $primary_light;
 
 .button_main_light
     @include button_struct($primary_light, $secondary_dark);
+
+    &:hover, &:focus, &:active
+        background-color: $primary_dark;
+        color: $primary_light;
+
+.button_main_light_hollow
+    @include button_struct(transparent, $primary_light);
+    border: 1px solid $primary_light;
     font-size: 10px;
 
-.button_main_light:hover, .button_main_light:focus, .button_main_light:active 
-    background-color: $primary_dark;
-    color: $primary_light;
+    &:hover
+        background-color: $primary_light;
+        color: #708FFE;
 
 .info
     @include button_struct($primary_dark, $primary_light);
