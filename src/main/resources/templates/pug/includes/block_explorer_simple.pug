@@ -1,28 +1,27 @@
-#block_info.container.p-3
-    .container.text-center
-        .row
-            .col-lg-4
-                .row
-                    .col
-                        +info_block('@{/images/Vectormod_block.png}', 'Modified Blocks', '${mod_blocks}')
-                    .col
-                        +info_block('@{/images/dimension_img_no_license.png}', 'Blocks Count', '${block_num}')
-                .row
-                    .col
-                        +info_block('@{/images/dimension_img_no_license.png}', 'BlockMatrix Dimensions', '${bm_dimen}')
-                    .col
-                        +info_block('@{/images/dimension_img_no_license.png}', 'Number of Transactions', '${bm_all_transactions.size()}')
-                .row
-                    //- TODO: Add more data here as planned in the future
-                .row
-                    .col#matrix_search
-                        h4.text-left
-                            strong Search
-                        for n in ["Block", "Transaction", "User/Address"]
-                            button.button_main_light(type="button")= n
-                        input.mt-3(autocomplete="off" type="text" class="form-control")
-                        span
-                            button.btn.btn-primary(type="submit") Search
+.container.text-center
+    .row
+        .col-lg-5
+            .row
+                .col
+                    +info_block('@{/images/Vectormod_block.png}', 'Modified Blocks', '${mod_blocks}')
+                .col
+                    +info_block('@{/images/dimension_img_no_license.png}', 'Blocks Count', '${block_num}')
+            .row
+                .col
+                    +info_block('@{/images/dimension_img_no_license.png}', 'BlockMatrix Dimensions', '${bm_dimen}')
+                .col
+                    +info_block('@{/images/dimension_img_no_license.png}', 'Number of Transactions', '${bm_all_transactions.size()}')
+            .row
+                //- TODO: Add more data here as planned in the future
+            .row
+                .col#matrix_search.text-left
+                    h4
+                        strong Search
+                    for n in ["Block", "Transaction", "User/Address"]
+                        button.button_main_light(type="button")= n
+                    input.mt-3(autocomplete="off" type="text" class="form-control" value="enter transaction id")
+                    span
+                        button.button_main(type="submit") Search
 
-            .col-lg-8
-                include table_bm_txs.pug
+        .col-lg-7#table_simple
+            include table_bm_txs.pug

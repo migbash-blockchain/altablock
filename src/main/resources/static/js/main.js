@@ -2,8 +2,8 @@
 // Event Listeners
 // _________________________
 
-document.getElementById('simple_view').addEventListener('click', getSimpleMatrixData);
-document.getElementById('visual_view').addEventListener('click', getVisualMatrixData);
+document.getElementById('simple_view_btn').addEventListener('click', getSimpleMatrixData);
+document.getElementById('visual_view_btn').addEventListener('click', getVisualMatrixData);
 
 // _________________________
 // Simple UI/UX Functions Triggers
@@ -91,9 +91,12 @@ async function getVisualMatrixData() {
     document.getElementById('simple_view_div').style.display = 'none'
     document.getElementById('visual_view_div').style.display = 'block'
 
+    document.getElementById('simple_view_div').classList.remove('enabled')
+    document.getElementById('visual_view_div').classList.add('enabled')
+
     //TODO: Fetch BlockData for the existing blocks on the matrix
 
-    var main_div = document.getElementById('block_view')
+    var main_div = document.getElementById('visual_view_div')
     
     fetch('/get_matrix_block_num')
         .then((res) => res.text())
@@ -116,6 +119,9 @@ async function getSimpleMatrixData() {
 
     document.getElementById('simple_view_div').style.display = 'block'
     document.getElementById('visual_view_div').style.display = 'none'
+
+    document.getElementById('simple_view_div').classList.add('enabled')
+    document.getElementById('visual_view_div').classList.remove('enabled')
 
     //TODO: get simple blockchain data for updating the block_explorer
 

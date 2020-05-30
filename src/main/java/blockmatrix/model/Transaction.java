@@ -24,6 +24,7 @@ public class Transaction {
     private int blockNumber;                                                        // block number in which this transaction is stored
     private byte[] signature;                                                       // prevents other people from spending funds in our wallet, our signature
     private static int sequence = 0;                                                // a rough count of how many transactions have been generated
+    private long timeStamp;
 
     ArrayList<Transaction_Input> inputs = new ArrayList<Transaction_Input>();
     ArrayList<Transaction_Output> outputs = new ArrayList<Transaction_Output>();

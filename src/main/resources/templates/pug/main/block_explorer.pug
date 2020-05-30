@@ -24,14 +24,14 @@ block content
       button#simple_view_btn.button_main(type="button" th:onclick='getSimpleMatrixData()') Simple
       button#visual_view_btn.button_main(type="button" th:onclick='getVisualMatrixData()') Visual
 
-  #simple_view_div
+  #simple_view_div.container.p-3
 
     //- _________________________
     //- [Simple View] BlockMatrix
     include ../includes/block_explorer_simple.pug
 
-  #visual_view_div
+  #visual_view_div.container.p-3
 
     //- _________________________
     //- [Visual View] BLockMatrix
-    include ../includes/block_explorer_visual.pug
+    //- include ../includes/block_explorer_visual.pug

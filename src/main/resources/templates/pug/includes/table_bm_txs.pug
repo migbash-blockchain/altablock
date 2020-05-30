@@ -1,12 +1,12 @@
 .container
     .container(style="display: flex; align-items: center;")
-        i.fas.fa-history.fa-2x(style="float: left;")
+        img(th:src="@{/images/Vectorhistory.png}" alt="info_vector")
         span.p-2
             strong(style="font-size: 32px;") Transaction History
     table.table.table-borderless.m-3
         thead
             tr
-                each n in ["Transaction ID", "Sender", "Recipient", "Value", "Info", "Block Number"]
+                each n in ["Transaction ID", "Sender", "Recipient", "Value", "Block Number", "Elapsed Time"]
                     th(scope="col")= n
         tbody
             tr(th:each="list_value : ${bm_all_transactions}")
@@ -19,6 +19,6 @@
                 td
                     strong(th:text="${list_value.getValue()}")
                 td
-                    strong(th:text="${list_value.getInfo()}")
+                    strong(th:text="${list_value.getBlockNumber()}")
                 td
                     strong(th:text="${list_value.getBlockNumber()}")

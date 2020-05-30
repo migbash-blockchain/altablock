@@ -32,7 +32,6 @@ input[type="text"]:focus, select.form-control:focus, #msg_text:focus {
 
 table {
   table-layout: fixed;
-  zoom: 0.8;
 }
 
 table .overflow_style {
@@ -58,7 +57,20 @@ table tbody tr:nth-child(n+4) {
   display: none;
 }
 
-#block_info .row .col {
+#table_simple {
+  zoom: 0.65;
+}
+
+#matrix_search {
+  background-color: #708FFE;
+  color: #ffffff;
+}
+
+#simple_view_div {
+  display: block;
+}
+
+#simple_view_div .row .col {
   -webkit-box-shadow: 0px 4px 4px black;
           box-shadow: 0px 4px 4px black;
   padding: 15px;
@@ -66,20 +78,19 @@ table tbody tr:nth-child(n+4) {
   border-radius: 10px;
 }
 
-#block_info .row .col h5 {
+#simple_view_div .row .col h5 {
   font-size: 12px;
 }
 
-#block_info .row .col:hover {
+#simple_view_div .row .col:hover {
   background-color: #708FFE;
   color: #ffffff;
   -webkit-transition-duration: 0.2s;
           transition-duration: 0.2s;
 }
 
-#block_info .row #matrix_search {
-  background-color: #708FFE;
-  color: #ffffff;
+#visual_view_div {
+  display: none;
 }
 
 .div_block {
@@ -95,14 +106,6 @@ table tbody tr:nth-child(n+4) {
   padding: 10px;
   background-color: #00A3FF;
   color: #ffffff;
-}
-
-#visual_view_div {
-  display: none;
-}
-
-#simple_view_div {
-  display: block;
 }
 
 footer {
@@ -126,10 +129,8 @@ footer a:hover {
 }
 
 .button_main {
-  -webkit-box-shadow: 0 0 4px #dddddd;
-          box-shadow: 0 0 4px #dddddd;
   border: none;
-  padding: 5px 10px;
+  padding: 5px 15px;
   border-radius: 5px;
   text-decoration: none;
   display: inline-block;
@@ -141,6 +142,8 @@ footer a:hover {
   background-color: #ffffff;
   color: #000000;
   margin: 0px 5px;
+  -webkit-box-shadow: 0 0 4px #dddddd;
+          box-shadow: 0 0 4px #dddddd;
 }
 
 .button_main:hover, .button_main:focus, .button_main:active {
@@ -149,10 +152,8 @@ footer a:hover {
 }
 
 .button_main_light {
-  -webkit-box-shadow: 0 0 4px #dddddd;
-          box-shadow: 0 0 4px #dddddd;
   border: none;
-  padding: 5px 10px;
+  padding: 5px 15px;
   border-radius: 5px;
   text-decoration: none;
   display: inline-block;
@@ -164,6 +165,7 @@ footer a:hover {
   background-color: #ffffff;
   color: #000000;
   margin: 0px 5px;
+  font-size: 10px;
 }
 
 .button_main_light:hover, .button_main_light:focus, .button_main_light:active {
@@ -172,10 +174,8 @@ footer a:hover {
 }
 
 .info {
-  -webkit-box-shadow: 0 0 4px #dddddd;
-          box-shadow: 0 0 4px #dddddd;
   border: none;
-  padding: 5px 10px;
+  padding: 5px 15px;
   border-radius: 5px;
   text-decoration: none;
   display: inline-block;
@@ -213,6 +213,37 @@ footer a:hover {
 @keyframes blinker {
   50% {
     opacity: 0;
+  }
+}
+
+.enabled {
+  display: block;
+  opacity: 1;
+  -webkit-animation-name: fadeInOpacity;
+          animation-name: fadeInOpacity;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+  -webkit-animation-timing-function: ease-in;
+          animation-timing-function: ease-in;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+}
+
+@-webkit-keyframes fadeInOpacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInOpacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 /*# sourceMappingURL=main.css.map */

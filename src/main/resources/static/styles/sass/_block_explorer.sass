@@ -1,4 +1,18 @@
-#block_info
+// _____________
+// BLockExplorer Global View
+// _____________
+    
+#matrix_search
+    background-color: #708FFE;
+    color: $primary_light;
+    
+// _____________
+// BLockExplorer Simple View
+// _____________
+
+#simple_view_div
+    display: block;
+
     .row
         .col
             box-shadow: 0px 4px 4px black;
@@ -14,9 +28,12 @@
             color: $primary_light;
             transition-duration: 0.2s;
 
-        #matrix_search
-            background-color: #708FFE;
-            color: $primary_light;
+// _____________
+// BLockExplorer Visual View
+// _____________
+
+#visual_view_div
+    display: none;
 
 .div_block
     margin: 30px;
@@ -30,12 +47,3 @@
     background-color: $secondary_light;
     color: $primary_light;
 
-// ______________
-// Block Explorer View Style
-// ______________
-
-#visual_view_div
-    display: none;
-
-#simple_view_div
-    display: block;
