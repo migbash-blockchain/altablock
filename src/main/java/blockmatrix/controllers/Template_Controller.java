@@ -76,7 +76,7 @@ public class Template_Controller {
      * - Users Wallet Whole TXs List
      * 
      * @param model
-     * @return
+     * @return HTML Template
      */
 
     @GetMapping("/wallet")

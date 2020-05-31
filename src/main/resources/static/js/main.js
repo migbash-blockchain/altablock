@@ -95,7 +95,7 @@ async function clearData(x) {
 }
 
 /**
- * [AJAX] [ASYNC] - Generate New Matrix Wallet
+ * TODO: [AJAX] [ASYNC] - Generate New Matrix Wallet
  * 
  * Using [Fetch API]
  * 
@@ -103,7 +103,7 @@ async function clearData(x) {
  * 
  * - Generate a new Instance of the Wallet,
  * - Pass New Wallet Parameters to the user
- *  
+ * 
  */
 
 async function createNewWallet() {
@@ -118,10 +118,10 @@ async function createNewWallet() {
 }
 
 /**
- * [AJAX] - Update BlockMatrix Data
- * 
+ * TODO: [AJAX] - Update BlockMatrix Data
+ * _______
  * Using [Fetch API]
- * 
+ * _______
  * Process:
  * 
  * - Get all of the updated blockmatrix DATA as a JSON Object
@@ -145,10 +145,37 @@ async function getMatrixData() {
 }
 
 /**
- * [AJAX] - Update BLockMatrix Data
- * 
+ * TODO: [AJAX] - Update BLockMatrix Table Data
+ * _______
  * Using [Fetch API]
- * 
+ * _______
+ * Process:
+ */
+
+async function getTxData() {
+
+    fetch('/get_blockmatrix_transactions')
+        .then((res) => res.text())
+        .then((data) => {
+            main_div.innerHTML = ""
+            var result = JSON.parse(data)
+            // for (var tx_data of result) {
+            //     var new_div = document.createElement('div')
+            //     new_div.setAttribute('class', 'div_block')
+            //     new_div.innerHTML = tx_data.transactionId + tx_data.value + tx_data.timeStamp
+            //     main_div.appendChild(new_div)
+            // }
+        })
+        .catch((err) => console.log(err))
+
+    // setTimeout(getVisualMatrixData, 1000);
+}
+
+/**
+ * TODO: [AJAX] - Update Block 'Visual' Data
+ * _______
+ * Using [Fetch API]
+ * _______
  * Process:
  * 
  * - Get all of the updated blockmatrix DATA as a JSON object,
@@ -159,25 +186,28 @@ async function getMatrixData() {
 
 async function getBlockData() {
 
-    //TODO: Fetch BlockData for the existing blocks on the matrix
-
     var main_div = document.getElementById('visual_view_div')
-    var block_count = document.getElementById('countBlock_data').textContent
+    var i = 0
 
-    alert(block_count)
-
-    // fetch('/get_matrix_block_num')
-    //     .then((res) => res.text())
-    //     .then((data) => {
-    //         main_div.innerHTML = ""
-    //         for (i = 0; i < data.valueOf(); i++) {
-    //             var new_block = document.createElement('div')
-    //             new_block.setAttribute('class', 'div_block')
-    //             new_block.innerHTML = i
-    //             main_div.appendChild(new_block)
-    //         }
-    //     })
-    //     .catch((err) => console.log(err))
-
-    // setTimeout(getVisualMatrixData, 1000);
+    fetch('/get_blockmatrix_blocks')
+        .then((res) => res.text())
+        .then((data) => {
+            main_div.innerHTML = ""
+            var result = JSON.parse(data)
+            for (var block_data of result) {
+                i++
+                main_div.innerHTML +=
+                `<div class="out_block_div">
+                    <h6> Block #${i} </h6>
+                    <div class="div_block">
+                        <ul>
+                            <li class="overflow_style"> Block Hash ${block_data.hash} </li>
+                            <li> TimeStamp ${block_data.timeStamp} </li>
+                            <li> Tx’s ${block_data.transactions.length} </li>
+                        </ul>
+                    </div>
+                </div>`;
+            }
+        })
+        .catch((err) => console.log(err))
 }

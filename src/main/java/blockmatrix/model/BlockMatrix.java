@@ -351,13 +351,27 @@ public class BlockMatrix {
         int i = 1;
 
         // Loop through each block in the network
-        while(i-1 < inputCount){
+        while(i-1 < inputCount) {
             list.addAll(getBlock(i).getTransactions());
             // System.out.println(list);
             i++;
         }
 
         return list;
+    }
+
+    public ArrayList<Block> getAllBlocks() {
+
+        ArrayList<Block> block_list = new ArrayList<>();
+        int i = 1;
+
+        // Loop through each block in the network
+        while(i-1 < inputCount) {
+            block_list.add(getBlock(i));
+            i++;
+        }
+        
+        return block_list;
     }
 
     // ________________

@@ -51,25 +51,57 @@ public class Blockmatrix_RestController {
     @Value("${blockchain.node.id}")
     private String blockChainNodeId;
 
-    // __________________
-    // Blockchain Data (Explorer)
-    // 
-    // Used as RESTful end-points for [real-time] blockmatrix Data
+    /**
+     * ==================================
+     * === Blockchain Data (Explorer) ===
+     * ==================================
+     */
 
-    @RequestMapping(path = "/get_matrix_block_num")
-    public int get_matrix_block_num() {
-        return new_blockMatrix.getInputCount();
+    
+    
+
+    @RequestMapping(path = "/get_blockmatrix_blocks")
+    public String getBlockMatrixBlocks() {
+
+        return new GsonBuilder().setPrettyPrinting().create().toJson(new_blockMatrix.getAllBlocks()); 
     }
+
+    /**
+     * REST API - Get a particular block data
+     * _____
+     * Desc: [GET] BLock Data inside the BlockMatrix
+     * _____
+     * @param blockNumber
+     * @return
+     * 
+     */
 
     @RequestMapping(path = "/get_block_data")
     public String getBlockData(@RequestParam(value = "num", required = true, defaultValue = "1") int blockNumber) {
         return new_blockMatrix.getBlockData(blockNumber);
     }
 
+    /**
+     * REST API - Get a particular block Transaction
+     * _____
+     * Desc: [GET] all of the block transaction data
+     * _____
+     * 
+     */
+
     @RequestMapping(path = "/get_block_transactions")
     public String getBlockTransactions(@RequestParam(value = "num", required = true, defaultValue = "1") int blockNumber) {
         return new_blockMatrix.getBlockTransactions(blockNumber).toArray().toString();
     }
+
+    /**
+     * REST API - Get BlockMatrix
+     * _____
+     * Desc: Gathers all the data from the BlockMatrix,
+     * 
+     * _____
+     * @return JSON (HashMap)
+     */
 
     @RequestMapping(path = "/get_blockmatrix")
     public ResponseEntity<Object> getBlockMatrix() {
@@ -89,15 +121,28 @@ public class Blockmatrix_RestController {
      *       stored in an arraylist.
      * _____ 
      * @return JSON (HashMap)
+     * 
      */
 
     @RequestMapping(path = "/get_blockmatrix_transactions")
     public String getBlockMatrixTX() {
+
         return new GsonBuilder().setPrettyPrinting().create().toJson(new_blockMatrix.getAllTransactions()); 
     }
 
-    // __________________
-    // User Actions
+    /**
+     * ====================
+     * === User Actions ===
+     * ====================
+     */
+
+    /**
+     * [REST API] - Genreate New Wallet
+     * _____
+     * Desc: Generates a new wallet for the user
+     * _____ 
+     * @return JSON (HashMap)
+     */
 
     @RequestMapping(path = "/generate_new_wallet")
     public String generate_new_wallet() {
@@ -107,6 +152,14 @@ public class Blockmatrix_RestController {
         return "Public Key: " + pub_key + '\n' +
             "Private Key: " + priv_key;
     }
+
+    /**
+     * [REST API] - Genreate New Wallet
+     * 
+     * @param value
+     * @param msg
+     * 
+     */
 
     @RequestMapping(path = "/send_funds")
     @ResponseStatus(HttpStatus.CREATED)

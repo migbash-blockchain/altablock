@@ -37,15 +37,50 @@
 #visual_view_div
     display: none;
 
-.div_block
-    margin: 30px;
-    height: 100px;
+.out_block_div
+    height: 150px;
     width: 100px;
-    box-shadow: 10px -10px 0 $primary_dark, 0 0 10px $secondary_light_shadow;
-    border-radius: 5px;
+    display: inline-block;
+    margin: 30px;
+    cursor: pointer;
 
-    &:hover
-        padding: 10px;
+    
+    &:hover .div_block
         background-color: $secondary_light;
         color: $primary_light;
+        transition-duration: .5s;
+
+    &:hover h6
+        color: $secondary_dark;
+        transition-duration: .5s;
+
+    h6
+        color: $secondary_light_shadow;
+        text-align: center;
+        padding: 10px;
+        font-family: 'Open Sans';
+        font-weight: bold;
+
+    .div_block
+        height: 100px;
+        width: 100px;
+        box-shadow: 10px -10px 0 $primary_dark, 0 0 10px $secondary_light_shadow;
+        border-radius: 5px;
+        padding: 10px;
+
+        ul
+            padding: 0px;
+            margin: 0px;
+
+        li
+            font-size: 8px;
+            list-style-type: none;
+
+            &.overflow_style
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 100%;
+                background-image: linear-gradient(90deg,#000000 35%,rgba(0,0,0,0));
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
 

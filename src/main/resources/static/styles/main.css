@@ -100,19 +100,62 @@ table tbody tr:nth-child(n+4) {
   display: none;
 }
 
-.div_block {
+.out_block_div {
+  height: 150px;
+  width: 100px;
+  display: inline-block;
   margin: 30px;
+  cursor: pointer;
+}
+
+.out_block_div:hover .div_block {
+  background-color: #00A3FF;
+  color: #ffffff;
+  -webkit-transition-duration: .5s;
+          transition-duration: .5s;
+}
+
+.out_block_div:hover h6 {
+  color: #000000;
+  -webkit-transition-duration: .5s;
+          transition-duration: .5s;
+}
+
+.out_block_div h6 {
+  color: #dddddd;
+  text-align: center;
+  padding: 10px;
+  font-family: 'Open Sans';
+  font-weight: bold;
+}
+
+.out_block_div .div_block {
   height: 100px;
   width: 100px;
   -webkit-box-shadow: 10px -10px 0 #515151, 0 0 10px #dddddd;
           box-shadow: 10px -10px 0 #515151, 0 0 10px #dddddd;
   border-radius: 5px;
+  padding: 10px;
 }
 
-.div_block:hover {
-  padding: 10px;
-  background-color: #00A3FF;
-  color: #ffffff;
+.out_block_div .div_block ul {
+  padding: 0px;
+  margin: 0px;
+}
+
+.out_block_div .div_block li {
+  font-size: 8px;
+  list-style-type: none;
+}
+
+.out_block_div .div_block li.overflow_style {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  background-image: -webkit-gradient(linear, left top, right top, color-stop(35%, #000000), to(rgba(0, 0, 0, 0)));
+  background-image: linear-gradient(90deg, #000000 35%, rgba(0, 0, 0, 0));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 footer {
