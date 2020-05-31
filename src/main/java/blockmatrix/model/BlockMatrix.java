@@ -16,8 +16,10 @@ import org.springframework.stereotype.Component;
 import blockmatrix.helpers.StringUtil;
 
 /**
- * BlockMatrix is essentially the equivalent of a 'Blockchain' class, however with the addition
- * of specific methods for handling, updating and verifying the tampering in a "BlockMatrix"
+ * BlockMatrix.java
+ * 
+ * Essentialy the equivalent of a 'Blockchain' class, however with the addition
+ * of specific methods for handling, updating and verifying the tampering in a "BlockMatrix".
  */
 
 @Component

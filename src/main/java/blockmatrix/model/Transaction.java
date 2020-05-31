@@ -3,12 +3,12 @@ package blockmatrix.model;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import blockmatrix.helpers.StringUtil;
 
 /**
- * Class Model for a "Transaction" that will be stored inside a Block
+ * Class Model for a "Transaction" that will be stored 
+ * inside a Block and Block Matrix respectively
  */
 
 public class Transaction {
@@ -23,7 +23,7 @@ public class Transaction {
     private String info;                                                            // 'this' transaction data
     private int blockNumber;                                                        // block number in which this transaction is stored
     private byte[] signature;                                                       // prevents other people from spending funds in our wallet, our signature
-    private static int sequence = 0;                                                // a rough count of how many transactions have been generated
+    private static int sequence = 0;                                                // rough count of how many transactions have been generated
     private long timeStamp;
 
     ArrayList<Transaction_Input> inputs = new ArrayList<Transaction_Input>();
@@ -172,19 +172,19 @@ public class Transaction {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("\n Transaction Details");
+        // sb.append("\n Transaction Details");
         sb.append("\n transactionId: ");
         sb.append(transactionId);
-        sb.append("\n sender: ");
-        sb.append(sender);
-        sb.append("\n recipient: ");
-        sb.append(recipient);
+        // sb.append("\n sender: ");
+        // sb.append(sender);
+        // sb.append("\n recipient: ");
+        // sb.append(recipient);
         sb.append("\n value: ");
         sb.append(value);
         sb.append("\n info: ");
         sb.append(info);
-        sb.append("\n signature: ");
-        sb.append(Arrays.toString(signature));
+        // sb.append("\n signature: ");
+        // sb.append(Arrays.toString(signature));
         return sb.toString();
     }
 }

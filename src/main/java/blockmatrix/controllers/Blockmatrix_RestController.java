@@ -1,8 +1,12 @@
 package blockmatrix.controllers;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -50,7 +54,7 @@ public class Blockmatrix_RestController {
     // __________________
     // Blockchain Data (Explorer)
     // 
-    // Used as RESTful end-points for blockmatrix Data
+    // Used as RESTful end-points for [real-time] blockmatrix Data
 
     @RequestMapping(path = "/get_matrix_block_num")
     public int get_matrix_block_num() {
@@ -63,25 +67,23 @@ public class Blockmatrix_RestController {
     }
 
     @RequestMapping(path = "/get_block_transactions")
-    public ArrayList <Transaction> getBlockTransactions(@RequestParam(value = "num", required = true, defaultValue = "1") int blockNumber) {
-        return new_blockMatrix.getBlockTransactions(blockNumber);
+    public String getBlockTransactions(@RequestParam(value = "num", required = true, defaultValue = "1") int blockNumber) {
+        return new_blockMatrix.getBlockTransactions(blockNumber).toArray().toString();
     }
 
     @RequestMapping(path = "/get_blockmatrix")
-    public ResponseEntity<Object> getBlockMatrix() {
+    public String getBlockMatrix() {
 
         Map<String, Object> response = new HashMap<>();
-        response.put("block_count", new_blockMatrix.getInputCount());
-        response.put("block_mod_count", new_blockMatrix.getBlocksWithModifiedData().size());
-        response.put("tx_count", new_blockMatrix.getAllTransactions().size());
-        
-        return new ResponseEntity<Object>(response, HttpStatus.CREATED);
-    }
+        // response.put("block_count", new_blockMatrix.getInputCount());
+        // response.put("block_mod_count", new_blockMatrix.getBlocksWithModifiedData().size());
+        // response.put("tx_count", new_blockMatrix.getAllTransactions().size());
+        for (Transaction t: new_blockMatrix.getAllTransactions()) {
+            response.put("tx", t.toString());
+        }
 
-    // @RequestMapping("/get_matrix_chain")
-    // public String get_matrix_chain() {
-    //     return
-    // } 
+        return new GsonBuilder().setPrettyPrinting().create().toJson(new_blockMatrix.getAllTransactions());
+    }
 
     // __________________
     // User Actions

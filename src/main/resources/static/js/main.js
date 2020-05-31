@@ -1,13 +1,20 @@
 // _________________________
 // Event Listeners
-// _________________________
 
 document.getElementById('simple_view_btn').addEventListener('click', switchLayout);
 document.getElementById('visual_view_btn').addEventListener('click', switchLayout);
 
 // _________________________
-// Simple UI/UX Functions Triggers
+// Page Listeners
+
+var path_url = document.URL;
+
+if (path_url.includes('/block_explorer')) {
+    getMatrixData()
+}
+
 // _________________________
+// Simple UI/UX Functions Triggers
 
 function copyClipboard(x) {
     var dummy = document.createElement("input");
@@ -28,7 +35,6 @@ function switchLayout() {
 
 // _________________________
 // AJAX / ASYNC UI/UX Functions
-// _________________________
 
 // Subimt a Transaction to the Network
 async function submitTX() {
@@ -90,23 +96,24 @@ async function createNewWallet() {
         .catch((err) => console.log(err))
 }
 
-// Updating Simple Block Explorer Data
+// [AJAX] - Update BlockMatrix Data
 async function getMatrixData() {
 
     fetch('/get_blockmatrix')
         .then((res) => res.text())
         .then((data) => {
             var result = JSON.parse(data);
-            document.getElementById('countBlock_data').textContent = result.block_count
-            document.getElementById('modBlock_data').textContent = result.block_mod_count
-            document.getElementById('tx_data').textContent = result.tx_count
+            // document.getElementById('countBlock_data').textContent = result.block_count
+            // document.getElementById('modBlock_data').textContent = result.block_mod_count
+            // document.getElementById('tx_data').textContent = result.tx_count
+            alert(result.txs_list.transactionId)
         })
         .catch((err) => console.log(err))
 
     setTimeout(getMatrixData, 60000);
 }
 
-// Updating Visual Block Explorer Table Data
+// [AJAX] - Update BLockMatrix Data
 async function getBlockData() {
 
     //TODO: Fetch BlockData for the existing blocks on the matrix
