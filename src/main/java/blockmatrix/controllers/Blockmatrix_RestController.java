@@ -72,17 +72,28 @@ public class Blockmatrix_RestController {
     }
 
     @RequestMapping(path = "/get_blockmatrix")
-    public String getBlockMatrix() {
+    public ResponseEntity<Object> getBlockMatrix() {
 
         Map<String, Object> response = new HashMap<>();
-        // response.put("block_count", new_blockMatrix.getInputCount());
-        // response.put("block_mod_count", new_blockMatrix.getBlocksWithModifiedData().size());
-        // response.put("tx_count", new_blockMatrix.getAllTransactions().size());
-        for (Transaction t: new_blockMatrix.getAllTransactions()) {
-            response.put("tx", t.toString());
-        }
+        response.put("block_count", new_blockMatrix.getInputCount());
+        response.put("block_mod_count", new_blockMatrix.getBlocksWithModifiedData().size());
+        response.put("tx_count", new_blockMatrix.getAllTransactions().size());
 
-        return new GsonBuilder().setPrettyPrinting().create().toJson(new_blockMatrix.getAllTransactions());
+        return new ResponseEntity<Object>(response, HttpStatus.CREATED);
+    }
+
+    /**
+     * REST API - Get all BlockMatrix Transactions
+     * _____
+     * Desc: Gathers all of the Transactions in the BlockMatrix Stored
+     *       stored in an arraylist.
+     * _____ 
+     * @return JSON (HashMap)
+     */
+
+    @RequestMapping(path = "/get_blockmatrix_transactions")
+    public String getBlockMatrixTX() {
+        return new GsonBuilder().setPrettyPrinting().create().toJson(new_blockMatrix.getAllTransactions()); 
     }
 
     // __________________

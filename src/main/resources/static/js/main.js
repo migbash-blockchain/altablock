@@ -11,6 +11,7 @@ var path_url = document.URL;
 
 if (path_url.includes('/block_explorer')) {
     getMatrixData()
+    getBlockData()
 }
 
 // _________________________
@@ -32,11 +33,18 @@ function switchLayout() {
     document.getElementById('visual_view_div').classList.toggle('enabled')
 }
 
+/**
+ * _________________________
+ * AJAX / ASYNC UI/UX Functions
+ * _________________________
+ */
 
-// _________________________
-// AJAX / ASYNC UI/UX Functions
 
-// Subimt a Transaction to the Network
+/**
+ * [AJAX] [ASYNC] - Subimt a Transaction to the Network
+ * 
+ */
+
 async function submitTX() {
 
     // get the form input data:
@@ -57,10 +65,15 @@ async function submitTX() {
         })
 }
 
-// Make an AJAX Call to Modify TX info
+/**
+ * [AJAX} [ASYNC] - Modify TX Info
+ * 
+ * @param {*} x 
+ * 
+ */
+
 async function clearData(x) {
 
-    // get the selected row data
     var block_num = x.parentNode.parentNode.getElementsByTagName("strong")[5].innerHTML
     // var transaction_num = x.parentNode.parentNode.getElementsByTagName("strong")[5].innerHTML
     var new_info = "null"
@@ -81,57 +94,90 @@ async function clearData(x) {
     location.reload()
 }
 
-// Generate New Matrix Wallet
+/**
+ * [AJAX] [ASYNC] - Generate New Matrix Wallet
+ * 
+ * Using [Fetch API]
+ * 
+ * Process:
+ * 
+ * - Generate a new Instance of the Wallet,
+ * - Pass New Wallet Parameters to the user
+ *  
+ */
+
 async function createNewWallet() {
 
-    var url = new URL("http://127.0.0.1:8080/generate_new_wallet")
-
-    fetch(url)
+    fetch('/generate_new_wallet')
         .then((res) => res.text())
         .then((data) => {
             $('#staticBackdrop').modal('toggle')
             document.getElementById("wallet_info").innerHTML = data
-            // alert(data);
         })
         .catch((err) => console.log(err))
 }
 
-// [AJAX] - Update BlockMatrix Data
+/**
+ * [AJAX] - Update BlockMatrix Data
+ * 
+ * Using [Fetch API]
+ * 
+ * Process:
+ * 
+ * - Get all of the updated blockmatrix DATA as a JSON Object
+ * - Populate target html DOM elements with respective data;
+ * - Repeat every 1 min (60s)
+ */
+
 async function getMatrixData() {
 
     fetch('/get_blockmatrix')
         .then((res) => res.text())
         .then((data) => {
             var result = JSON.parse(data);
-            // document.getElementById('countBlock_data').textContent = result.block_count
-            // document.getElementById('modBlock_data').textContent = result.block_mod_count
-            // document.getElementById('tx_data').textContent = result.tx_count
-            alert(result.txs_list.transactionId)
+            document.getElementById('countBlock_data').textContent = result.block_count
+            document.getElementById('modBlock_data').textContent = result.block_mod_count
+            document.getElementById('tx_data').textContent = result.tx_count
         })
         .catch((err) => console.log(err))
 
     setTimeout(getMatrixData, 60000);
 }
 
-// [AJAX] - Update BLockMatrix Data
+/**
+ * [AJAX] - Update BLockMatrix Data
+ * 
+ * Using [Fetch API]
+ * 
+ * Process:
+ * 
+ * - Get all of the updated blockmatrix DATA as a JSON object,
+ * - Populate target Table with the updated data,
+ * - Repeat every 1 min (60s)
+ * 
+ */
+
 async function getBlockData() {
 
     //TODO: Fetch BlockData for the existing blocks on the matrix
 
     var main_div = document.getElementById('visual_view_div')
+    var block_count = document.getElementById('countBlock_data').textContent
 
-    fetch('/get_matrix_block_num')
-        .then((res) => res.text())
-        .then((data) => {
-            main_div.innerHTML = ""
-            for (i = 0; i < data.valueOf(); i++) {
-                var new_block = document.createElement('div')
-                new_block.setAttribute('class', 'div_block')
-                new_block.innerHTML = i
-                main_div.appendChild(new_block)
-            }
-        })
-        .catch((err) => console.log(err))
+    alert(block_count)
+
+    // fetch('/get_matrix_block_num')
+    //     .then((res) => res.text())
+    //     .then((data) => {
+    //         main_div.innerHTML = ""
+    //         for (i = 0; i < data.valueOf(); i++) {
+    //             var new_block = document.createElement('div')
+    //             new_block.setAttribute('class', 'div_block')
+    //             new_block.innerHTML = i
+    //             main_div.appendChild(new_block)
+    //         }
+    //     })
+    //     .catch((err) => console.log(err))
 
     // setTimeout(getVisualMatrixData, 1000);
 }
