@@ -154,13 +154,13 @@ async function getMatrixData() {
 
 async function getTxData() {
 
-    var table = document.getElementById("bt_tx_table");
+    var table = document.getElementById('bt_tx_table');
 
     fetch('/get_blockmatrix_transactions')
         .then((res) => res.text())
         .then((data) => {
             var result = JSON.parse(data)
-            table.tBodies.innerHTML = ''
+            table.getElementsByTagName('tbody').innerHTML = ''
             for (var tx_data of result) {
                 var row = table.insertRow(1);
                 row.insertCell(0).innerHTML = tx_data.transactionId
@@ -201,7 +201,6 @@ async function getBlockData() {
             var result = JSON.parse(data)
             for (var block_data of result) {
                 i++
-
                 main_div.innerHTML +=
                     `<div class="out_block_div">
                     <h6> Block #${i} </h6>

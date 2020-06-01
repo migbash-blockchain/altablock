@@ -177,10 +177,10 @@ public class Blockmatrix_RestController {
         new_blockMatrix.modifyTXinfo_InBM(blockNumber, transactionNumber, new_info);
     }
 
-    @Scheduled(fixedRate = 10000) // ms = (60 sec)
-    @RequestMapping("/add_block")
-    public void add_block(){
-        new_block = new Block();
-        new_blockMatrix.add_Block(new_block);
-    }
+    // @Scheduled(fixedRate = 10000) // ms = (60 sec)
+    // @RequestMapping("/add_block")
+    // public void add_block(){
+    //     new_block = new Block();
+    //     new_blockMatrix.add_Block(new_block);
+    // }
 }

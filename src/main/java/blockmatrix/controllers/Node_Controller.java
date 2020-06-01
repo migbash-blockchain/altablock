@@ -57,7 +57,6 @@ public class Node_Controller {
     // @RequestMapping("/resolve")
     // public Map<String, Object> consensus() {
     //     boolean replaced = new_blockMatrix.resolveConflicts();
-
     //     Map<String, Object> response = new HashMap<>();
     //     response.put("new_chain", new_blockMatrix.getChain());
     //     if (replaced) {
@@ -65,7 +64,6 @@ public class Node_Controller {
     //     } else {
     //         response.put("message", "Our chain is authoritative");
     //     }
-
     //     return response;
     // }
 }

@@ -2,10 +2,13 @@ footer
     background-color: $secondary_dark;
     color: $primary_light;
 
-    ul
+    & img
+        height: 64px;
+
+    & ul
         list-style-type: none;
 
-    a
+    & a
         font-weight: bold;
         text-decoration: none !important;
         color: $primary_light;
@@ -13,3 +16,12 @@ footer
         &:hover
             color: $secondary_light;
             cursor: pointer;
+        
+    & #cpy_right
+        font:
+            size: 12px;
+            font-family: 'Open Sans'
+        background-color: $primary_dark; 
+        color: #C0E8FF;
+        padding: 5px;
+        text-align: center;

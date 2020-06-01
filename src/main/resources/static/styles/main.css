@@ -175,6 +175,10 @@ footer {
   color: #ffffff;
 }
 
+footer img {
+  height: 64px;
+}
+
 footer ul {
   list-style-type: none;
 }
@@ -188,6 +192,15 @@ footer a {
 footer a:hover {
   color: #00A3FF;
   cursor: pointer;
+}
+
+footer #cpy_right {
+  font-size: 12px;
+  font-font-family: 'Open Sans';
+  background-color: #515151;
+  color: #C0E8FF;
+  padding: 5px;
+  text-align: center;
 }
 
 .button_main {
