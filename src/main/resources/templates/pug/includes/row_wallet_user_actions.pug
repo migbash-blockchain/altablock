@@ -32,6 +32,6 @@
                     +input_form("Amount", "amount")
                     label(for="msg_text" class="control-label") Transaction Message
                     div#msg_text(contenteditable required)
-                button.btn.btn-primary(type="submit" th:onclick="submitTX(this)") Send Transaction
+                button.btn.btn-primary(th:onclick="submitTX(this)") Send Transaction
                     span.pl-2
                         i(class="fas fa-paper-plane")

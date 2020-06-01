@@ -373,7 +373,7 @@ public class BlockMatrix {
         
         return block_list;
     }
-
+    
     // ________________
     // BlockMatrix Setters
 

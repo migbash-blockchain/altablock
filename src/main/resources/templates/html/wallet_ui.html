@@ -10,7 +10,7 @@
   </head>
   <body>
     <section>
-      <div class="container text-center m-3" id="status_bar">
+      <div class="container text-center" id="status_bar">
         <div class="info p-2 m-3"><strong class="mr-2">Test Net</strong><span class="dot"></span></div>
         <div class="info p-2 m-3"><img style="width: 16px; height: 16px;" th:src="@{/images/Iconstatus.png}" alt="info_vector"><strong class="mr-2 ml-2">BlockMatrix Status |</strong><strong th:text="${bm_verify}"> </strong></div>
       </div>
@@ -50,7 +50,7 @@
                 <label class="control-label" for="msg_text">Transaction Message</label>
                 <div id="msg_text" contenteditable required></div>
               </div>
-              <button class="btn btn-primary" type="submit" th:onclick="submitTX(this)">Send Transaction<span class="pl-2"><i class="fas fa-paper-plane"></i></span></button>
+              <button class="btn btn-primary" th:onclick="submitTX(this)">Send Transaction<span class="pl-2"><i class="fas fa-paper-plane"></i></span></button>
             </form>
           </div>
         </div>

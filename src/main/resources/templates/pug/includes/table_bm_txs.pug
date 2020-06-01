@@ -3,22 +3,16 @@
         img(th:src="@{/images/Vectorhistory.png}" alt="info_vector")
         span.p-2
             strong(style="font-size: 32px;") Transaction History
-    table.table.table-borderless.m-3
+    table#bt_tx_table.table.table-borderless.m-3
         thead
             tr
                 each n in ["Transaction ID", "Sender", "Recipient", "Value", "Block Number", "Elapsed Time"]
                     th(scope="col")= n
         tbody
             tr(th:each="list_value : ${bm_all_transactions}")
-                td.overflow_style
-                    strong(th:text="${list_value.getTransactionId()}")
-                td.overflow_style
-                    strong(th:text="${@stringUtil.getStringFromKey(list_value.getSender())}")
-                td.overflow_style
-                    strong(th:text="${@stringUtil.getStringFromKey(list_value.getRecipient())}")
-                td
-                    strong(th:text="${list_value.getValue()}")
-                td
-                    strong(th:text="${list_value.getBlockNumber()}")
-                td
-                    strong(th:text="${list_value.getBlockNumber()}")
+                td.overflow_style(th:text="${list_value.getTransactionId()}")
+                td.overflow_style(th:text="${@stringUtil.getStringFromKey(list_value.getSender())}")
+                td.overflow_style(th:text="${@stringUtil.getStringFromKey(list_value.getRecipient())}")
+                td(th:text="${list_value.getValue()}")
+                td(th:text="${list_value.getBlockNumber()}")
+                td(th:text="${list_value.getBlockNumber()}")

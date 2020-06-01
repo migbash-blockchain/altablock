@@ -12,6 +12,7 @@ var path_url = document.URL;
 if (path_url.includes('/block_explorer')) {
     getMatrixData()
     getBlockData()
+    getTxData()
 }
 
 // _________________________
@@ -33,12 +34,9 @@ function switchLayout() {
     document.getElementById('visual_view_div').classList.toggle('enabled')
 }
 
-/**
- * _________________________
- * AJAX / ASYNC UI/UX Functions
- * _________________________
- */
-
+// _________________________
+// AJAX / ASYNC UI/UX Functions
+// _________________________
 
 /**
  * [AJAX] [ASYNC] - Subimt a Transaction to the Network
@@ -60,9 +58,11 @@ async function submitTX() {
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
 
     fetch(url)
-        .then(function (res) {
-            console.log(res);
+        .then((res) => res.text())
+        .then((data) => {
+            alert(data)
         })
+        .catch((err) => console.log(err))
 }
 
 /**
@@ -154,21 +154,26 @@ async function getMatrixData() {
 
 async function getTxData() {
 
+    var table = document.getElementById("bt_tx_table");
+
     fetch('/get_blockmatrix_transactions')
         .then((res) => res.text())
         .then((data) => {
-            main_div.innerHTML = ""
             var result = JSON.parse(data)
-            // for (var tx_data of result) {
-            //     var new_div = document.createElement('div')
-            //     new_div.setAttribute('class', 'div_block')
-            //     new_div.innerHTML = tx_data.transactionId + tx_data.value + tx_data.timeStamp
-            //     main_div.appendChild(new_div)
-            // }
+            table.tBodies.innerHTML = ''
+            for (var tx_data of result) {
+                var row = table.insertRow(1);
+                row.insertCell(0).innerHTML = tx_data.transactionId
+                row.insertCell(1).innerHTML = tx_data.sender
+                row.insertCell(2).innerHTML = tx_data.recipient
+                row.insertCell(3).innerHTML = tx_data.value
+                row.insertCell(4).innerHTML = tx_data.blockNumber
+                row.insertCell(5).innerHTML = timeConverter(tx_data.timeStamp)
+            }
         })
         .catch((err) => console.log(err))
 
-    // setTimeout(getVisualMatrixData, 1000);
+    setTimeout(getTxData, 60000);
 }
 
 /**
@@ -196,13 +201,14 @@ async function getBlockData() {
             var result = JSON.parse(data)
             for (var block_data of result) {
                 i++
+
                 main_div.innerHTML +=
-                `<div class="out_block_div">
+                    `<div class="out_block_div">
                     <h6> Block #${i} </h6>
                     <div class="div_block">
                         <ul>
                             <li class="overflow_style"> Block Hash ${block_data.hash} </li>
-                            <li> TimeStamp ${block_data.timeStamp} </li>
+                            <li> TimeStamp ${timeConverter(block_data.timeStamp)} </li>
                             <li> Tx’s ${block_data.transactions.length} </li>
                         </ul>
                     </div>
@@ -210,4 +216,28 @@ async function getBlockData() {
             }
         })
         .catch((err) => console.log(err))
+
+    setTimeout(getBlockData, 60000);
+}
+
+/**
+ * [Helper Function]
+ * _____
+ * Desc:
+ * 
+ */
+
+function timeConverter(_timestamp) {
+
+    var a = new Date(_timestamp);
+    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    var year = a.getFullYear();
+    var month = months[a.getMonth()];
+    var date = a.getDate();
+    var hour = a.getHours();
+    var min = a.getMinutes();
+    var sec = a.getSeconds();
+    var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec;
+
+    return time;
 }

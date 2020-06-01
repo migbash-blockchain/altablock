@@ -12,10 +12,6 @@ section {
   background-position: right;
 }
 
-#status_bar {
-  position: relative;
-}
-
 input[type="text"], select.form-control, #msg_text {
   background: transparent;
   border: none;
@@ -39,7 +35,25 @@ table {
   table-layout: fixed;
 }
 
-table .overflow_style {
+thead {
+  border-bottom: 1px solid #dddddd;
+}
+
+tbody tr:hover {
+  -webkit-box-shadow: 0 3px 4px #dddddd;
+          box-shadow: 0 3px 4px #dddddd;
+  border-radius: 5px;
+  -webkit-transition-duration: .5s;
+          transition-duration: .5s;
+}
+
+td {
+  font-family: 'Open Sans';
+  font-size: 14px;
+  font-weight: bold;
+}
+
+td.overflow_style {
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 100%;
@@ -47,21 +61,6 @@ table .overflow_style {
   background-image: linear-gradient(90deg, #000000 35%, rgba(0, 0, 0, 0));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-
-table thead {
-  border-bottom: 1px solid #dddddd;
-}
-
-table tbody tr:hover {
-  -webkit-box-shadow: 0 3px 4px #dddddd;
-          box-shadow: 0 3px 4px #dddddd;
-  -webkit-transition-duration: .5s;
-          transition-duration: .5s;
-}
-
-table tbody tr:nth-child(n+4) {
-  display: none;
 }
 
 #table_simple {
@@ -106,6 +105,19 @@ table tbody tr:nth-child(n+4) {
   display: inline-block;
   margin: 30px;
   cursor: pointer;
+  position: relative;
+}
+
+.out_block_div::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  height: 5px;
+  background: #515151;
+  width: 60px;
+  left: 100%;
+  top: calc(50% - 2px);
+  z-index: -1;
 }
 
 .out_block_div:hover .div_block {

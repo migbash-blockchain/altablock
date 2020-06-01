@@ -43,8 +43,19 @@
     display: inline-block;
     margin: 30px;
     cursor: pointer;
+    position: relative;
 
-    
+    &::after
+        content: " ";
+        display: block;
+        position: absolute;
+        height: 5px;
+        background: $primary_dark;
+        width: 60px;
+        left: 100%;
+        top: calc(50% - 2px);
+        z-index: -1;
+
     &:hover .div_block
         background-color: $secondary_light;
         color: $primary_light;

@@ -10,7 +10,7 @@
   </head>
   <body>
     <section>
-      <div class="container text-center m-3" id="status_bar">
+      <div class="container text-center" id="status_bar">
         <div class="info p-2 m-3"><strong class="mr-2">Test Net</strong><span class="dot"></span></div>
         <div class="info p-2 m-3"><img style="width: 16px; height: 16px;" th:src="@{/images/Iconstatus.png}" alt="info_vector"><strong class="mr-2 ml-2">BlockMatrix Status |</strong><strong th:text="${bm_verify}"> </strong></div>
       </div>
@@ -62,7 +62,7 @@
             <div class="col-lg-7" id="table_simple">
               <div class="container">
                 <div class="container" style="display: flex; align-items: center;"><img th:src="@{/images/Vectorhistory.png}" alt="info_vector"><span class="p-2"><strong style="font-size: 32px;">Transaction History</strong></span></div>
-                <table class="table table-borderless m-3">
+                <table class="table table-borderless m-3" id="bt_tx_table">
                   <thead>
                     <tr>
                       <th scope="col">Transaction ID</th>
@@ -75,12 +75,12 @@
                   </thead>
                   <tbody>
                     <tr th:each="list_value : ${bm_all_transactions}">
-                      <td class="overflow_style"><strong th:text="${list_value.getTransactionId()}"></strong></td>
-                      <td class="overflow_style"><strong th:text="${@stringUtil.getStringFromKey(list_value.getSender())}"></strong></td>
-                      <td class="overflow_style"><strong th:text="${@stringUtil.getStringFromKey(list_value.getRecipient())}"></strong></td>
-                      <td><strong th:text="${list_value.getValue()}"></strong></td>
-                      <td><strong th:text="${list_value.getBlockNumber()}"></strong></td>
-                      <td><strong th:text="${list_value.getBlockNumber()}"></strong></td>
+                      <td class="overflow_style" th:text="${list_value.getTransactionId()}"></td>
+                      <td class="overflow_style" th:text="${@stringUtil.getStringFromKey(list_value.getSender())}"></td>
+                      <td class="overflow_style" th:text="${@stringUtil.getStringFromKey(list_value.getRecipient())}"></td>
+                      <td th:text="${list_value.getValue()}"></td>
+                      <td th:text="${list_value.getBlockNumber()}"></td>
+                      <td th:text="${list_value.getBlockNumber()}"></td>
                     </tr>
                   </tbody>
                 </table>

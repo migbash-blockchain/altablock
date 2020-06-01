@@ -3,6 +3,7 @@ package blockmatrix.model;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import blockmatrix.helpers.StringUtil;
 
@@ -172,19 +173,19 @@ public class Transaction {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        // sb.append("\n Transaction Details");
+        sb.append("\n Transaction Details");
         sb.append("\n transactionId: ");
         sb.append(transactionId);
-        // sb.append("\n sender: ");
-        // sb.append(sender);
-        // sb.append("\n recipient: ");
-        // sb.append(recipient);
+        sb.append("\n sender: ");
+        sb.append(sender);
+        sb.append("\n recipient: ");
+        sb.append(recipient);
         sb.append("\n value: ");
         sb.append(value);
         sb.append("\n info: ");
         sb.append(info);
-        // sb.append("\n signature: ");
-        // sb.append(Arrays.toString(signature));
+        sb.append("\n signature: ");
+        sb.append(Arrays.toString(signature));
         return sb.toString();
     }
 }

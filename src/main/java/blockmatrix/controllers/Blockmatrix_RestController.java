@@ -14,6 +14,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -130,11 +131,9 @@ public class Blockmatrix_RestController {
         return new GsonBuilder().setPrettyPrinting().create().toJson(new_blockMatrix.getAllTransactions()); 
     }
 
-    /**
-     * ====================
-     * === User Actions ===
-     * ====================
-     */
+    // ====================
+    // === User Actions ===
+    // ====================
 
     /**
      * [REST API] - Genreate New Wallet
@@ -163,11 +162,12 @@ public class Blockmatrix_RestController {
 
     @RequestMapping(path = "/send_funds")
     @ResponseStatus(HttpStatus.CREATED)
-    public void send_funds(@RequestParam(value = "funds", required = true) float value,
+    public ResponseEntity<String> send_funds(@RequestParam(value = "funds", required = true) float value,
         @RequestParam(value = "msg", required = true) String msg) {
         Block n_block = new Block();
-        n_block.add_Transaction_To_Block(wallet_genesis.send_Wallet_Funds(new_wallet.getPublicKey(), value, msg));
+        Boolean tx_state = n_block.add_Transaction_To_Block(wallet_genesis.send_Wallet_Funds(new_wallet.getPublicKey(), value, msg));
         new_blockMatrix.add_Block(n_block);
+        return new ResponseEntity<String>(tx_state.toString(), HttpStatus.OK);
     }
 
     @RequestMapping(path = "/modify_transaction_info")
@@ -177,10 +177,10 @@ public class Blockmatrix_RestController {
         new_blockMatrix.modifyTXinfo_InBM(blockNumber, transactionNumber, new_info);
     }
 
-    //    @Scheduled(fixedRate = 5000) // ms = (5 sec)
-    //    @RequestMapping("/add_block")
-    //    public void add_block(){
-    //        new_blockMatrix.add_Block(new_block);
-    //    }
-
+    @Scheduled(fixedRate = 10000) // ms = (60 sec)
+    @RequestMapping("/add_block")
+    public void add_block(){
+        new_block = new Block();
+        new_blockMatrix.add_Block(new_block);
+    }
 }

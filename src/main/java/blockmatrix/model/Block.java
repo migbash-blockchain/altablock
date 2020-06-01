@@ -5,6 +5,7 @@ import java.util.Date;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import blockmatrix.helpers.StringUtil;
 
@@ -14,6 +15,7 @@ import blockmatrix.helpers.StringUtil;
  * the "blockmatrix"
  */
 
+@Component
 public class Block {
 
     Logger logger = LoggerFactory.getLogger(Block.class);
