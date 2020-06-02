@@ -1,3 +1,5 @@
+![Java CI with Maven](https://github.com/migbash/blockmatrix_wallet/workflows/Java%20CI%20with%20Maven/badge.svg?branch=master)
+
 This is an example of a DeFI Blockchain structure using the BlockMatrix Structure.
 ---
 
