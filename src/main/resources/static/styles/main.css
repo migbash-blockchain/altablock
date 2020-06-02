@@ -1,15 +1,22 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
-h6 {
+body {
   font-family: 'Open Sans';
-  font-size: 14px;
 }
 
 section {
-  min-height: 100vh;
-  background-image: url(../../images/Theme.png);
+  height: 100vh;
+  background-image: url(../../images/block_explorer_theme.png);
   background-repeat: no-repeat;
   background-size: contain;
   background-position: right;
+}
+
+h5 {
+  font-size: 12px;
+}
+
+h6 {
+  font-size: 14px;
 }
 
 input[type="text"], select.form-control, #msg_text {
@@ -65,34 +72,39 @@ td.overflow_style {
 
 #table_simple {
   zoom: 0.65;
+  height: 500px;
+  overflow-y: scroll;
 }
 
 #matrix_search {
+  margin: 10px;
+  padding: 10px;
+  -webkit-box-shadow: 0px 4px 4px black;
+          box-shadow: 0px 4px 4px black;
+  border-radius: 10px;
   background-color: #708FFE;
   color: #ffffff;
+  outline: none;
 }
 
 #simple_view_div {
   display: none;
 }
 
-#simple_view_div .row .col {
+#simple_view_div .innerDiv {
+  margin: 10px;
+  padding: 10px;
   -webkit-box-shadow: 0px 4px 4px black;
           box-shadow: 0px 4px 4px black;
-  padding: 15px;
-  margin: 25px;
   border-radius: 10px;
+  background-color: #ffffff;
 }
 
-#simple_view_div .row .col:hover {
+#simple_view_div .innerDiv:hover {
   background-color: #708FFE;
   color: #ffffff;
   -webkit-transition-duration: 0.2s;
           transition-duration: 0.2s;
-}
-
-#simple_view_div .row .col h5 {
-  font-size: 12px;
 }
 
 #visual_view_div {
@@ -209,8 +221,7 @@ footer #cpy_right {
   border-radius: 5px;
   text-decoration: none;
   display: inline-block;
-  font-sizes: 12px;
-  font-family: "Open Sans";
+  font-size: 12px;
   font-weight: bold;
   -webkit-transition-duration: 0.5s;
           transition-duration: 0.5s;
@@ -232,8 +243,7 @@ footer #cpy_right {
   border-radius: 5px;
   text-decoration: none;
   display: inline-block;
-  font-sizes: 12px;
-  font-family: "Open Sans";
+  font-size: 12px;
   font-weight: bold;
   -webkit-transition-duration: 0.5s;
           transition-duration: 0.5s;
@@ -253,8 +263,7 @@ footer #cpy_right {
   border-radius: 5px;
   text-decoration: none;
   display: inline-block;
-  font-sizes: 12px;
-  font-family: "Open Sans";
+  font-size: 12px;
   font-weight: bold;
   -webkit-transition-duration: 0.5s;
           transition-duration: 0.5s;
@@ -276,8 +285,7 @@ footer #cpy_right {
   border-radius: 5px;
   text-decoration: none;
   display: inline-block;
-  font-sizes: 12px;
-  font-family: "Open Sans";
+  font-size: 12px;
   font-weight: bold;
   -webkit-transition-duration: 0.5s;
           transition-duration: 0.5s;

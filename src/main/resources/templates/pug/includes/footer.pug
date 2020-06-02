@@ -1,16 +1,17 @@
 footer
-    .row.p-4
-        .col-sm-3
-            img(th:src="@{/images/logo_footer.png}" alt="Atla Logo")
-        .col-sm-3
-            ul
-                +footer_menu("Home", "/")
-                +footer_menu("About", "/")
-                +footer_menu("Contact", "/")
+    .container-fluid
+        .row.p-4
+            .col-sm-3.text-center
+                img(th:src="@{/images/logo_footer.png}" alt="Atla Logo")
+            .col-sm-3
+                ul
+                    +footer_menu("Home", "/")
+                    +footer_menu("About", "/")
+                    +footer_menu("Contact", "/")
 
-        .col-sm-3
-            ul
-                +footer_menu("Wallet", "/wallet")
-                +footer_menu("Block Explorer", "/block_explorer")
+            .col-sm-3
+                ul
+                    +footer_menu("Wallet", "/wallet")
+                    +footer_menu("Block Explorer", "/block_explorer")
 
     #cpy_right Copyright @ 2020 Atla

@@ -160,9 +160,9 @@ async function getTxData() {
         .then((res) => res.text())
         .then((data) => {
             var result = JSON.parse(data)
-            table.getElementsByTagName('tbody').innerHTML = ''
+            // document.getElementById('contents').innerHTML = ''
             for (var tx_data of result) {
-                var row = table.insertRow(1);
+                var row = document.getElementById('contents').insertRow(0);
                 row.insertCell(0).innerHTML = tx_data.transactionId
                 row.insertCell(1).innerHTML = tx_data.sender
                 row.insertCell(2).innerHTML = tx_data.recipient
@@ -173,7 +173,7 @@ async function getTxData() {
         })
         .catch((err) => console.log(err))
 
-    setTimeout(getTxData, 60000);
+    setTimeout(getTxData, 1000);
 }
 
 /**

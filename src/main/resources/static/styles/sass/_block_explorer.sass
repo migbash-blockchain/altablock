@@ -1,10 +1,18 @@
+@mixin info_block_div()
+    margin: 10px;
+    padding: 10px;
+    box-shadow: 0px 4px 4px black;
+    border-radius: 10px;
+
 // _____________
 // BLockExplorer Global View
 // _____________
     
 #matrix_search
+    @include info_block_div();
     background-color: #708FFE;
     color: $primary_light;
+    outline: none;
     
 // _____________
 // BLockExplorer Simple View
@@ -13,23 +21,15 @@
 #simple_view_div
     display: none;
 
-    .row
-        .col
-            box-shadow: 0px 4px 4px black;
-            padding: 15px;
-            margin: 25px;
-            border-radius: 10px;
+    .innerDiv
+        @include info_block_div();
+        background-color: $primary_light;
 
-            &:hover
-                background-color: #708FFE;
-                color: $primary_light;
-                transition-duration: 0.2s;
-        
-            h5
-                font-size: 12px;
-
-        
-
+        &:hover
+            background-color: #708FFE;
+            color: $primary_light;
+            transition-duration: 0.2s;
+    
 // _____________
 // BLockExplorer Visual View
 // _____________
