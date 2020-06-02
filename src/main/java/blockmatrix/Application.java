@@ -16,7 +16,7 @@ public class Application {
 
     private Wallet wallet_genesis;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider()); // [Works]
 
@@ -28,12 +28,12 @@ public class Application {
     }
 
     @Bean
-    public Wallet wallet_genesis(){
+    public Wallet wallet_genesis() throws Exception {
         return wallet_genesis;
     }
 
     @Bean
-    public BlockMatrix new_blockMatrix() {
+    public BlockMatrix new_blockMatrix() throws Exception {
         BlockMatrix bm = new BlockMatrix(10000);                        // instantiate new BlockMatrix
         bm.setUpSecurity();                                             // apply block security to the BlockMatrix
         bm.setMinimumTransaction(3.0F);                                 // ..
@@ -44,12 +44,12 @@ public class Application {
     }
 
     @Bean
-    public Block new_block() {
+    public Block new_block() throws Exception {
         return new Block();
     }
 
     @Bean
-    public Wallet new_wallet() {
+    public Wallet new_wallet() throws Exception {
         return new Wallet();
     }
 }
