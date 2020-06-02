@@ -138,8 +138,7 @@ public class Blockmatrix_RestController {
     @RequestMapping(path = "/access_wallet")
     public ResponseEntity<String> accessWallet(@RequestParam(value = "pub_key", required = true) String pub_key, 
         @RequestParam(value = "priv_key", required = true) String priv_key) {
-
-        return new ResponseEntity<>(HttpStatus.OK)
+        return new ResponseEntity<>(HttpStatus.OK);
     }
             
 
