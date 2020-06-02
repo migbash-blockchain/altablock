@@ -1,6 +1,11 @@
 package blockmatrix.helpers;
 
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
+
 import java.security.*;
+import java.security.spec.X509EncodedKeySpec;
+import java.security.spec.ECGenParameterSpec;
+import java.security.spec.PKCS8EncodedKeySpec;
 import java.util.ArrayList;
 import java.util.Base64;
 
@@ -9,7 +14,7 @@ import org.springframework.stereotype.Component;
 import blockmatrix.model.Transaction;
 
 /**
- * This Class is used for using for:
+ * This a Helper Class used for using for:
  * 
  *  - (Return String) Generating a "SHA256" from a String
  *  - (Return byte[] Array) Apply ECDSA "Signatures" & verify its validity
@@ -23,25 +28,29 @@ public class StringUtil {
     // _________________
     // Class Methods
 
+    /**
+     * Steps:
+     * 
+     * - 'MessageDigest digest' - instantiate the use of SHA-256 encoding,
+     * - 'byte[] hash' - applies SHA-256 to our transaction input, forming an array of bytes
+     * - 'hexString' - will contain hash as hexi-decimal,
+     * 
+     */
+
     public static String apply_Sha256(String input){
 
         try {
-            MessageDigest digest = MessageDigest.getInstance("SHA-256");                 // instantiate the use of SHA-256 encoding,
-
-            byte[] hash = digest.digest(input.getBytes("UTF-8"));            // applies SHA-256 to our transaction input, forming an array of bytes
-            StringBuilder hexString = new StringBuilder();                               // 'this' will contain hash as hexi-decimal,
-
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hash = digest.digest(input.getBytes("UTF-8"));
+            StringBuilder hexString = new StringBuilder();
             for (byte b : hash) {
                 String hex = Integer.toHexString(0xff & b);
-
                 if (hex.length() == 1) {
                     hexString.append('0');
                 }
-
                 hexString.append(hex);
             }
             return hexString.toString();
-
         } catch(Exception e) {
             throw new RuntimeException(e);
         }
@@ -83,16 +92,28 @@ public class StringUtil {
     }
 
     // _________________
-    // Class Getters
+    // Helper Methods / Functions
 
     public static String getStringFromKey(Key key) {
         return Base64.getEncoder().encodeToString(key.getEncoded());
     }
 
+    public static PublicKey getPublickKeyFromString(String keyString) {
+        try {
+            KeyFactory ecKeyFac = KeyFactory.getInstance("ECDSA", "BC");
+            byte [] byte_pubkey  = Base64.getDecoder().decode(keyString);
+            X509EncodedKeySpec x509EncodedKeySpec = new X509EncodedKeySpec(byte_pubkey);
+            PublicKey publicKey2 = ecKeyFac.generatePublic(x509EncodedKeySpec);
+            return publicKey2;
+        } catch(Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static String getMerkleRoot(ArrayList<Transaction> transactions) {
         // Takes an array of transactions and returns a merkle root.
 
-        int count = transactions.size();                                         // size of transaction list in a block
+        int count = transactions.size();                                              // size of transaction list in a block
 
         ArrayList<String> previousTreeLayer = new ArrayList<String>();                // instantiate a treeLayer List
 

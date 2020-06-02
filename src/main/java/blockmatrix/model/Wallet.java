@@ -20,13 +20,18 @@ public class Wallet {
     // __________________
     // Class Variables
 
-    private PrivateKey privateKey;                                           // 'this' wallet private Key
-    private PublicKey publicKey;                                             // 'this' wallet public Key
+    private PrivateKey privateKey;                                           // 'this' wallets private Key
+    private PublicKey publicKey;                                             // 'this' wallets public Key
     private HashMap<String, Transaction_Output> UTXOs = new HashMap<>();     // only UTXOs owned by this wallet.
     private ArrayList<Transaction> transaction_list = new ArrayList<>();     // only transactions made by this wallet.
 
     // __________________
     // Class Constructors
+
+    public Wallet(PrivateKey privateKey, PublicKey publicKey) {
+        this.privateKey = privateKey;
+        this.publicKey = publicKey;
+    }
 
     public Wallet() { generate_Wallet_KeyPair(); }
 
