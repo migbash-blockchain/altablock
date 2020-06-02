@@ -1,5 +1,5 @@
 ![Java CI with Maven](https://github.com/migbash/blockmatrix_wallet/workflows/Java%20CI%20with%20Maven/badge.svg?branch=master)
-![Heroku](http://heroku-badge.herokuapp.com/?app=angularjs-crypto&style=flat&svg=1)
+![Heroku](https://pyheroku-badge.herokuapp.com/?app=stark-waters-45204&style=flat)
 
 Live Example -> https://stark-waters-45204.herokuapp.com/wallet
 
