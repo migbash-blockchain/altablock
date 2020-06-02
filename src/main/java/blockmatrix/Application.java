@@ -34,7 +34,7 @@ public class Application {
 
     @Bean
     public BlockMatrix new_blockMatrix() throws Exception {
-        BlockMatrix bm = new BlockMatrix(10000);                        // instantiate new BlockMatrix
+        BlockMatrix bm = new BlockMatrix(100);                          // instantiate new BlockMatrix
         bm.setUpSecurity();                                             // apply block security to the BlockMatrix
         bm.setMinimumTransaction(3.0F);                                 // ..
         wallet_genesis = new Wallet();                                  // instantiate a genesis Wallet
