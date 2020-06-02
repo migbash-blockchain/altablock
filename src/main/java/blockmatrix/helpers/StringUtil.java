@@ -103,8 +103,20 @@ public class StringUtil {
             KeyFactory ecKeyFac = KeyFactory.getInstance("ECDSA", "BC");
             byte [] byte_pubkey  = Base64.getDecoder().decode(keyString);
             X509EncodedKeySpec x509EncodedKeySpec = new X509EncodedKeySpec(byte_pubkey);
-            PublicKey publicKey2 = ecKeyFac.generatePublic(x509EncodedKeySpec);
-            return publicKey2;
+            PublicKey publicKey = ecKeyFac.generatePublic(x509EncodedKeySpec);
+            return publicKey;
+        } catch(Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static PrivateKey getPrivetKeyFromString(String keyString) {
+        try {
+            KeyFactory ecKeyFac = KeyFactory.getInstance("ECDSA", "BC");
+            byte [] byte_privKey  = Base64.getDecoder().decode(keyString);
+            PKCS8EncodedKeySpec pkcs8EncodedKeySpec = new PKCS8EncodedKeySpec(byte_privKey);
+            PrivateKey privateKey = ecKeyFac.generatePrivate(pkcs8EncodedKeySpec);
+            return privateKey;
         } catch(Exception e) {
             throw new RuntimeException(e);
         }

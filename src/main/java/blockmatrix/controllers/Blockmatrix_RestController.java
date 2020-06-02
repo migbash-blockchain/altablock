@@ -1,5 +1,7 @@
 package blockmatrix.controllers;
 
+import java.security.PrivateKey;
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -138,7 +140,15 @@ public class Blockmatrix_RestController {
     @RequestMapping(path = "/access_wallet")
     public ResponseEntity<String> accessWallet(@RequestParam(value = "pub_key", required = true) String pub_key, 
         @RequestParam(value = "priv_key", required = true) String priv_key) {
-        return new ResponseEntity<>(HttpStatus.OK);
+
+        PublicKey publicKey = StringUtil.getPublickKeyFromString(pub_key);
+        PrivateKey privateKey = StringUtil.getPrivetKeyFromString(priv_key);
+        Wallet user_importWallet = new Wallet(privateKey, publicKey);
+        
+        Map<String, Object> response = new HashMap<>();
+        response.put("response", "Wallet Created! :)")
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
             
 
