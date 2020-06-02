@@ -1,10 +1,7 @@
 package blockmatrix.helpers;
 
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
-
 import java.security.*;
 import java.security.spec.X509EncodedKeySpec;
-import java.security.spec.ECGenParameterSpec;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.util.ArrayList;
 import java.util.Base64;
