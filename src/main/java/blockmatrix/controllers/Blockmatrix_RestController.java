@@ -138,7 +138,7 @@ public class Blockmatrix_RestController {
     // ====================
 
     @RequestMapping(path = "/access_wallet")
-    public ResponseEntity<String> accessWallet(@RequestParam(value = "pub_key", required = true) String pub_key, 
+    public ResponseEntity<Object> accessWallet(@RequestParam(value = "pub_key", required = true) String pub_key, 
         @RequestParam(value = "priv_key", required = true) String priv_key) {
 
         PublicKey publicKey = StringUtil.getPublickKeyFromString(pub_key);
@@ -146,7 +146,7 @@ public class Blockmatrix_RestController {
         Wallet user_importWallet = new Wallet(privateKey, publicKey);
         
         Map<String, Object> response = new HashMap<>();
-        response.put("response", "Wallet Created! :)")
+        response.put("response", "Wallet Created! :)");
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
