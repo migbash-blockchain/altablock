@@ -15,8 +15,9 @@
         <div class="info p-2 m-3"><img style="width: 16px; height: 16px;" th:src="@{/images/Iconstatus.png}" alt="info_vector"><strong class="mr-2 ml-2">BlockMatrix Status |</strong><strong th:text="${bm_verify}"> </strong></div>
       </div>
       <div class="container p-3">
-        <div class="container m-2" style="display: flex; align-items: center;"><img style="width: 48px; height: 48px;" th:src="@{/images/vector_cube.png}" alt="block_vector"><span class="p-2"><strong style="font-size: 32px;">Block Explorer</strong></span></div>
-        <div class="container m-2" style="display: flex; align-items: center;"><img style="width: 16px; height: 16px;" th:src="@{/images/info_vector.png}" alt="info_vector"><span class="p-2">Here you can find all of the details and in-depth information about the blockmatrix and<br>discover all of the available RESTful APIs availble on the network.</span></div>
+        <header class="container" style="display: flex; align-items: center;"><img style="width: 48px; height: 48px;" th:src="@{/images/vector_cube.png}" alt="Block Explorer"/><span class="p-2">
+            <h2>Block Explorer</h2></span></header>
+        <div class="container" style="display: flex; align-items: center;"><img style="width: 16px; height: 16px;" th:src="@{/images/info_vector.png}" alt="info_vector"/><span class="p-2">Here you can find all of the details and in-depth information about the blockmatrix and discover all of the available RESTful APIs availble on the network.</span></div>
         <div class="container m-2">
           <button class="button_main" id="simple_view_btn" type="button">Simple</button>
           <button class="button_main" id="visual_view_btn" type="button">Visual</button>

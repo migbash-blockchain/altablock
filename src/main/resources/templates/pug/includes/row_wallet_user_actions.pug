@@ -5,21 +5,21 @@
         .col-lg-5
             .container#walletProfile_cont
                 h3 Wallet Profile
-                .row
+                .row.text-center
                     .col
                         img.img-fluid(th:src="@{/images/user_1.png}" alt="user_img")
-                        h5 ~mbash
-                    .col
-                        h5 Balance
-                        h4
-                            span(th:text="${balance}") 
-                            span.p-2(style="font-size: 18px; color: #00A3FF;")
-                                strong Mx's
-                .row
-                    .btn-group
+                        h6 ~mbash
+                    .col.text-left
+                        .div(style="position: absolute; bottom: 0px;")
+                            h6 Balance
+                            h4
+                                span(th:text="${balance}") 
+                                span.p-2(style="font-size: 18px; color: #00A3FF;") Mx's
+                .row.p-2
+                    .container(style="display: flex; justify-content: space-around; padding: 5px;")
                         +main_btn_img("Copy Wallet Address", "@{/images/Vector_copy.png}")(id="cpy_pub_add" th:alt="${pub_address}")
                         +main_btn_img("View Private Key", "@{/images/Key Vector_key.png}")(id="view_keys")
-                    .btn-group
+                    .container(style="display: flex; justify-content: space-around; padding: 5px;")
                         +main_btn_img("Generate New wallet", "@{/images/NewWallet_icon_wallet.png}")(id="new_wallet")
                         +main_btn_img("Open new wallet", "@{/images/Vector_access.png}")(id="access_wallet")
 
@@ -33,5 +33,5 @@
                     +input_form("Amount", "amount")
                     label(for="msg_text" class="control-label") Transaction Message
                     div#msg_text(contenteditable required)
-                button#sendTx.button_main_light_hollow Send Transaction
+                button#sendTx.button_main_light_hollow Send Funds
                     img(th:src="@{/images/Vector_send.png}" alt="send_vector")

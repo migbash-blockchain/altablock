@@ -17,20 +17,23 @@
         color: $primary_light;
 
 .button_main_dark
-    @include button_struct($primary_light, $secondary_dark);
-    background-color: #708FFE;
-    font-size:12px;
-    color: white;
+    @include button_struct(#708FFE, $primary_light);
+    font-size: 12px;
 
     &:hover, &:focus, &:active
         background-color: $primary_light;
         color: black;
+        border: 1px solid black;
         
 
 .button_main_light_hollow
     @include button_struct(transparent, $primary_light);
     border: 1px solid $primary_light;
     font-size: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100px;
 
     &:hover
         background-color: $primary_light;

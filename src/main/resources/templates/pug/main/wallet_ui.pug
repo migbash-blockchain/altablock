@@ -1,12 +1,12 @@
 extends ../layouts/main_layout.pug
 
-//- _________________________
-//- Start of HTML file
-
+//- Start of New HTML file
 block content
 
-    //- Header
-    +header_page("Wallet Dashboard", "@{/images/Vector_wallet.png}")
+    .container.p-3
+
+        //- Header
+        +header_page("Wallet Dashboard", "@{/images/Vector_wallet.png}", "This is a simple user interface wallet dashboard from where the user can interact with the blockmatrix, manage their wallet information, view their transaction history and execute transactions to the network.")
 
     //- User Wallet Actions
     include ../includes/row_wallet_user_actions.pug

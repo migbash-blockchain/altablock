@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
 html, body {
   margin: 0px;
 }
@@ -168,25 +169,26 @@ table {
   table-layout: fixed;
 }
 
-thead {
+table thead {
   border-bottom: 1px solid #dddddd;
 }
 
-tbody tr:hover {
+table tbody tr:hover {
   -webkit-box-shadow: 0 3px 4px #dddddd;
           box-shadow: 0 3px 4px #dddddd;
   border-radius: 5px;
   -webkit-transition-duration: .5s;
           transition-duration: .5s;
+  cursor: pointer;
 }
 
-td {
+table tbody td {
   font-family: 'Open Sans';
   font-size: 14px;
   font-weight: bold;
 }
 
-td.overflow_style {
+table tbody td.overflow_style {
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 100%;
@@ -240,7 +242,6 @@ footer #cpy_right {
   padding: 2px 8px;
   border-radius: 5px;
   text-decoration: none;
-  display: inline-block;
   font-size: 12px;
   font-weight: bold;
   -webkit-transition-duration: 0.5s;
@@ -266,7 +267,6 @@ footer #cpy_right {
   padding: 2px 8px;
   border-radius: 5px;
   text-decoration: none;
-  display: inline-block;
   font-size: 12px;
   font-weight: bold;
   -webkit-transition-duration: 0.5s;
@@ -286,20 +286,20 @@ footer #cpy_right {
   padding: 2px 8px;
   border-radius: 5px;
   text-decoration: none;
-  display: inline-block;
   font-size: 12px;
   font-weight: bold;
   -webkit-transition-duration: 0.5s;
           transition-duration: 0.5s;
-  background-color: #ffffff;
-  color: #000000;
-  margin: 0px 5px;
   background-color: #708FFE;
+  color: #ffffff;
+  margin: 0px 5px;
+  font-size: 12px;
 }
 
 .button_main_dark:hover, .button_main_dark:focus, .button_main_dark:active {
   background-color: #ffffff;
   color: black;
+  border: 1px solid black;
 }
 
 .button_main_light_hollow {
@@ -307,7 +307,6 @@ footer #cpy_right {
   padding: 2px 8px;
   border-radius: 5px;
   text-decoration: none;
-  display: inline-block;
   font-size: 12px;
   font-weight: bold;
   -webkit-transition-duration: 0.5s;
@@ -317,6 +316,15 @@ footer #cpy_right {
   margin: 0px 5px;
   border: 1px solid #ffffff;
   font-size: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100px;
 }
 
 .button_main_light_hollow:hover {
@@ -333,7 +341,6 @@ footer #cpy_right {
   padding: 2px 8px;
   border-radius: 5px;
   text-decoration: none;
-  display: inline-block;
   font-size: 12px;
   font-weight: bold;
   -webkit-transition-duration: 0.5s;

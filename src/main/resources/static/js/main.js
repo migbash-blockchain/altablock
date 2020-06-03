@@ -8,15 +8,23 @@ if (path_url.includes('/block_explorer')) {
 
     document.getElementById('simple_view_btn').addEventListener('click', switchLayout)
     document.getElementById('visual_view_btn').addEventListener('click', switchLayout)
+
     getMatrixData()
     getBlockData()
     getTxData()
+
 } else if (path_url.includes('/wallet')) {
 
-    document.getElementById('cpy_pub_add').addEventListener('click', copyClipboard(this))
+    document.getElementById('cpy_pub_add').addEventListener('click', function () {
+        copyClipboard(this)
+    })
+    document.getElementById('select_tx_btn').addEventListener('click', function () {
+        clearData(this)
+    })
     // document.getElementById('view_keys').addEventListener('click', submitTX)
     document.getElementById('new_wallet').addEventListener('click', createNewWallet)
-    document.getElementById('access_wallet').addEventListener('click', submitTX)
+    // document.getElementById('access_wallet').addEventListener('click', submitTX)
+    document.getElementById('sendTx').addEventListener('click', submitTX)
 }
 
 // -------------------------
@@ -38,14 +46,9 @@ function switchLayout() {
     document.getElementById('visual_view_div').classList.toggle('enabled')
 }
 
-// _________________________
-// AJAX / ASYNC UI/UX Functions
-// _________________________
-
-/**
- * [AJAX] [ASYNC] - Subimt a Transaction to the Network
- * 
- */
+// -------------------------
+// AJAX/ASYNC Functions
+// -------------------------
 
 async function submitTX() {
 
@@ -68,13 +71,6 @@ async function submitTX() {
         })
         .catch((err) => console.log(err))
 }
-
-/**
- * [AJAX} [ASYNC] - Modify TX Info
- * 
- * @param {*} x 
- * 
- */
 
 async function clearData(x) {
 
@@ -109,7 +105,6 @@ async function clearData(x) {
  * - Pass New Wallet Parameters to the user
  * 
  */
-
 async function createNewWallet() {
 
     fetch('/generate_new_wallet')
@@ -132,7 +127,6 @@ async function createNewWallet() {
  * - Populate target html DOM elements with respective data;
  * - Repeat every 1 min (60s)
  */
-
 async function getMatrixData() {
 
     fetch('/get_blockmatrix')
@@ -155,7 +149,6 @@ async function getMatrixData() {
  * _______
  * Process:
  */
-
 async function getTxData() {
 
     var table = document.getElementById('bt_tx_table');
@@ -192,7 +185,6 @@ async function getTxData() {
  * - Repeat every 1 min (60s)
  * 
  */
-
 async function getBlockData() {
 
     var main_div = document.getElementById('visual_view_div')
@@ -229,7 +221,6 @@ async function getBlockData() {
  * Desc:
  * 
  */
-
 function timeConverter(_timestamp) {
 
     var a = new Date(_timestamp);

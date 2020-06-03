@@ -1,11 +1,14 @@
 //- ----------------------
 //-     Heading
 //- ----------------------
-mixin header_page(headText, img_src)
-     header.container.m-5(style="display: flex; align-items: center;")
+mixin header_page(headText, img_src, info_txt1)
+    header.container(style="display: flex; align-items: center;")
         img(style="width: 48px; height: 48px;" th:src=img_src alt= headText)
         span.p-2
-            h1= headText
+            h2= headText
+    .container(style="display: flex; align-items: center;")
+      img(style="width: 16px; height: 16px;" th:src="@{/images/info_vector.png}" alt="info_vector")
+      span.p-2= info_txt1
 
 //- ----------------------
 //-       Buttons
@@ -13,7 +16,7 @@ mixin header_page(headText, img_src)
 mixin main_btn_img(btnText, img_src)
     button.button_main(type="button")&attributes(attributes)
         img(th:src=img_src alt= btnText)
-        span.pl-2= btnText
+        span= btnText
 
 //- ----------------------
 //-     Input Forms

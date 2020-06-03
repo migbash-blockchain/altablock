@@ -2,23 +2,11 @@ extends ../layouts/main_layout.pug
 
 block content
 
-  //- _________________________
-  //- Block Explorer Header
   .container.p-3
 
-    .container.m-2(style="display: flex; align-items: center;")
-      img(style="width: 48px; height: 48px;" th:src="@{/images/vector_cube.png}" alt="block_vector")
-      span.p-2
-        strong(style="font-size: 32px;") Block Explorer
+    //- Header
+    +header_page("Block Explorer", "@{/images/vector_cube.png}", "Here you can find all of the details and in-depth information about the blockmatrix and discover all of the available RESTful APIs availble on the network.")
 
-    .container.m-2(style="display: flex; align-items: center;")
-      img(style="width: 16px; height: 16px;" th:src="@{/images/info_vector.png}" alt="info_vector")
-      span.p-2
-        | Here you can find all of the details and in-depth information about the blockmatrix and
-        br
-        | discover all of the available RESTful APIs availble on the network.
-
-    //- _________________________
     //- Switch Between Visual & Simple Blockexplorer
     .container.m-2
       button#simple_view_btn.button_main(type="button") Simple
@@ -26,12 +14,10 @@ block content
 
   #simple_view_div.container.p-3.enabled
 
-    //- _________________________
     //- [Simple View] BlockMatrix
     include ../includes/block_explorer_simple.pug
 
   #visual_view_div.container.p-3
 
-    //- _________________________
     //- [Visual View] BLockMatrix [Deleted]
     //- include ../includes/block_explorer_visual.pug
