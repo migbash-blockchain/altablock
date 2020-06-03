@@ -37,12 +37,11 @@
               </div>
               <div class="row p-2">
                 <div class="container" style="display: flex; justify-content: space-around; padding: 5px;">
-                  <button class="button_main" type="button" id="cpy_pub_add" th:alt="${pub_address}"><img th:src="@{/images/Vector_copy.png}" alt="Copy Wallet Address"/><span>Copy Wallet Address</span></button>
-                  <button class="button_main" type="button" id="view_keys"><img th:src="@{/images/Key Vector_key.png}" alt="View Private Key"/><span>View Private Key</span></button>
-                </div>
-                <div class="container" style="display: flex; justify-content: space-around; padding: 5px;">
-                  <button class="button_main" type="button" id="new_wallet"><img th:src="@{/images/NewWallet_icon_wallet.png}" alt="Generate New wallet"/><span>Generate New wallet</span></button>
-                  <button class="button_main" type="button" id="access_wallet"><img th:src="@{/images/Vector_access.png}" alt="Open new wallet"/><span>Open new wallet</span></button>
+                  <button class="button_main" type="button" id="cpy_pub_add" th:alt="${pub_address}">
+                    <svg>
+                      <use th:xlink:href="@{/images/Vector_copy.svg#copy_icon}"></use>
+                    </svg>
+                  </button>
                 </div>
               </div>
             </div>

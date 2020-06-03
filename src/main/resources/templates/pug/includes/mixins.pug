@@ -18,6 +18,12 @@ mixin main_btn_img(btnText, img_src)
         img(th:src=img_src alt= btnText)
         span= btnText
 
+mixin img_btn(img_src)
+    button.button_main(type="button")&attributes(attributes)
+        //- object(th:data=img_src type="image/svg+xml" style="fill:red;")
+        svg
+            use(th:xlink:href= img_src)
+        
 //- ----------------------
 //-     Input Forms
 //- ----------------------

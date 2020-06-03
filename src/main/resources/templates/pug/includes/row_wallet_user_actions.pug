@@ -17,11 +17,10 @@
                                 span.p-2(style="font-size: 18px; color: #00A3FF;") Mx's
                 .row.p-2
                     .container(style="display: flex; justify-content: space-around; padding: 5px;")
-                        +main_btn_img("Copy Wallet Address", "@{/images/Vector_copy.png}")(id="cpy_pub_add" th:alt="${pub_address}")
-                        +main_btn_img("View Private Key", "@{/images/Key Vector_key.png}")(id="view_keys")
-                    .container(style="display: flex; justify-content: space-around; padding: 5px;")
-                        +main_btn_img("Generate New wallet", "@{/images/NewWallet_icon_wallet.png}")(id="new_wallet")
-                        +main_btn_img("Open new wallet", "@{/images/Vector_access.png}")(id="access_wallet")
+                        +img_btn("@{/images/Vector_copy.svg#copy_icon}")(id="cpy_pub_add" th:alt="${pub_address}")
+                        //- +img_btn("@{/images/Key Vector_key.png}")(id="view_keys")
+                        //- +img_btn("@{/images/NewWallet_icon_wallet.png}")(id="new_wallet")
+                        //- +img_btn("@{/images/Vector_access.png}")(id="access_wallet")
 
         //- Wallet Send Funds Form Action
         .col-lg-4

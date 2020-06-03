@@ -259,7 +259,7 @@ footer #cpy_right {
 }
 
 .button_main img {
-  height: 16px;
+  height: 32px;
 }
 
 .button_main_light {
@@ -352,6 +352,10 @@ footer #cpy_right {
 
 .info strong:nth-child(n+3) {
   color: #62FE3B;
+}
+
+svg path:hover {
+  fill: red !important;
 }
 
 /* ____ ANIMATIONS ____*/
