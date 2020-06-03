@@ -1,19 +1,3 @@
-// Project Button Styles
-@mixin button_struct($bg_color, $txt_color)
-    border: none;
-    padding: 2px 8px;
-    border-radius: 5px;
-    text-decoration: none;
-    display: inline-block;
-    font:
-        size: 12px;
-        weight: bold;
-    transition: 
-        duration: 0.5s;
-    background-color: $bg_color;
-    color: $txt_color;
-    margin: 0px 5px;
-
 .button_main
     @include button_struct($primary_light, $secondary_dark);
     box-shadow: 0 0 4px $secondary_light_shadow;
@@ -22,12 +6,26 @@
         background-color: #708FFE;
         color: $primary_light;
 
+    & img
+        height: 16px;
+
 .button_main_light
     @include button_struct($primary_light, $secondary_dark);
 
     &:hover, &:focus, &:active
         background-color: $primary_dark;
         color: $primary_light;
+
+.button_main_dark
+    @include button_struct($primary_light, $secondary_dark);
+    background-color: #708FFE;
+    font-size:12px;
+    color: white;
+
+    &:hover, &:focus, &:active
+        background-color: $primary_light;
+        color: black;
+        
 
 .button_main_light_hollow
     @include button_struct(transparent, $primary_light);
@@ -37,6 +35,9 @@
     &:hover
         background-color: $primary_light;
         color: #708FFE;
+
+    & img
+        height: 16px;
 
 .info
     @include button_struct($primary_dark, $primary_light);

@@ -149,8 +149,7 @@ public class Blockmatrix_RestController {
         response.put("response", "Wallet Created! :)");
 
         return new ResponseEntity<>(response, HttpStatus.OK);
-    }
-            
+    }          
 
     /**
      * [REST API] - Genreate New Wallet

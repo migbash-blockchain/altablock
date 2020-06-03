@@ -1,37 +1,37 @@
 .container
     .row
 
-        //- My Wallet Actions & Details
-        .col-lg
-            .container.text-center.mx-auto
-                img.img-fluid(th:src="@{/images/user_1.png}" alt="Avatar")
-                p.m-2
-                    strong ~mbash
-                .btn-group-vertical
-                    +main_btn_img("Copy Wallet Address", "fas fa-copy")(id="cpy_pub_add" th:onclick="copyClipboard(this)" th:alt="${pub_address}")
-                    +main_btn_img("View Private Key", "fas fa-key")
-                    +main_btn_img("Generate New wallet", "fas fa-wallet")(id="new_wallet" th:onclick="createNewWallet()")
-
-        //- Wallet balance
-        .col-lg
-            h3 
-                strong Wallet Balance
-            br
-            h4
-                span(th:text="${balance}") 
-                span.p-2(style="font-size: 18px; color: #00A3FF;")
-                    strong Mx's
+        //- Wallet Profile
+        .col-lg-5
+            .container#walletProfile_cont
+                h3 Wallet Profile
+                .row
+                    .col
+                        img.img-fluid(th:src="@{/images/user_1.png}" alt="user_img")
+                        h5 ~mbash
+                    .col
+                        h5 Balance
+                        h4
+                            span(th:text="${balance}") 
+                            span.p-2(style="font-size: 18px; color: #00A3FF;")
+                                strong Mx's
+                .row
+                    .btn-group
+                        +main_btn_img("Copy Wallet Address", "@{/images/Vector_copy.png}")(id="cpy_pub_add" th:alt="${pub_address}")
+                        +main_btn_img("View Private Key", "@{/images/Key Vector_key.png}")(id="view_keys")
+                    .btn-group
+                        +main_btn_img("Generate New wallet", "@{/images/NewWallet_icon_wallet.png}")(id="new_wallet")
+                        +main_btn_img("Open new wallet", "@{/images/Vector_access.png}")(id="access_wallet")
 
         //- Wallet Send Funds Form Action
-        .col-lg
-            form
+        .col-lg-4
+            .container#sendFunds_cont
+                //- form
+                h3 Send Funds
                 .form-group
-                    h3
-                        strong Send Funds
                     +input_form("Recipients Address", "r_address")
                     +input_form("Amount", "amount")
                     label(for="msg_text" class="control-label") Transaction Message
                     div#msg_text(contenteditable required)
-                button.btn.btn-primary(th:onclick="submitTX(this)") Send Transaction
-                    span.pl-2
-                        i(class="fas fa-paper-plane")
+                button#sendTx.button_main_light_hollow Send Transaction
+                    img(th:src="@{/images/Vector_send.png}" alt="send_vector")

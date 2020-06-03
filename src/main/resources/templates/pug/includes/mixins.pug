@@ -1,24 +1,31 @@
-//- _________________________
-//- Mixin PUG Code
-//- _________________________
+//- ----------------------
+//-     Heading
+//- ----------------------
+mixin header_page(headText, img_src)
+     header.container.m-5(style="display: flex; align-items: center;")
+        img(style="width: 48px; height: 48px;" th:src=img_src alt= headText)
+        span.p-2
+            h1= headText
 
-//- ______________________
-//- Buttons
-mixin main_btn_img(btnText, icon_class)
-
-    button.button_main_light.text-left(type="button")&attributes(attributes)
-        i(class=icon_class)
+//- ----------------------
+//-       Buttons
+//- ----------------------
+mixin main_btn_img(btnText, img_src)
+    button.button_main(type="button")&attributes(attributes)
+        img(th:src=img_src alt= btnText)
         span.pl-2= btnText
 
-//- ______________________
-//- Input Forms
+//- ----------------------
+//-     Input Forms
+//- ----------------------
 mixin input_form(inputHeader, inputID)
     div(class="form-group mb-3")
         label(for="recipient_address" class="control-label")= inputHeader
         input(id=inputID autocomplete="off" type="text" class="form-control" aria-describedby="basic-addon3" required)
 
-//- ______________________
+//- ----------------------
 //- BlockMatrix Info Blocks
+//- ----------------------
 mixin info_block(img_src, title, data)
     .col-lg-6.col-sm-4
         .innerDiv
@@ -27,8 +34,9 @@ mixin info_block(img_src, title, data)
             img(style="width: 32px; height: 32px;" th:src= img_src alt="block_vector")
             h4(th:text= data)&attributes(attributes)
 
-//- _______________________
-//- Footer
+//- ----------------------
+//-       Footer
+//- ----------------------
 mixin footer_menu(name, href)
     li.m-3
         a(href=href)= name

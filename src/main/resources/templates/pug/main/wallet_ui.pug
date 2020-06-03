@@ -5,25 +5,15 @@ extends ../layouts/main_layout.pug
 
 block content
 
-    //- _________________________
-    //- Wallet Dashboard [Header]
-    header.container.m-5(style="display: flex; align-items: center;")
-        i(style="float: left;" class="fas fa-wallet fa-2x")
-        span.p-2
-            strong(style="font-size: 32px;") Wallet Dashboard
-        div.ml-3
-            button(type="button" class="btn btn-outline-primary")
-                strong Access another wallet
+    //- Header
+    +header_page("Wallet Dashboard", "@{/images/Vector_wallet.png}")
 
-    //- _________________________
     //- User Wallet Actions
     include ../includes/row_wallet_user_actions.pug
 
-    //- _________________________
-    //- [All] Blockmatrix Transactions
+    //- Table
     include ../includes/table_wallet_user_txs.pug
 
-    //- _________________________
-    //- Dashboard Modal Box for Modifying Transaction Info
+    //- Modal(s)
     include ../includes/modal_modifyTX.pug
     include ../includes/modal_newWallet.pug

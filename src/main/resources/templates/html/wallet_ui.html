@@ -14,31 +14,38 @@
         <div class="info p-2 m-3"><strong class="mr-2">Test Net</strong><span class="dot"></span></div>
         <div class="info p-2 m-3"><img style="width: 16px; height: 16px;" th:src="@{/images/Iconstatus.png}" alt="info_vector"><strong class="mr-2 ml-2">BlockMatrix Status |</strong><strong th:text="${bm_verify}"> </strong></div>
       </div>
-      <header class="container m-5" style="display: flex; align-items: center;"><i class="fas fa-wallet fa-2x" style="float: left;"></i><span class="p-2"><strong style="font-size: 32px;">Wallet Dashboard</strong></span>
-        <div class="ml-3">
-          <button class="btn btn-outline-primary" type="button"><strong>Access another wallet</strong></button>
-        </div>
-      </header>
+      <header class="container m-5" style="display: flex; align-items: center;"><img style="width: 48px; height: 48px;" th:src="@{/images/Vector_wallet.png}" alt="Wallet Dashboard"/><span class="p-2">
+          <h1>Wallet Dashboard</h1></span></header>
       <div class="container">
         <div class="row">
-          <div class="col-lg">
-            <div class="container text-center mx-auto"><img class="img-fluid" th:src="@{/images/user_1.png}" alt="Avatar">
-              <p class="m-2"><strong>~mbash</strong></p>
-              <div class="btn-group-vertical">
-                <button class="button_main_light text-left" type="button" id="cpy_pub_add" th:onclick="copyClipboard(this)" th:alt="${pub_address}"><i class="fas fa-copy"></i><span class="pl-2">Copy Wallet Address</span></button>
-                <button class="button_main_light text-left" type="button"><i class="fas fa-key"></i><span class="pl-2">View Private Key</span></button>
-                <button class="button_main_light text-left" type="button" id="new_wallet" th:onclick="createNewWallet()"><i class="fas fa-wallet"></i><span class="pl-2">Generate New wallet</span></button>
+          <div class="col-lg-5">
+            <div class="container" id="walletProfile_cont">
+              <h3>Wallet Profile</h3>
+              <div class="row">
+                <div class="col"><img class="img-fluid" th:src="@{/images/user_1.png}" alt="user_img">
+                  <h5>~mbash</h5>
+                </div>
+                <div class="col">
+                  <h5>Balance</h5>
+                  <h4><span th:text="${balance}"> </span><span class="p-2" style="font-size: 18px; color: #00A3FF;"><strong>Mx's</strong></span></h4>
+                </div>
+              </div>
+              <div class="row">
+                <div class="btn-group">
+                  <button class="button_main" type="button" id="cpy_pub_add" th:alt="${pub_address}"><img th:src="@{/images/Vector_copy.png}" alt="Copy Wallet Address"/><span class="pl-2">Copy Wallet Address</span></button>
+                  <button class="button_main" type="button" id="view_keys"><img th:src="@{/images/Key Vector_key.png}" alt="View Private Key"/><span class="pl-2">View Private Key</span></button>
+                </div>
+                <div class="btn-group">
+                  <button class="button_main" type="button" id="new_wallet"><img th:src="@{/images/NewWallet_icon_wallet.png}" alt="Generate New wallet"/><span class="pl-2">Generate New wallet</span></button>
+                  <button class="button_main" type="button" id="access_wallet"><img th:src="@{/images/Vector_access.png}" alt="Open new wallet"/><span class="pl-2">Open new wallet</span></button>
+                </div>
               </div>
             </div>
           </div>
-          <div class="col-lg">
-            <h3> <strong>Wallet Balance</strong></h3><br>
-            <h4><span th:text="${balance}"> </span><span class="p-2" style="font-size: 18px; color: #00A3FF;"><strong>Mx's</strong></span></h4>
-          </div>
-          <div class="col-lg">
-            <form>
+          <div class="col-lg-4">
+            <div class="container" id="sendFunds_cont">
+              <h3>Send Funds</h3>
               <div class="form-group">
-                <h3><strong>Send Funds</strong></h3>
                 <div class="form-group mb-3">
                   <label class="control-label" for="recipient_address">Recipients Address</label>
                   <input class="form-control" id="r_address" autocomplete="off" type="text" aria-describedby="basic-addon3" required="required"/>
@@ -50,8 +57,8 @@
                 <label class="control-label" for="msg_text">Transaction Message</label>
                 <div id="msg_text" contenteditable required></div>
               </div>
-              <button class="btn btn-primary" th:onclick="submitTX(this)">Send Transaction<span class="pl-2"><i class="fas fa-paper-plane"></i></span></button>
-            </form>
+              <button class="button_main_light_hollow" id="sendTx">Send Transaction<img th:src="@{/images/Vector_send.png}" alt="send_vector"></button>
+            </div>
           </div>
         </div>
       </div>
@@ -77,7 +84,7 @@
               <td class="overflow_style"><strong th:text="${tsx.getInfo()}"></strong></td>
               <td><strong th:text="${tsx.getBlockNumber()}"></strong></td>
               <td>
-                <button class="btn btn-danger" id="select_tx_btn" style="font-size:12px;" th:onclick="clearData(this)">Modify Transaction Info</button>
+                <button class="button_main_dark" id="select_tx_btn" th:onclick="clearData(this)">Modify Info</button>
               </td>
             </tr>
           </tbody>

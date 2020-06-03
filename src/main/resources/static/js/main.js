@@ -1,22 +1,27 @@
-// _________________________
-// Event Listeners
-
-document.getElementById('simple_view_btn').addEventListener('click', switchLayout);
-document.getElementById('visual_view_btn').addEventListener('click', switchLayout);
-
-// _________________________
-// Page Listeners
+// -------------------------
+//      Page Listeners
+// -------------------------
 
 var path_url = document.URL;
 
 if (path_url.includes('/block_explorer')) {
+
+    document.getElementById('simple_view_btn').addEventListener('click', switchLayout)
+    document.getElementById('visual_view_btn').addEventListener('click', switchLayout)
     getMatrixData()
     getBlockData()
     getTxData()
+} else if (path_url.includes('/wallet')) {
+
+    document.getElementById('cpy_pub_add').addEventListener('click', copyClipboard(this))
+    // document.getElementById('view_keys').addEventListener('click', submitTX)
+    document.getElementById('new_wallet').addEventListener('click', createNewWallet)
+    document.getElementById('access_wallet').addEventListener('click', submitTX)
 }
 
-// _________________________
+// -------------------------
 // Simple UI/UX Functions Triggers
+// -------------------------
 
 function copyClipboard(x) {
     var dummy = document.createElement("input");
@@ -29,7 +34,6 @@ function copyClipboard(x) {
 }
 
 function switchLayout() {
-
     document.getElementById('simple_view_div').classList.toggle('enabled')
     document.getElementById('visual_view_div').classList.toggle('enabled')
 }
@@ -50,7 +54,7 @@ async function submitTX() {
     var amount = document.getElementById("amount").value;
     var msg = document.getElementById("msg_text").textContent;
 
-    var url = new URL("http://127.0.0.1:8080/send_funds"),
+    var url = new URL("/send_funds", document.URL),
         params = {
             funds: amount,
             msg: msg
@@ -78,7 +82,7 @@ async function clearData(x) {
     // var transaction_num = x.parentNode.parentNode.getElementsByTagName("strong")[5].innerHTML
     var new_info = "null"
 
-    var url = new URL("http://127.0.0.1:8080/modify_transaction_info"),
+    var url = new URL("/modify_transaction_info", document.URL),
         params = {
             num: block_num,
             transaction: 0,
@@ -160,7 +164,7 @@ async function getTxData() {
         .then((res) => res.text())
         .then((data) => {
             var result = JSON.parse(data)
-            // document.getElementById('contents').innerHTML = ''
+            document.getElementById('contents').innerHTML = ''
             for (var tx_data of result) {
                 var row = document.getElementById('contents').insertRow(0);
                 row.insertCell(0).innerHTML = tx_data.transactionId
@@ -173,7 +177,7 @@ async function getTxData() {
         })
         .catch((err) => console.log(err))
 
-    setTimeout(getTxData, 1000);
+    setTimeout(getTxData, 60000);
 }
 
 /**

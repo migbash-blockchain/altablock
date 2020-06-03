@@ -1,6 +1,9 @@
+html, body
+    margin: 0px;
+
 body
     font:
-        family: 'Open Sans'
+        family: 'Open Sans';
 
 section
     height: 100vh;
@@ -10,9 +13,43 @@ section
         size: contain;
         position: right;
 
-h5
-    font-size: 12px;
-    
-h6
-    font-size: 14px;
-    
+h1, h2, h3, h4, h5, h6
+    font:
+        weight: bold;
+
+// ------------------
+// Main Container Style(s)
+// ------------------
+@mixin mainContainerStyle()
+    margin: 10px;
+    padding: 10px;
+    box-shadow: 0px 4px 4px $secondary_light_shadow;
+    border-radius: 10px;
+    background-color: $primary_light;
+
+@mixin secondaryContainerStyle()
+    margin: 10px;
+    padding: 10px;
+    box-shadow: 0px 4px 4px $secondary_light_shadow;
+    border-radius: 10px;
+    background-color: #708FFE;
+    color: $primary_light;
+    outline: none;
+
+// ------------------
+// Main Button Structure
+// ------------------
+@mixin button_struct($bg_color, $txt_color)
+    border: none;
+    padding: 2px 8px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    font:
+        size: 12px;
+        weight: bold;
+    transition: 
+        duration: 0.5s;
+    background-color: $bg_color;
+    color: $txt_color;
+    margin: 0px 5px;
