@@ -41,20 +41,39 @@
         stroke: $primary_light !important;
 
 #user_action_btn
+    display: flex; 
+    justify-content: space-around; 
+    height: 100px;
+    position: absolute;
+    right: 0px;
+    left: 0px;
+    bottom: 0px;
+    border-radius: 0 0 10px 10px; 
+
+    ._btn_div
+        width: 100%;
+        height: 100%;
+        text-align: center;
+
+        &:hover 
+            transition-duration: .5s;
+            box-shadow: 0px 4px 4px $secondary_light_shadow;
+            
+            & svg path
+                transition-duration: .5s;
+                fill: $secondary_light !important; 
 
     svg path
         padding: 50px;
         fill: $primary_dark !important;
-
-    svg:hover path
-        box-shadow: 0px 0px 4px $secondary_light_shadow;
-        fill: $secondary_light !important; 
 
 .info
     @include button_struct($primary_dark, $primary_light);
 
     // strong:nth-child(n+3)
     //     color: #62FE3B;
+
+
 
 // ------------------
 // SVG Styled Button Icons
