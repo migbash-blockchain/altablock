@@ -8,7 +8,7 @@ body
 section
     height: 100vh;
     background: 
-        image: url(../../images/block_explorer_theme.png);
+        image: url(../../images/Theme.svg);
         repeat: no-repeat;
         size: contain;
         position: right;
@@ -37,11 +37,13 @@ h1, h2, h3, h4, h5, h6
     outline: none;
 
 // ------------------
-// Main Button Structure
+// Main Button Structure(s)
 // ------------------
 @mixin button_struct($bg_color, $txt_color)
+    background-color: $bg_color;
+    color: $txt_color;
     border: none;
-    padding: 2px 8px;
+    padding: 5px 10px;
     border-radius: 5px;
     text-decoration: none;
     font:
@@ -49,7 +51,7 @@ h1, h2, h3, h4, h5, h6
         weight: bold;
     transition: 
         duration: 0.5s;
-    background-color: $bg_color;
-    color: $txt_color;
     margin: 0px 5px;
-    
+    display: inline-flex;
+    justify-content: space-around;
+    align-items: center;

@@ -10,14 +10,25 @@
   </head>
   <body>
     <section>
-      <div class="container text-center" id="status_bar">
-        <div class="info p-2 m-3"><strong class="mr-2">Test Net</strong><span class="dot"></span></div>
-        <div class="info p-2 m-3"><img style="width: 16px; height: 16px;" th:src="@{/images/Iconstatus.png}" alt="info_vector"><strong class="mr-2 ml-2">BlockMatrix Status |</strong><strong th:text="${bm_verify}"> </strong></div>
+      <div class="container" id="status_bar" style="display: flex; justify-content: center; padding: 35px 0px;">
+        <div class="info">
+          <div class="mr-2">Test Net</div><span class="dot"></span>
+        </div>
+        <div class="info">
+          <svg width="22" height="21" viewbox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.3315 11.1459L16.0512 9.17561V7.39679C15.5928 7.16331 15.1756 6.85664 14.8159 6.48885V9.16944L10.8444 11.0224V6.27267C10.9188 6.26874 10.9919 6.25202 11.0606 6.22326L13.8277 4.95091C13.6737 4.55437 13.574 4.13885 13.5312 3.71561L10.8012 4.95091L7.6512 3.53032L10.8012 2.07885L13.5065 3.31414V3.26473C13.5066 2.84736 13.5626 2.43188 13.6733 2.02944L11.0483 0.843555C10.967 0.805928 10.8784 0.786438 10.7888 0.786438C10.6993 0.786438 10.6107 0.805928 10.5294 0.843555L5.89708 2.97444C5.78987 3.02405 5.69914 3.10338 5.63564 3.203C5.57215 3.30262 5.53856 3.41836 5.53885 3.5365V9.18179L1.27708 11.1459C1.16987 11.1955 1.07914 11.2748 1.01564 11.3745C0.952149 11.4741 0.918556 11.5898 0.918848 11.708V17.7486C0.918556 17.8667 0.952149 17.9824 1.01564 18.0821C1.07914 18.1817 1.16987 18.261 1.27708 18.3106L5.90944 20.4415C5.99074 20.4791 6.07926 20.4986 6.16885 20.4986C6.25844 20.4986 6.34696 20.4791 6.42826 20.4415L10.8012 18.428L15.1741 20.4415C15.2554 20.4791 15.344 20.4986 15.4336 20.4986C15.5231 20.4986 15.6117 20.4791 15.693 20.4415L20.3253 18.3106C20.4325 18.261 20.5233 18.1817 20.5868 18.0821C20.6503 17.9824 20.6838 17.8667 20.6836 17.7486V11.708C20.6844 11.5905 20.6517 11.4752 20.5894 11.3757C20.527 11.2761 20.4376 11.1964 20.3315 11.1459ZM3.03738 11.708L6.19355 10.2503L9.34973 11.7018L6.16885 13.1471L3.03738 11.708ZM6.16885 19.2V14.4503C6.25482 14.4439 6.33872 14.4208 6.41591 14.3824L10.1712 12.653V17.3471L6.16885 19.2ZM12.2836 11.708L15.4397 10.2565L18.5959 11.708L15.4397 13.1471L12.2836 11.708ZM15.4583 19.2V14.4503C15.5364 14.4438 15.6122 14.4206 15.6806 14.3824L19.4359 12.653V17.3471L15.4583 19.2Z" fill="white"></path>
+            <path d="M18.139 6.35292C19.8445 6.35292 21.2272 4.97027 21.2272 3.26469C21.2272 1.5591 19.8445 0.176453 18.139 0.176453C16.4334 0.176453 15.0507 1.5591 15.0507 3.26469C15.0507 4.97027 16.4334 6.35292 18.139 6.35292Z" fill="#00A3FF"></path>
+          </svg><span class="ml-2">BlockMatrix Status |</span><span th:text="${bm_verify}"> </span>
+        </div>
       </div>
       <div class="container p-3">
-        <header class="container" style="display: flex; align-items: center;"><img style="width: 48px; height: 48px;" th:src="@{/images/vector_cube.png}" alt="Block Explorer"/><span class="p-2">
-            <h2>Block Explorer</h2></span></header>
-        <div class="container" style="display: flex; align-items: center;"><img style="width: 16px; height: 16px;" th:src="@{/images/info_vector.png}" alt="info_vector"/><span class="p-2">Here you can find all of the details and in-depth information about the blockmatrix and discover all of the available RESTful APIs availble on the network.</span></div>
+        <header class="container" style="display: flex; align-items: center;">
+          <svg width="29" height="26" viewbox="0 0 29 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M26.1227 5.4375H4.53125C4.03055 5.4375 3.625 5.03195 3.625 4.53125C3.625 4.03055 4.03055 3.625 4.53125 3.625H26.2812C26.782 3.625 27.1875 3.21945 27.1875 2.71875C27.1875 1.21721 25.9703 0 24.4688 0H3.625C1.62275 0 0 1.62275 0 3.625V21.75C0 23.7522 1.62275 25.375 3.625 25.375H26.1227C27.7097 25.375 29 24.1555 29 22.6562V8.15625C29 6.65697 27.7097 5.4375 26.1227 5.4375ZM23.5625 17.2188C22.5617 17.2188 21.75 16.4071 21.75 15.4062C21.75 14.4054 22.5617 13.5938 23.5625 13.5938C24.5633 13.5938 25.375 14.4054 25.375 15.4062C25.375 16.4071 24.5633 17.2188 23.5625 17.2188Z" fill="#708FFE"></path>
+          </svg><span class="p-2">
+            <h2>Block Explorer</h2></span>
+        </header>
+        <div class="container" style="display: flex; align-items: center;"><img style="width: 16px; height: 16px;" th:src="@{/images/info_vector.png}" alt="info_vector"/><span class="p-2" style="width: 75%;">Here you can find all of the details and in-depth information about the blockmatrix and discover all of the available RESTful APIs availble on the network.</span></div>
         <div class="container m-2">
           <button class="button_main" id="simple_view_btn" type="button">Simple</button>
           <button class="button_main" id="visual_view_btn" type="button">Visual</button>
