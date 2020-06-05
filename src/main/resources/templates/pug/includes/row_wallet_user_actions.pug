@@ -7,18 +7,19 @@
 
         .col-lg-5#walletProfile_cont
             .container
-                h3 Wallet Profile
+                h3 Wallet Profile My
                 .row.text-center
                     .col
                         img.img-fluid(style="height: 64px;" th:src="@{/images/user_1.png}" alt="user_img")
                         h6 ~mbash
                     .col.text-left
                         .div(style="position: absolute; bottom: 0px;")
-                            h6 Balance
+                            h6 Balancea
                             h4
                                 span(th:text="${balance}") 
                                 span.p-2(style="font-size: 18px; color: #00A3FF;") Mx's
             #user_action_btn
+                #_btn_div_action_txt
                 ._btn_div
                     svg(width="27" height="30" viewBox="0 0 27 30" fill="none" xmlns="http://www.w3.org/2000/svg")
                         path(d="M4.76954 4.91769C4.00555 4.91769 3.27284 5.22119 2.73261 5.76142C2.19238 6.30165 1.88889 7.03435 1.88889 7.79835V25.0823C1.88889 25.8463 2.19238 26.579 2.73261 27.1192C3.27284 27.6595 4.00555 27.963 4.76954 27.963H19.1728C19.9368 27.963 20.6695 27.6595 21.2098 27.1192C21.75 26.579 22.0535 25.8463 22.0535 25.0823V23.642M15.4485 6.95463C14.9082 7.49485 14.1755 7.79835 13.4115 7.79835H10.5309C9.76686 7.79835 9.03416 7.49485 8.49393 6.95463C7.9537 6.4144 7.6502 5.68169 7.6502 4.91769C7.6502 4.15369 7.9537 3.42099 8.49393 2.88076C9.03416 2.34053 9.76686 2.03703 10.5309 2.03703H13.4115C14.1755 2.03703 14.9082 2.34053 15.4485 2.88076M19.1728 4.91769C19.9368 4.91769 20.6695 5.22119 21.2098 5.76142C21.75 6.30165 22.0535 7.03435 22.0535 7.79835V12.1193M24.9342 17.8807H10.5309M10.5309 17.8807L14.8518 13.5597M10.5309 17.8807L14.8518 22.2016" stroke="black" stroke-width="2.88066" stroke-linecap="round" stroke-linejoin="round")

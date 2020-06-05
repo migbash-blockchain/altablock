@@ -25,6 +25,7 @@ if (path_url.includes('/block_explorer')) {
     document.getElementById('new_wallet').addEventListener('click', createNewWallet)
     // document.getElementById('access_wallet').addEventListener('click', submitTX)
     document.getElementById('sendTx').addEventListener('click', submitTX)
+    document.getElementById('_btn_div_action_txt')
 }
 
 // -------------------------

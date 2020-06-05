@@ -367,6 +367,8 @@ footer #cpy_right {
   display: flex;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+  -ms-flex-line-pack: center;
+      align-content: center;
   height: 100px;
   position: absolute;
   right: 0px;
@@ -395,6 +397,7 @@ footer #cpy_right {
 }
 
 #user_action_btn svg path {
+  vertical-align: middle;
   padding: 50px;
   fill: #515151 !important;
 }
