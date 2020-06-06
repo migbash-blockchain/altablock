@@ -375,6 +375,8 @@ footer #cpy_right {
   left: 0px;
   bottom: 0px;
   border-radius: 0 0 10px 10px;
+  background-color: red;
+  overflow: hidden;
 }
 
 #user_action_btn ._btn_div {
@@ -397,6 +399,7 @@ footer #cpy_right {
 }
 
 #user_action_btn svg path {
+  margin: auto;
   vertical-align: middle;
   padding: 50px;
   fill: #515151 !important;
