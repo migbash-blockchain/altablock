@@ -26,6 +26,8 @@ if (path_url.includes('/block_explorer')) {
     document.getElementById('access_wallet').addEventListener('click', submitTX)
     document.getElementById('sendTx').addEventListener('click', submitTX)
 
+    document.getElementById('_btn_div_action_txt').innerHTML = `<p> hello </p>`
+
     document.getElementById('user_action_btn').addEventListener('mouseout', function() {
         document.getElementById('_btn_div_action_txt').style.visibility = 'hidden'
     })
