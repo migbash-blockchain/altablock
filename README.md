@@ -1,6 +1,5 @@
 ![Java CI with Maven](https://github.com/migbash/blockmatrix_wallet/workflows/Java%20CI%20with%20Maven/badge.svg?branch=master)
 ![Heroku](https://pyheroku-badge.herokuapp.com/?app=altablock&style=flat)
-[![Heroku App Status](https://heroku-shields.herokuapp.com/altablock)](https://altablock.herokuapp.com)
 
 Live Example -> https://altablock.herokuapp.com/wallet
 
