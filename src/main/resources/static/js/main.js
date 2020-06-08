@@ -21,16 +21,33 @@ if (path_url.includes('/block_explorer')) {
     document.getElementById('select_tx_btn').addEventListener('click', function () {
         clearData(this)
     })
-    // document.getElementById('view_keys').addEventListener('click', submitTX)
+    document.getElementById('view_keys').addEventListener('click', submitTX)
     document.getElementById('new_wallet').addEventListener('click', createNewWallet)
-    // document.getElementById('access_wallet').addEventListener('click', submitTX)
+    document.getElementById('access_wallet').addEventListener('click', submitTX)
     document.getElementById('sendTx').addEventListener('click', submitTX)
-    document.getElementById('_btn_div_action_txt')
+
+    document.getElementById('user_action_btn').addEventListener('mouseout', function() {
+        document.getElementById('_btn_div_action_txt').style.visibility = 'hidden'
+    })
+
+    var btns = document.getElementsByClassName('_btn_div')
+
+    for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener('mouseover', function () {
+            showBtnFunc(this)
+        })
+    }
 }
 
 // -------------------------
 // Simple UI/UX Functions Triggers
 // -------------------------
+
+function showBtnFunc(x){
+    var btnFunc_txt = x.getAttribute('alt')
+    document.getElementById('_btn_div_action_txt').innerHTML = `<p> ${btnFunc_txt} </p>`
+    document.getElementById('_btn_div_action_txt').style.visibility = 'visible'
+}
 
 function copyClipboard(x) {
     var dummy = document.createElement("input");
@@ -73,9 +90,13 @@ async function submitTX() {
         .catch((err) => console.log(err))
 }
 
+/**
+ * 
+ * @param {*} x 
+ */
 async function clearData(x) {
 
-    var block_num = x.parentNode.parentNode.getElementsByTagName("strong")[5].innerHTML
+    var block_num = x.parentNode.parentNode.getElementsByTagName("td")[5].innerHTML
     // var transaction_num = x.parentNode.parentNode.getElementsByTagName("strong")[5].innerHTML
     var new_info = "null"
 
