@@ -44,7 +44,7 @@ if (path_url.includes('/block_explorer')) {
 // -------------------------
 
 function showBtnFunc(x){
-    var btnFunc_txt = x.getAttribute('alt')
+    var btnFunc_txt = x.getAttribute('title')
     document.getElementById('_btn_div_action_txt').innerHTML = `<p> ${btnFunc_txt} </p>`
     document.getElementById('_btn_div_action_txt').style.visibility = 'visible'
 }

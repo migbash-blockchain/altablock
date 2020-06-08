@@ -35,6 +35,8 @@
         & svg path
             stroke: #708FFE !important;
             fill: #708FFE !important; 
+            transition: 
+                duration: 0.5s;
 
     & svg path
         fill: $primary_light !important;    
@@ -45,10 +47,7 @@
     justify-content: space-around; 
     align-content: center;
     position: relative;
-    margin: 0px -10px;
-    right: 0px;
-    left: 0px;
-    bottom: 0px;
+    height: 80px;
     border-radius: 0 0 10px 10px; 
     overflow: hidden;
 
@@ -63,6 +62,7 @@
         &:hover 
             transition-duration: .5s;
             box-shadow: 0px 4px 4px $secondary_light_shadow;
+            cursor: pointer;
             
             & svg path
                 transition-duration: .5s;
@@ -78,18 +78,4 @@
 
     // strong:nth-child(n+3)
     //     color: #62FE3B;
-
-
-
-// ------------------
-// SVG Styled Button Icons
-// ------------------
-
-// svg path
-//     stroke: $primary_dark !important;
-    
-//     &:hover
-//         fill: blue !important;
-//         stroke: blue !important;
-
     
