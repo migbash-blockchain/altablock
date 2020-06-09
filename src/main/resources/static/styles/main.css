@@ -30,7 +30,6 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 10px;
   background-color: #708FFE;
   color: #ffffff;
-  outline: none;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -41,6 +40,8 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -ms-flex-line-pack: center;
+      align-content: center;
 }
 
 #matrix_search input {
@@ -79,6 +80,7 @@ h1, h2, h3, h4, h5, h6 {
           box-shadow: 0px 4px 4px #dddddd;
   border-radius: 10px;
   background-color: #ffffff;
+  color: #000000;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -199,6 +201,7 @@ h1, h2, h3, h4, h5, h6 {
           box-shadow: 0px 4px 4px #dddddd;
   border-radius: 10px;
   background-color: #ffffff;
+  color: #000000;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -230,7 +233,6 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 10px;
   background-color: #708FFE;
   color: #ffffff;
-  outline: none;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -241,6 +243,8 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -ms-flex-line-pack: center;
+      align-content: center;
 }
 
 #sendFunds_cont h3 {

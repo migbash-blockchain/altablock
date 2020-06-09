@@ -1,3 +1,6 @@
+// ------------------
+// Global Page Style(s)
+// ------------------
 html, body
     margin: 0px;
     padding: 0px;
@@ -20,35 +23,20 @@ h1, h2, h3, h4, h5, h6
         weight: bold;
     margin: 0px;
 
-// .row
-//     display: flex;
-//     flex-wrap: wrap;
-
 // ------------------
 // Main Container Style(s)
 // ------------------
-@mixin mainContainerStyle()
+@mixin mainContainerStyle($bg_color, $txt_color)
     margin: 20px;
     padding: 0px;
     box-shadow: 0px 4px 4px $secondary_light_shadow;
     border-radius: 10px;
-    background-color: $primary_light;
+    background-color: $bg_color;
+    color: $txt_color;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-content: center;
-
-@mixin secondaryContainerStyle()
-    margin: 20px;
-    padding: 0px;
-    box-shadow: 0px 4px 4px $secondary_light_shadow;
-    border-radius: 10px;
-    background-color: #708FFE;
-    color: $primary_light;
-    outline: none;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 
 // ------------------
 // Main Button Structure(s)

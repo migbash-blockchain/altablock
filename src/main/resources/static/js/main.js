@@ -5,44 +5,21 @@
 var path_url = document.URL;
 
 if (path_url.includes('/block_explorer')) {
+    
+    // -------------------------
+    // Page UI/UX Changes
+    // -------------------------
+
+    document.getElementsByTagName('footer')[0].getElementsByTagName('a')[4].style.color = '#00A3FF'
+
+    // -------------------------
+    // Event Listeners
+    // -------------------------
 
     document.getElementById('simple_view_btn').addEventListener('click', switchLayout)
     document.getElementById('visual_view_btn').addEventListener('click', switchLayout)
 
-    getMatrixData()
-    getBlockData()
-    getTxData()
-
-} else if (path_url.includes('/wallet')) {
-
-    document.getElementById('cpy_pub_add').addEventListener('click', function () {
-        copyClipboard(this)
-    })
-    document.getElementById('select_tx_btn').addEventListener('click', function () {
-        clearData(this)
-    })
-    document.getElementById('view_keys').addEventListener('click', submitTX)
-    document.getElementById('new_wallet').addEventListener('click', createNewWallet)
-    document.getElementById('access_wallet').addEventListener('click', submitTX)
-    document.getElementById('sendTx').addEventListener('click', submitTX)
-
-    document.getElementById('_btn_div_action_txt').innerHTML = `<p> hello </p>`
-
-    document.getElementById('user_action_btn').addEventListener('mouseout', function() {
-        document.getElementById('_btn_div_action_txt').style.visibility = 'hidden'
-    })
-
-    // -------------------------
-    // Dealing with Class Event Listeners
-
     var btn_query_arr = document.getElementsByClassName('_btn_query')
-    var btns_arr = document.getElementsByClassName('_btn_div')
-
-    for (var i = 0; i < btns_arr.length; i++) {
-        btns_arr[i].addEventListener('mouseover', function () {
-            showBtnFunc(this)
-        })
-    }
 
     for (var i = 0; i < btn_query_arr.length; i++) {
         btn_query_arr[i].addEventListener('click', function () {
@@ -50,6 +27,51 @@ if (path_url.includes('/block_explorer')) {
         })
     }
 
+    // -------------------------
+    // Initializing functions on "page load"
+    // -------------------------
+
+    getMatrixData()
+    getBlockData()
+    getTxData()
+
+} else if (path_url.includes('/wallet')) {
+
+    // -------------------------
+    // Page UI/UX Changes
+    // -------------------------
+
+    document.getElementById('_btn_div_action_txt').innerHTML = `<p> hello </p>`
+    document.getElementsByTagName('footer')[0].getElementsByTagName('a')[3].style.color = '#00A3FF'
+
+    // -------------------------
+    // Event Listeners
+    // -------------------------
+
+    document.getElementById('view_keys').addEventListener('click', submitTX)
+    document.getElementById('new_wallet').addEventListener('click', createNewWallet)
+    document.getElementById('access_wallet').addEventListener('click', submitTX)
+    document.getElementById('sendTx').addEventListener('click', submitTX)
+
+    document.getElementById('cpy_pub_add').addEventListener('click', function () {
+        copyClipboard(this)
+    })
+    
+    document.getElementById('select_tx_btn').addEventListener('click', function () {
+        clearData(this)
+    })
+
+    document.getElementById('user_action_btn').addEventListener('mouseout', function() {
+        document.getElementById('_btn_div_action_txt').style.visibility = 'hidden'
+    })
+
+    var btns_arr = document.getElementsByClassName('_btn_div')
+
+    for (var i = 0; i < btns_arr.length; i++) {
+        btns_arr[i].addEventListener('mouseover', function () {
+            showBtnFunc(this)
+        })
+    }
 }
 
 // -------------------------
@@ -58,7 +80,6 @@ if (path_url.includes('/block_explorer')) {
 
 function changeInputTxt(x) {
     var btnSelected_txt = x.getAttribute('title')
-    alert(btnSelected_txt)
     document.getElementById('input_select').placeholder = btnSelected_txt
 }
 

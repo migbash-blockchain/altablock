@@ -1,5 +1,5 @@
 #matrix_search
-    @include secondaryContainerStyle();
+    @include mainContainerStyle($secondary_light_v2, $primary_light);
 
     & input
         color: #C0E8FF;
@@ -16,10 +16,10 @@
     display: none;
 
     .innerDiv
-        @include mainContainerStyle();
+        @include mainContainerStyle($primary_light, $secondary_dark);
 
         &:hover
-            background-color: #708FFE;
+            background-color: $secondary_light_v2;
             color: $primary_light;
             transition-duration: 0.2s;
 

@@ -1,5 +1,5 @@
 #walletProfile_cont
-    @include mainContainerStyle();
+    @include mainContainerStyle($primary_light, $secondary_dark);
 
     & h3
         padding: 10px;
@@ -9,7 +9,7 @@
         color: $secondary_light_shadow;
 
 #sendFunds_cont
-    @include secondaryContainerStyle();
+    @include mainContainerStyle($secondary_light_v2, $primary_light);
 
     & h3
         padding: 10px;
