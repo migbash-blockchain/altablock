@@ -100,6 +100,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #ffffff;
   -webkit-transition-duration: 0.2s;
           transition-duration: 0.2s;
+  cursor: pointer;
 }
 
 #visual_view_div {

@@ -24,7 +24,7 @@
       <div class="container-fluid pb-3 pt-0 pl-5">
         <div class="container-fluid" style="display: flex; align-items: center;">
           <svg viewBox="0 0 32 36" width="32" height="36">
-            <use th:xlink:href="@{/images/Vector.svg#block_icon}"></use>
+            <use th:xlink:href="@{/images/Vectors.svg#block_icon}"></use>
           </svg><span class="p-2">
             <h4>Block Explorer</h4></span>
         </div>
@@ -45,25 +45,37 @@
               <div class="row">
                 <div class="col-lg-6 col-sm-4">
                   <div class="innerDiv">
-                    <h6><strong>Modified Blocks</strong></h6><img style="width: 32px; height: 32px;" th:src="@{/images/Vectormod_block.png}" alt="block_vector"/>
+                    <h6>Modified Blocks</h6>
+                    <svg viewBox="0 0 32 36" width="32" height="36">
+                      <use th:xlink:href="@{/images/Vectormod_block.png}"></use>
+                    </svg>
                     <h4 th:text="${mod_blocks}" id="modBlock_data"></h4>
                   </div>
                 </div>
                 <div class="col-lg-6 col-sm-4">
                   <div class="innerDiv">
-                    <h6><strong>Blocks Count</strong></h6><img style="width: 32px; height: 32px;" th:src="@{/images/Vector_blocks.png}" alt="block_vector"/>
+                    <h6>Blocks Count</h6>
+                    <svg viewBox="0 0 32 36" width="32" height="36">
+                      <use th:xlink:href="@{/images/Vector_blocks.png}"></use>
+                    </svg>
                     <h4 id="countBlock_data"></h4>
                   </div>
                 </div>
                 <div class="col-lg-6 col-sm-4">
                   <div class="innerDiv">
-                    <h6><strong>BlockMatrix Dimensions</strong></h6><img style="width: 32px; height: 32px;" th:src="@{/images/dimension_img_no_license.png}" alt="block_vector"/>
+                    <h6>BlockMatrix Dimensions</h6>
+                    <svg viewBox="0 0 32 36" width="32" height="36">
+                      <use th:xlink:href="@{/images/dimension_img_no_license.png}"></use>
+                    </svg>
                     <h4 th:text="${bm_dimen}"></h4>
                   </div>
                 </div>
                 <div class="col-lg-6 col-sm-4">
                   <div class="innerDiv">
-                    <h6><strong>TX Number</strong></h6><img style="width: 32px; height: 32px;" th:src="@{/images/dimension_img_no_license.png}" alt="block_vector"/>
+                    <h6>TX Number</h6>
+                    <svg viewBox="0 0 32 36" width="32" height="36">
+                      <use th:xlink:href="@{/images/dimension_img_no_license.png}"></use>
+                    </svg>
                     <h4 th:text="${bm_all_transactions.size()}" id="tx_data"></h4>
                   </div>
                 </div>
@@ -84,7 +96,11 @@
             </div>
             <div class="col-lg-7 div" id="table_simple" style="max-height: 100%;">
               <div class="container">
-                <div class="container" style="display: flex; align-items: center;"><img style="height: 32px;" th:src="@{/images/Vectorhistory.png}" alt="history_icon"><span class="p-2"><strong style="font-size: 32px;">Transaction History</strong></span></div>
+                <div class="container" style="display: flex; align-items: center;">
+                  <svg vwidth="22" height="20" viewBox="0 0 22 20">
+                    <use th:xlink:href="@{/images/Vectors.svg#histroy_vector}"></use>
+                  </svg><span class="p-2"><strong style="font-size: 32px;">Transaction History</strong></span>
+                </div>
                 <table class="table table-borderless m-3" id="bt_tx_table">
                   <thead>
                     <tr>

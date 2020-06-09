@@ -1,6 +1,7 @@
 .container
     .container(style="display: flex; align-items: center;")
-        img(style="height: 32px;" th:src="@{/images/Vectorhistory.png}" alt="history_icon")
+        svg(width="22" height="20" viewBox="0 0 22 20")
+            use(th:xlink:href="@{/images/Vectors.svg#histroy_vector}")
         span.p-2
             h4 My Transaction History
     table.table.table-borderless.m-3

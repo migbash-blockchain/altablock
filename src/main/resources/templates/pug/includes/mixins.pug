@@ -49,9 +49,9 @@ mixin input_form(inputHeader, inputID)
 mixin info_block(img_src, title, data)
     .col-lg-6.col-sm-4
         .innerDiv
-            h6
-                strong= title
-            img(style="width: 32px; height: 32px;" th:src= img_src alt="block_vector")
+            h6= title
+            svg(viewBox="0 0 32 36" width="32" height="36")
+                use(th:xlink:href= img_src)
             h4(th:text= data)&attributes(attributes)
 
 //- ----------------------
