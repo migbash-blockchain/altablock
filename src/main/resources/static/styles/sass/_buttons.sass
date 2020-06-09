@@ -23,13 +23,12 @@
         color: black;
         border: 1px solid black;
         
-
 .button_main_light_hollow
     @include button_struct(transparent, $primary_light);
     border: 1px solid $primary_light;
     font-size: 10px;
 
-    &:hover
+    &:hover, &:focus, &:active
         background-color: $primary_light;
         color: #708FFE;
 

@@ -10,9 +10,9 @@
                     th(scope="col")= n
         tbody#contents
             tr(th:each="list_value : ${bm_all_transactions}")
-                td.overflow_style(th:text="${list_value.getTransactionId()}")
-                td.overflow_style(th:text="${@stringUtil.getStringFromKey(list_value.getSender())}")
-                td.overflow_style(th:text="${@stringUtil.getStringFromKey(list_value.getRecipient())}")
+                td(th:text="${list_value.getTransactionId()}")
+                td(th:text="${@stringUtil.getStringFromKey(list_value.getSender())}")
+                td(th:text="${@stringUtil.getStringFromKey(list_value.getRecipient())}")
                 td(th:text="${list_value.getValue()}")
                 td(th:text="${list_value.getBlockNumber()}")
                 td(th:text="${list_value.getBlockNumber()}")

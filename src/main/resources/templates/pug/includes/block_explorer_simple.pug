@@ -1,6 +1,6 @@
-.container.text-center
-    .row
-        .col-lg-5
+.container.text-center(style="max-height: 100%;")
+    #row
+        .col-lg-5.div
             .row
                 +info_block('@{/images/Vectormod_block.png}', 'Modified Blocks', '${mod_blocks}')(id="modBlock_data")
                 +info_block('@{/images/Vector_blocks.png}', 'Blocks Count')(id="countBlock_data")
@@ -11,11 +11,12 @@
                         .p-2
                             h6(style="display: inline-block;")
                                 strong Search
-                            for n in ["Block", "Transaction", "User/Address"]
-                                button.button_main_light_hollow(style="display: inline-block;" type="button")= n
+                            +btn_no_img('Block', 'btn_blockNum', 'enter block number')
+                            +btn_no_img('Transaction', 'btn_txNum', 'enter transaction id')
+                            //- TODO: +btn_no_img('User/Address', 'btn_userAddr', 'enter block number')
                         .p-2
-                            input.mt-3(style="display: inline-block;" autocomplete="off" type="text" placeholder="enter transaction id")
+                            input#input_select.mt-3(style="display: inline-block;" autocomplete="off" type="text" placeholder="enter transaction id")
                             button.button_main_light(style="display: inline-block;" type="submit") Search
 
-        .col-lg-7#table_simple
+        .col-lg-7#table_simple.div(style="max-height: 100%;")
             include table_bm_txs.pug

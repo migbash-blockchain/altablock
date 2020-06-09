@@ -10,11 +10,11 @@
                     th(scope="col")= n
         tbody
             tr(th:each="tsx : ${wallet_txs}")
-                td.overflow_style(th:text="${tsx.getTransactionId()}")
-                td.overflow_style(th:text="${@stringUtil.getStringFromKey(tsx.getSender())}")
-                td.overflow_style(th:text="${@stringUtil.getStringFromKey(tsx.getRecipient())}")
+                td(th:text="${tsx.getTransactionId()}")
+                td(th:text="${@stringUtil.getStringFromKey(tsx.getSender())}")
+                td(th:text="${@stringUtil.getStringFromKey(tsx.getRecipient())}")
                 td(th:text="${tsx.getValue()}")
-                td.overflow_style(th:text="${tsx.getInfo()}")
+                td(th:text="${tsx.getInfo()}")
                 td(th:text="${tsx.getBlockNumber()}")
                 td
                     button#select_tx_btn.button_main_dark Modify Info

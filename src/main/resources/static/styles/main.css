@@ -43,6 +43,31 @@ h1, h2, h3, h4, h5, h6 {
           justify-content: space-between;
 }
 
+#matrix_search input {
+  color: #C0E8FF;
+  font-weight: bold;
+}
+
+#matrix_search input::-webkit-input-placeholder {
+  font-weight: bold;
+  color: #C0E8FF;
+}
+
+#matrix_search input:-ms-input-placeholder {
+  font-weight: bold;
+  color: #C0E8FF;
+}
+
+#matrix_search input::-ms-input-placeholder {
+  font-weight: bold;
+  color: #C0E8FF;
+}
+
+#matrix_search input::placeholder {
+  font-weight: bold;
+  color: #C0E8FF;
+}
+
 #simple_view_div {
   display: none;
 }
@@ -64,6 +89,8 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -ms-flex-line-pack: center;
+      align-content: center;
 }
 
 #simple_view_div .innerDiv:hover {
@@ -148,6 +175,23 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-text-fill-color: transparent;
 }
 
+#row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -ms-flex-line-pack: center;
+      align-content: center;
+}
+
+#row .div {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
 #walletProfile_cont {
   margin: 20px;
   padding: 0px;
@@ -165,6 +209,8 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -ms-flex-line-pack: center;
+      align-content: center;
 }
 
 #walletProfile_cont h3 {
@@ -284,9 +330,6 @@ table tbody td {
   font-family: 'Open Sans';
   font-size: 14px;
   font-weight: bold;
-}
-
-table tbody td.overflow_style {
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 100%;
@@ -296,10 +339,18 @@ table tbody td.overflow_style {
   -webkit-text-fill-color: transparent;
 }
 
+table tbody tr:nth-child(n+9) {
+  display: none;
+}
+
 #table_simple {
   zoom: 0.65;
-  height: 500px;
-  overflow-y: scroll;
+  display: block;
+  overflow: auto;
+}
+
+#table_simple::-webkit-scrollbar {
+  display: none;
 }
 
 footer {
@@ -445,12 +496,12 @@ footer #cpy_right {
   font-size: 10px;
 }
 
-.button_main_light_hollow:hover {
+.button_main_light_hollow:hover, .button_main_light_hollow:focus, .button_main_light_hollow:active {
   background-color: #ffffff;
   color: #708FFE;
 }
 
-.button_main_light_hollow:hover svg path {
+.button_main_light_hollow:hover svg path, .button_main_light_hollow:focus svg path, .button_main_light_hollow:active svg path {
   stroke: #708FFE !important;
   fill: #708FFE !important;
   -webkit-transition-duration: 0.5s;

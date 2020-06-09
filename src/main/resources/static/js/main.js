@@ -32,20 +32,37 @@ if (path_url.includes('/block_explorer')) {
         document.getElementById('_btn_div_action_txt').style.visibility = 'hidden'
     })
 
-    var btns = document.getElementsByClassName('_btn_div')
+    // -------------------------
+    // Dealing with Class Event Listeners
 
-    for (var i = 0; i < btns.length; i++) {
-        btns[i].addEventListener('mouseover', function () {
+    var btn_query_arr = document.getElementsByClassName('_btn_query')
+    var btns_arr = document.getElementsByClassName('_btn_div')
+
+    for (var i = 0; i < btns_arr.length; i++) {
+        btns_arr[i].addEventListener('mouseover', function () {
             showBtnFunc(this)
         })
     }
+
+    for (var i = 0; i < btn_query_arr.length; i++) {
+        btn_query_arr[i].addEventListener('click', function () {
+            changeInputTxt(this)
+        })
+    }
+
 }
 
 // -------------------------
 // Simple UI/UX Functions Triggers
 // -------------------------
 
-function showBtnFunc(x){
+function changeInputTxt(x) {
+    var btnSelected_txt = x.getAttribute('title')
+    alert(btnSelected_txt)
+    document.getElementById('input_select').placeholder = btnSelected_txt
+}
+
+function showBtnFunc(x) {
     var btnFunc_txt = x.getAttribute('title')
     document.getElementById('_btn_div_action_txt').innerHTML = `<p> ${btnFunc_txt} </p>`
     document.getElementById('_btn_div_action_txt').style.visibility = 'visible'

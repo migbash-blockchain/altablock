@@ -1,6 +1,17 @@
 #matrix_search
     @include secondaryContainerStyle();
 
+    & input
+        color: #C0E8FF;
+        font:
+            weight: bold;
+
+        &::placeholder
+            font:
+                weight: bold;
+            color: #C0E8FF;
+            
+
 #simple_view_div
     display: none;
 
@@ -73,3 +84,10 @@
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
 
+#row
+    display: flex;
+    justify-content: flex-start
+    align-content: center;
+    
+    .div
+        flex: 1;
