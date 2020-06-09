@@ -1,5 +1,5 @@
 //- ----------------------
-//-     Heading
+//-       Heading
 //- ----------------------
 mixin header_page(headText, img_src, info_txt1)
     .container-fluid.pb-3.pt-0.pl-5
@@ -51,7 +51,7 @@ mixin info_block(img_src, title, data)
         .innerDiv
             h6= title
             svg(viewBox="0 0 32 36" width="32" height="36")
-                use(th:xlink:href= img_src)
+                use.icon(th:xlink:href= img_src)
             h4(th:text= data)&attributes(attributes)
 
 //- ----------------------
