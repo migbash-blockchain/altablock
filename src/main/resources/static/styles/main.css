@@ -448,6 +448,7 @@ footer #cpy_right {
 .button_main:hover, .button_main:focus, .button_main:active {
   background-color: #708FFE;
   color: #ffffff;
+  outline: none;
 }
 
 .button_main_light {
@@ -632,6 +633,11 @@ footer #cpy_right {
 .selected {
   background-color: #ffffff;
   color: #708FFE;
+}
+
+.selected_dark {
+  background-color: #708FFE;
+  color: #ffffff;
 }
 
 /* ____ ANIMATIONS ____*/

@@ -7,7 +7,8 @@
 
     &:hover, &:focus, &:active
         background-color: #708FFE;
-        color: $primary_light;  
+        color: $primary_light;
+        outline: none;
 
 .button_main_light
     @include button_struct($primary_light, $secondary_dark);
@@ -91,4 +92,8 @@
     
 .selected
     background-color: $primary_light;
-    color: #708FFE;
+    color: $secondary_light_v2;
+
+.selected_dark
+    background-color: $secondary_light_v2;
+    color: $primary_light;

@@ -7,7 +7,7 @@ var path_url = document.URL;
 if (path_url.includes('/block_explorer')) {
 
     // -------------------------
-    // Page UI/UX Changes
+    // Initial Page UI/UX Changes
     // -------------------------
 
     document.getElementsByTagName('footer')[0].getElementsByTagName('a')[1].style.color = '#00A3FF'
@@ -39,7 +39,7 @@ if (path_url.includes('/block_explorer')) {
 } else if (path_url.includes('/wallet')) {
 
     // -------------------------
-    // Page UI/UX Changes
+    // Initial Page UI/UX Changes
     // -------------------------
 
     document.getElementById('_btn_div_action_txt').innerHTML = `<p> hello </p>`
@@ -134,6 +134,12 @@ function copyClipboard(x) {
 }
 
 function switchLayout() {
+
+    // Change Button Styles
+    document.getElementById('simple_view_btn').classList.toggle('selected_dark')
+    document.getElementById('visual_view_btn').classList.toggle('selected_dark')
+
+    // Switch - Show/Hide Layouts
     document.getElementById('simple_view_div').classList.toggle('enabled')
     document.getElementById('visual_view_div').classList.toggle('enabled')
 }
