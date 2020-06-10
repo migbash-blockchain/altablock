@@ -86,6 +86,7 @@ public class Template_Controller {
         model.addAttribute("transactions", wallet_genesis.getUTXOs());
         model.addAttribute("pub_address", StringUtil.getStringFromKey(wallet_genesis.getPublicKey()));
         model.addAttribute("priv_address", StringUtil.getStringFromKey(wallet_genesis.getPrivateKey()));
+        model.addAttribute("bm_verify", new_blockMatrix.is_Matrix_Valid().toString());
         model.addAttribute("wallet_txs", wallet_genesis.getTransactions());
         return "html/wallet_ui";
     }

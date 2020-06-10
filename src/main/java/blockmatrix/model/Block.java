@@ -3,6 +3,8 @@ package blockmatrix.model;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.google.gson.Gson;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -118,7 +120,15 @@ public class Block {
             System.out.println(t.toString());
             count++;
         }
-
     }
 
+    public ArrayList<String> getStringTx() {
+        ArrayList<String> list = new ArrayList<>();
+
+        for (Transaction tx : transactions) {
+            list.add(tx.toString());
+        }
+
+        return list;
+    }
 }

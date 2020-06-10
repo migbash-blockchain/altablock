@@ -345,6 +345,16 @@ public class BlockMatrix {
     public HashMap<String, Transaction_Output> getUTXOs() { return UTXOs; }
     public Set<URL> getList() {return Collections.unmodifiableSet(this.nodesList); }
 
+    public Transaction getTransaction(String tx_id) {
+
+        for(Transaction tx : getAllTransactions()) {
+            if (tx.getTransactionId().equals(tx_id)) {
+                return tx;
+            }
+        }
+        return null;
+    }
+
     public ArrayList<Transaction> getAllTransactions() {
 
         ArrayList<Transaction> list = new ArrayList<>();
@@ -353,10 +363,22 @@ public class BlockMatrix {
         // Loop through each block in the network
         while(i-1 < inputCount) {
             list.addAll(getBlock(i).getTransactions());
-            // System.out.println(list);
+            System.out.println(list.toString());
             i++;
         }
+        return list;
+    }
 
+    public ArrayList<String> getAllStringTransactions() {
+        ArrayList<String> list = new ArrayList<>();
+        int i = 1;
+
+        // Loop through each block in the network
+        while(i-1 < inputCount) {
+            list.addAll(getBlock(i).getStringTx());
+            System.out.println(list.toString());
+            i++;
+        }
         return list;
     }
 
@@ -370,7 +392,6 @@ public class BlockMatrix {
             block_list.add(getBlock(i));
             i++;
         }
-        
         return block_list;
     }
     

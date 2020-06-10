@@ -59,13 +59,10 @@ public class Blockmatrix_RestController {
      * === Blockchain Data (Explorer) ===
      * ==================================
      */
-
-    
     
 
     @RequestMapping(path = "/get_blockmatrix_blocks")
     public String getBlockMatrixBlocks() {
-
         return new GsonBuilder().setPrettyPrinting().create().toJson(new_blockMatrix.getAllBlocks()); 
     }
 
@@ -80,8 +77,14 @@ public class Blockmatrix_RestController {
      */
 
     @RequestMapping(path = "/get_block_data")
-    public String getBlockData(@RequestParam(value = "num", required = true, defaultValue = "1") int blockNumber) {
-        return new_blockMatrix.getBlockData(blockNumber);
+    public String getBlockData(@RequestParam(value = "block_num", required = true, defaultValue = "1") int blockNumber) {
+        return new GsonBuilder().setPrettyPrinting().create().toJson(new_blockMatrix.getBlockData(blockNumber));
+
+    }
+
+    @RequestMapping(path = "/get_transaction")
+    public String getTransactionId(@RequestParam(value = "tx_id", required = true, defaultValue = "1") String txHashId) {
+        return new GsonBuilder().setPrettyPrinting().create().toJson(new_blockMatrix.getTransaction(txHashId));
     }
 
     /**
@@ -93,8 +96,8 @@ public class Blockmatrix_RestController {
      */
 
     @RequestMapping(path = "/get_block_transactions")
-    public String getBlockTransactions(@RequestParam(value = "num", required = true, defaultValue = "1") int blockNumber) {
-        return new_blockMatrix.getBlockTransactions(blockNumber).toArray().toString();
+    public String getBlockTransactions(@RequestParam(value = "block_num", required = true, defaultValue = "1") int blockNumber) {
+        return new GsonBuilder().setPrettyPrinting().create().toJson(new_blockMatrix.getBlockTransactions(blockNumber));
     }
 
     /**
@@ -128,9 +131,8 @@ public class Blockmatrix_RestController {
      */
 
     @RequestMapping(path = "/get_blockmatrix_transactions")
-    public String getBlockMatrixTX() {
-
-        return new GsonBuilder().setPrettyPrinting().create().toJson(new_blockMatrix.getAllTransactions()); 
+    public ArrayList<String> getBlockMatrixTX() {
+        return new_blockMatrix.getAllStringTransactions(); 
     }
 
     // ====================
@@ -158,7 +160,6 @@ public class Blockmatrix_RestController {
      * _____ 
      * @return JSON (HashMap)
      */
-
     @RequestMapping(path = "/generate_new_wallet")
     public String generate_new_wallet() {
         Wallet new_wallet = new Wallet();
@@ -175,7 +176,6 @@ public class Blockmatrix_RestController {
      * @param msg
      * 
      */
-
     @RequestMapping(path = "/send_funds")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<String> send_funds(@RequestParam(value = "funds", required = true) float value,

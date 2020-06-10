@@ -2,10 +2,10 @@
     #row
         .col-lg-5.div
             .row
-                +info_block('@{/images/Vectormod_block.png}', 'Modified Blocks', '${mod_blocks}')(id="modBlock_data")
-                +info_block('@{/images/Vectors.svg#mod_blocks}', 'Blocks Count')(id="countBlock_data")
-                +info_block('@{/images/dimension_img_no_license.png}', 'BlockMatrix Dimensions', '${bm_dimen}')
-                +info_block('@{/images/dimension_img_no_license.png}', 'TX Number', '${bm_all_transactions.size()}')(id="tx_data")
+                +info_block('Modified Blocks', '${mod_blocks}')(id="modBlock_data")
+                +info_block('Blocks Count')(id="countBlock_data")
+                +info_block('BlockMatrix Dimensions', "${bm_dimen} + ' x ' + ${bm_dimen}")
+                +info_block('TX Number', '${bm_all_transactions.size()}')(id="tx_data")
 
                 .col-lg-12.text-left
                     #matrix_search
@@ -17,7 +17,7 @@
                             //- TODO: +btn_no_img('User/Address', 'btn_userAddr', 'enter block number')
                         .p-2
                             input#input_select.mt-3(style="display: inline-block;" autocomplete="off" type="text" placeholder="enter transaction id")
-                            button.button_main_light(style="display: inline-block;" type="submit") Search
+                            button#search_matrix.button_main_light(style="display: inline-block;" type="submit") Search
 
         .col-lg-7#table_simple.div(style="max-height: 100%;")
             include table_bm_txs.pug

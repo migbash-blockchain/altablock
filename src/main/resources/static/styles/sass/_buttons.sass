@@ -1,3 +1,6 @@
+// ------------------
+//   Button Styles
+// ------------------
 .button_main
     @include button_struct($primary_light, $secondary_dark);
     box-shadow: 0 0 4px $secondary_light_shadow;
@@ -17,16 +20,22 @@
     @include button_struct(#708FFE, $primary_light);
     font-size: 12px;
     border: 1px solid transparent;
+    outline: none;
 
     &:hover, &:focus, &:active
         background-color: $primary_light;
-        color: black;
-        border: 1px solid black;
+        color: $secondary_dark;
+        border: 1px solid $secondary_dark;
+
+        & svg path
+            stroke: $secondary_dark;
         
 .button_main_light_hollow
     @include button_struct(transparent, $primary_light);
     border: 1px solid $primary_light;
     font-size: 10px;
+
+    
 
     &:hover, &:focus, &:active
         background-color: $primary_light;
@@ -76,6 +85,9 @@
 .info
     @include button_struct($primary_dark, $primary_light);
 
-    // strong:nth-child(n+3)
-    //     color: #62FE3B;
+    span:nth-child(n+3)
+        color: #62FE3B;
     
+.selected
+    background-color: $primary_light;
+    color: #708FFE;

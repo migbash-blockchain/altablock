@@ -5,12 +5,12 @@
 var path_url = document.URL;
 
 if (path_url.includes('/block_explorer')) {
-    
+
     // -------------------------
     // Page UI/UX Changes
     // -------------------------
 
-    document.getElementsByTagName('footer')[0].getElementsByTagName('a')[4].style.color = '#00A3FF'
+    document.getElementsByTagName('footer')[0].getElementsByTagName('a')[1].style.color = '#00A3FF'
 
     // -------------------------
     // Event Listeners
@@ -18,6 +18,7 @@ if (path_url.includes('/block_explorer')) {
 
     document.getElementById('simple_view_btn').addEventListener('click', switchLayout)
     document.getElementById('visual_view_btn').addEventListener('click', switchLayout)
+    document.getElementById('search_matrix').addEventListener('click', searchData)
 
     var btn_query_arr = document.getElementsByClassName('_btn_query')
 
@@ -42,7 +43,15 @@ if (path_url.includes('/block_explorer')) {
     // -------------------------
 
     document.getElementById('_btn_div_action_txt').innerHTML = `<p> hello </p>`
-    document.getElementsByTagName('footer')[0].getElementsByTagName('a')[3].style.color = '#00A3FF'
+    document.getElementsByTagName('footer')[0].getElementsByTagName('a')[0].style.color = '#00A3FF'
+    
+    var rows_arr = document.getElementsByTagName('tr')
+
+    for (let i = 0; i < rows_arr.length; i++) {
+        if (i > 2) {
+            rows_arr[i].classList.toggle('display_row');
+        }
+    }
 
     // -------------------------
     // Event Listeners
@@ -52,16 +61,17 @@ if (path_url.includes('/block_explorer')) {
     document.getElementById('new_wallet').addEventListener('click', createNewWallet)
     document.getElementById('access_wallet').addEventListener('click', submitTX)
     document.getElementById('sendTx').addEventListener('click', submitTX)
+    document.getElementById('show_more_btn').addEventListener('click', showMoreTx)
 
     document.getElementById('cpy_pub_add').addEventListener('click', function () {
         copyClipboard(this)
     })
-    
+
     document.getElementById('select_tx_btn').addEventListener('click', function () {
         clearData(this)
     })
 
-    document.getElementById('user_action_btn').addEventListener('mouseout', function() {
+    document.getElementById('user_action_btn').addEventListener('mouseout', function () {
         document.getElementById('_btn_div_action_txt').style.visibility = 'hidden'
     })
 
@@ -78,9 +88,26 @@ if (path_url.includes('/block_explorer')) {
 // Simple UI/UX Functions Triggers
 // -------------------------
 
+function showMoreTx() {
+    var rows_arr = document.getElementsByTagName('tr')
+
+    for (let i = 0; i < rows_arr.length; i++) {
+        if (i > 2) {
+            rows_arr[i].classList.toggle('display_row');
+        }
+    }
+}
+
 function changeInputTxt(x) {
     var btnSelected_txt = x.getAttribute('title')
     document.getElementById('input_select').placeholder = btnSelected_txt
+    if (btnSelected_txt == 'enter block number') {
+        document.getElementsByClassName('_btn_query')[0].classList.add('selected')
+        document.getElementsByClassName('_btn_query')[1].classList.remove('selected')
+    } else {
+        document.getElementsByClassName('_btn_query')[0].classList.remove('selected')
+        document.getElementsByClassName('_btn_query')[1].classList.add('selected')
+    }
 }
 
 function showBtnFunc(x) {
@@ -107,6 +134,36 @@ function switchLayout() {
 // -------------------------
 // AJAX/ASYNC Functions
 // -------------------------
+
+async function searchData() {
+
+    // Validate Pressed Button for search
+    var btn_select = document.getElementsByClassName('_btn_query')[0].classList.contains('selected')
+    var input = document.getElementById('input_select').value
+
+    // True?
+    if (btn_select) {
+
+        var url = new URL("/get_block_transactions", document.URL),
+            params = {
+                block_num: input,
+            }
+        Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
+
+        window.open(url)
+    } else {
+
+        var url = new URL("/get_transaction", document.URL),
+            params = {
+                tx_id: input,
+            }
+        Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
+
+        window.open(url)
+    }
+
+
+}
 
 async function submitTX() {
 
@@ -218,7 +275,7 @@ async function getTxData() {
     fetch('/get_blockmatrix_transactions')
         .then((res) => res.text())
         .then((data) => {
-            var result = JSON.parse(data)
+            var result = JSON.parse(data).replace(/\\/g, "")
             document.getElementById('contents').innerHTML = ''
             for (var tx_data of result) {
                 var row = document.getElementById('contents').insertRow(0);

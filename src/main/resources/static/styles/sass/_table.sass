@@ -30,9 +30,6 @@ table
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
 
-        & tr:nth-child(n+9)
-            display: none;
-    
 // ------------------
 // Individual Table Styles
 // ------------------
@@ -45,5 +42,17 @@ table
     // Hide scrollbar for Chrome, Safari and Opera
     &::-webkit-scrollbar
         display: none;
+
+    & tr:nth-child(n+9)
+            display: none;
+
+#table_contents
+
+    // & tr:nth-child(n+2)
+    //     visibility: collapse;
+
+.display_row
+    visibility: collapse !important;
+        
 
     

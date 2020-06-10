@@ -10,7 +10,7 @@ body {
 }
 
 section {
-  height: 100vh;
+  min-height: 100vh;
   background-image: url(../../images/Theme.svg);
   background-repeat: no-repeat;
   background-size: contain;
@@ -47,6 +47,7 @@ h1, h2, h3, h4, h5, h6 {
 #matrix_search input {
   color: #C0E8FF;
   font-weight: bold;
+  outline: 0px;
 }
 
 #matrix_search input::-webkit-input-placeholder {
@@ -93,6 +94,17 @@ h1, h2, h3, h4, h5, h6 {
           justify-content: space-between;
   -ms-flex-line-pack: center;
       align-content: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  height: 75px;
+  width: 85%;
+}
+
+#simple_view_div .innerDiv h5 {
+  font-family: 'Open Sans';
+  font-weight: normal;
+  color: #515151;
 }
 
 #simple_view_div .innerDiv:hover {
@@ -101,6 +113,10 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-transition-duration: 0.2s;
           transition-duration: 0.2s;
   cursor: pointer;
+}
+
+#simple_view_div .innerDiv:hover h5 {
+  color: #ffffff;
 }
 
 #visual_view_div {
@@ -344,10 +360,6 @@ table tbody td {
   -webkit-text-fill-color: transparent;
 }
 
-table tbody tr:nth-child(n+9) {
-  display: none;
-}
-
 #table_simple {
   zoom: 0.65;
   display: block;
@@ -356,6 +368,14 @@ table tbody tr:nth-child(n+9) {
 
 #table_simple::-webkit-scrollbar {
   display: none;
+}
+
+#table_simple tr:nth-child(n+9) {
+  display: none;
+}
+
+.display_row {
+  visibility: collapse !important;
 }
 
 footer {
@@ -469,12 +489,17 @@ footer #cpy_right {
           align-items: center;
   font-size: 12px;
   border: 1px solid transparent;
+  outline: none;
 }
 
 .button_main_dark:hover, .button_main_dark:focus, .button_main_dark:active {
   background-color: #ffffff;
-  color: black;
-  border: 1px solid black;
+  color: #000000;
+  border: 1px solid #000000;
+}
+
+.button_main_dark:hover svg path, .button_main_dark:focus svg path, .button_main_dark:active svg path {
+  stroke: #000000;
 }
 
 .button_main_light_hollow {
@@ -587,6 +612,15 @@ footer #cpy_right {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.info span:nth-child(n+3) {
+  color: #62FE3B;
+}
+
+.selected {
+  background-color: #ffffff;
+  color: #708FFE;
 }
 
 /* ____ ANIMATIONS ____*/

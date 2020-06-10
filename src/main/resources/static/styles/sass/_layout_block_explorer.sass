@@ -8,12 +8,13 @@
         color: #C0E8FF;
         font:
             weight: bold;
+        outline: 0px;
 
         &::placeholder
             font:
                 weight: bold;
             color: #C0E8FF;
-            
+    
 // ------------------
 // Simple Block Explorer View Style(s)
 // ------------------
@@ -22,12 +23,24 @@
 
     .innerDiv
         @include mainContainerStyle($primary_light, $secondary_dark);
+        justify-content: space-evenly;
+        height: 75px;
+        width: 85%;
+
+        & h5
+            font:
+                family: 'Open Sans';
+                weight: normal;
+            color: $primary_dark;
 
         &:hover
             background-color: $secondary_light_v2;
             color: $primary_light;
             transition-duration: 0.2s;
             cursor: pointer;
+
+            & h5
+                color: $primary_light;
 
 // ------------------
 // Visual Block Explorer View Style(s)

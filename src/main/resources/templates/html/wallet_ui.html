@@ -105,7 +105,7 @@
           </svg><span class="p-2">
             <h4>My Transaction History</h4></span>
         </div>
-        <table class="table table-borderless m-3">
+        <table class="table table-borderless m-3" id="table_contents">
           <thead>
             <tr>
               <th scope="col">Transaction ID</th>
@@ -131,7 +131,7 @@
           </tbody>
         </table>
         <div class="container" style="display: flex; justify-content: center;">
-          <button class="button_main_dark"> <span class="mr-2">Show More</span>
+          <button class="button_main_dark mb-4" id="show_more_btn"><span class="mr-2">Show More</span>
             <svg width="12" height="9" viewbox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M1.5 1L5.31502 6.70623C5.71971 7.31153 6.61494 7.29524 6.99733 6.67562L10.5 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>
@@ -182,13 +182,6 @@
       <div class="container-fluid">
         <div class="row p-4">
           <div class="col-sm-3 text-center"><img th:src="@{/images/logo_footer.png}" alt="Atla Logo"></div>
-          <div class="col-sm-3">
-            <ul>
-              <li class="m-3"><a href="/">Home</a></li>
-              <li class="m-3"><a href="/">About</a></li>
-              <li class="m-3"><a href="/">Contact</a></li>
-            </ul>
-          </div>
           <div class="col-sm-3">
             <ul>
               <li class="m-3"><a href="/wallet">Wallet</a></li>
