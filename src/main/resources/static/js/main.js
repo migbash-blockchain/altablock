@@ -57,18 +57,14 @@ if (path_url.includes('/block_explorer')) {
     // Event Listeners
     // -------------------------
 
-    document.getElementById('view_keys').addEventListener('click', submitTX)
+    // document.getElementById('view_keys').addEventListener('click', submitTX)
     document.getElementById('new_wallet').addEventListener('click', createNewWallet)
-    document.getElementById('access_wallet').addEventListener('click', submitTX)
+    //TODO: document.getElementById('access_wallet').addEventListener('click', submitTX)
     document.getElementById('sendTx').addEventListener('click', submitTX)
     document.getElementById('show_more_btn').addEventListener('click', showMoreTx)
 
     document.getElementById('cpy_pub_add').addEventListener('click', function () {
         copyClipboard(this)
-    })
-
-    document.getElementById('select_tx_btn').addEventListener('click', function () {
-        clearData(this)
     })
 
     document.getElementById('user_action_btn').addEventListener('mouseout', function () {
@@ -80,6 +76,14 @@ if (path_url.includes('/block_explorer')) {
     for (var i = 0; i < btns_arr.length; i++) {
         btns_arr[i].addEventListener('mouseover', function () {
             showBtnFunc(this)
+        })
+    }
+
+    var btns_arrs_table = document.getElementsByClassName('_btn_modifyTX')
+
+    for (let i = 0; i < btns_arrs_table.length; i++) {
+        btns_arrs_table[i].addEventListener('click', function () {
+            clearData(this)
         })
     }
 }
@@ -96,6 +100,9 @@ function showMoreTx() {
             rows_arr[i].classList.toggle('display_row');
         }
     }
+
+    document.getElementById('showMore').classList.toggle('enabled')
+    document.getElementById('showLess').classList.toggle('enabled')
 }
 
 function changeInputTxt(x) {
@@ -194,13 +201,13 @@ async function submitTX() {
 async function clearData(x) {
 
     var block_num = x.parentNode.parentNode.getElementsByTagName("td")[5].innerHTML
-    // var transaction_num = x.parentNode.parentNode.getElementsByTagName("strong")[5].innerHTML
+    var txId = x.parentNode.parentNode.getElementsByTagName("td")[0].innerHTML
     var new_info = "null"
 
     var url = new URL("/modify_transaction_info", document.URL),
         params = {
             num: block_num,
-            transaction: 0,
+            transaction: txId,
             new_info: new_info
         }
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))

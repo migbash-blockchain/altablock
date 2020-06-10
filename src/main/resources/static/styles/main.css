@@ -22,6 +22,16 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0px;
 }
 
+.overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  background-image: -webkit-gradient(linear, left top, right top, color-stop(35%, #000000), to(rgba(0, 0, 0, 0)));
+  background-image: linear-gradient(90deg, #000000 35%, rgba(0, 0, 0, 0));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 #matrix_search {
   margin: 20px;
   padding: 0px;
@@ -347,7 +357,7 @@ table tbody tr:hover {
   cursor: pointer;
 }
 
-table tbody td {
+table tbody td:nth-child(-n+6) {
   font-family: 'Open Sans';
   font-size: 14px;
   font-weight: bold;
@@ -496,6 +506,7 @@ footer #cpy_right {
   background-color: #ffffff;
   color: #000000;
   border: 1px solid #000000;
+  outline: none;
 }
 
 .button_main_dark:hover svg path, .button_main_dark:focus svg path, .button_main_dark:active svg path {

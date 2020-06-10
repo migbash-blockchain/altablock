@@ -187,10 +187,10 @@ public class Blockmatrix_RestController {
     }
 
     @RequestMapping(path = "/modify_transaction_info")
-    public void modify_transaction_info(@RequestParam(value = "num", required = true, defaultValue = "1") int blockNumber,
-        @RequestParam(value = "transaction", required = true, defaultValue = "0") int transactionNumber,
-        @RequestParam(value = "new_info", required = true, defaultValue = "null") String new_info) {
-        new_blockMatrix.modifyTXinfo_InBM(blockNumber, transactionNumber, new_info);
+    public void modify_transaction_info(@RequestParam(value = "num", required = true, defaultValue = "null") int blockNumber,
+        @RequestParam(value = "transaction", required = true, defaultValue = "null") String txId,
+        @RequestParam(value = "new_info", required = true, defaultValue = "null") String newTxInfo) {
+        new_blockMatrix.modifyTXinfo_InBM(blockNumber, txId, newTxInfo);
     }
 
     // @Scheduled(fixedRate = 10000) // ms = (60 sec)

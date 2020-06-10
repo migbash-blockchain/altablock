@@ -144,11 +144,6 @@ public class Transaction {
         return total;
     }
 
-    public void clear_Transaction_Info() {
-        this.info = "CLEARED";
-        this.transactionId =  calculate_Transaction_Hash();
-    }
-
     public void modifyTX(String new_info){
         this.info = new_info;
         this.transactionId =  calculate_Transaction_Hash();

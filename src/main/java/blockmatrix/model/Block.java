@@ -88,14 +88,12 @@ public class Block {
         return true;
     }
 
-    public void clear_Transaction_Info_In_Block(int transactionNumber) {
-        transactions.get(transactionNumber).clear_Transaction_Info();
-        merkleRoot = StringUtil.getMerkleRoot(transactions);
-        this.hash = calculate_Block_Hash();
-    }
-
-    public void modifyTX_InfoInBlock(int transactionNumber, String new_transaction_info){
-        transactions.get(transactionNumber).modifyTX(new_transaction_info);
+    public void modifyTX_InfoInBlock(String txId, String newTxInfo){
+        for (Transaction tx : transactions) {
+            if (tx.getTransactionId().equals(txId)) {
+                tx.modifyTX(newTxInfo);
+            }
+        }
         merkleRoot = StringUtil.getMerkleRoot(transactions);
         this.hash = calculate_Block_Hash();
     }

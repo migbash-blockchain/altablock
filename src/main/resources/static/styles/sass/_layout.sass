@@ -24,6 +24,17 @@ h1, h2, h3, h4, h5, h6
     margin: 0px;
 
 // ------------------
+// Global Project Effects
+// ------------------
+.overflow
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    background-image: linear-gradient(90deg,#000000 35%,rgba(0,0,0,0));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+// ------------------
 // Main Container Style(s)
 // ------------------
 @mixin mainContainerStyle($bg_color, $txt_color)

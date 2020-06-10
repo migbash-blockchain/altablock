@@ -18,10 +18,17 @@
                 td(th:text="${tsx.getInfo()}")
                 td(th:text="${tsx.getBlockNumber()}")
                 td
-                    button#select_tx_btn.button_main_dark Modify Info
+                    button._btn_modifyTX.button_main_dark Modify Info
                     //- button.btn.btn-primary(type='button' data-toggle='modal' data-target='#exampleModal' data-whatever='@getbootstrap') Modify Transaction Info
     .container(style="display: flex; justify-content: center;")
         button#show_more_btn.button_main_dark.mb-4
-            span.mr-2 Show More
-            svg(width='12' height='9' viewbox='0 0 12 9' fill='none' xmlns='http://www.w3.org/2000/svg')
-                path(d='M1.5 1L5.31502 6.70623C5.71971 7.31153 6.61494 7.29524 6.99733 6.67562L10.5 1' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round')
+            #showMore.enabled(style="display: none;")
+                span.mr-2 Show More
+                svg(width='12' height='9' viewbox='0 0 12 9' fill='none' xmlns='http://www.w3.org/2000/svg')
+                    path(d='M1.5 1L5.31502 6.70623C5.71971 7.31153 6.61494 7.29524 6.99733 6.67562L10.5 1' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round')
+            #showLess(style="display: none;")
+                span.mr-2 Show Less
+                svg(width='12' height='9' viewbox='0 0 12 9' fill='none' xmlns='http://www.w3.org/2000/svg')
+                    path(d="M10.5 8L6.68498 2.29377C6.28029 1.68847 5.38506 1.70476 5.00267 2.32438L1.5 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round")
+                
+                
