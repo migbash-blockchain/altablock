@@ -72,3 +72,7 @@ Just visit the Live Heroku version [here](https://altablock.herokuapp.com/wallet
 ## Takeaway
 
 All in all I continue to work on my personal research and discovering new technologies and the blockmatrix seems very exciting. It was a crazy 3 weeks projects (from research to MVP) and will be looking at ways to utilize this technology in the near future. Currently thinking to apply it HealthCare systems &/or Identity System or even use Smart Contracts with it.
+
+## Future Project Diagram
+
+![image](https://user-images.githubusercontent.com/20924663/107161698-5959cb80-6996-11eb-9425-7e081e0193aa.png)
